@@ -1,5 +1,6 @@
-# storyteller
-A template for static websites using extended markdown to create content
+# Storyteller
+
+A template for static websites using extended markdown to create content.
 
 This contains all the files needed to set up a static website. The host can be your own computer or a remote host.
 
@@ -8,6 +9,8 @@ To set up on your local computer, copy all files to an empty folder. Navigate to
 To start on shared hosting, copy all the files then point your browser to `index.php` (or just use the domain name as this is the default file).
 
 On some static hosting (e.g. Neocities) there are restrictions on the file types allowed, so remove the `.php` and `.py` files.
+
+On your local computer or on most shared hosting, the file `scripted.html` fires up a color-coded script editor with which you can edit the supplied EasyCoder scripts. One of these is the script editor itself; the other is the viewer that runs the website.
 
 The behavior of the site is entirely controlled by the files in the `data` folder. The file `subjects.json` determines which subjects appear as buttons on the home page. Each subject comprises a set of text files and a folder of images. The text files are:
 
