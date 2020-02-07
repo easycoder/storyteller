@@ -12,7 +12,9 @@ On some static hosting (e.g. Neocities) there are restrictions on the file types
 The behavior of the site is entirely controlled by the files in the `data` folder. The file `subjects.json` determines which subjects appear as buttons on the home page. Each subject comprises a set of text files and a folder of images. The text files are:
 
 `title.txt` The title to appear at the top of the page. If left empty the subject name will be used.
+
 `index.txt` The markdown source of the first page of the given subject.
+
 All other text files are markdown; their names are whatever you choose.
 
 The system uses a customized markdown to provide additional features. You can add more by editing the script at `ecs/viewer.txt`. The ones currently provided are:
