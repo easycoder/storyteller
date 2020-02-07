@@ -1,0 +1,7 @@
+Topics: ~sid:Graham:Me~ ~sid:Joan:Mum~ ~sid:Ronald:Dad~ ~sid:Olive and Arthur:Mum's parents~ ~sid:Kate and Sidney:Dad's parents~
+
+This website is a set of information and stories about me, my parents and my grandparents. It's a small part of a family tree that looks like this:
+ 
+ ~img:chart.png:centre pc50!nolink~
+ 
+ That's me at the bottom, with my parents and grandparents above.

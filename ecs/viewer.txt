@@ -1,0 +1,371 @@
+!   Record viewer
+
+    script Viewer
+    
+    div Tracer
+    div Body
+    div Container
+    div ViewerPanel
+    div TopicText
+    div ImageDiv
+    div Mask
+    div Label
+    div PicDiv
+    img BigPic
+    img Top
+    img Mid
+    img Bottom
+    img HomeButton
+    img BackButton
+    img InfoButton
+    h1 Title
+    a Link
+    img Image
+    button ChoiceButton
+    callback DecoratorCallback
+    variable Mobile
+    variable ID
+    variable TID
+    variable Index
+    variable Record
+    variable N
+    variable TitleText
+    variable Payload
+    variable Function
+    variable Data
+    variable Display
+    variable Source
+    variable Class
+    variable Options
+    variable LinkCount
+    variable ImageCount
+    variable DataID
+    variable Prefix
+    variable Topic
+    variable Stack
+    variable StackPointer
+    
+    clear Mobile
+    if mobile
+    begin
+    	if portrait set Mobile
+    end
+    
+    clear body
+    create Body in body
+    if Mobile set the style of Body to `width:100%;height:100%;background:#dbc19a`
+    else set the style of Body to `position:relative;width:calc(100vw - 20px)`
+    
+    create ViewerPanel in Body
+    set the style of ViewerPanel to `width:100%;height:100%;padding:0.5em 0`
+    
+    if not Mobile
+    begin
+        create Mid in ViewerPanel
+        set the style of Mid to `width:100%;height:100%;position:relative`
+        set attribute `src` of Mid to `images/parchment-mid.png`
+
+        create Top in ViewerPanel
+        set the style of Top to `width:100%;height:10vh;position:absolute;left:0;top:0`
+        set attribute `src` of Top to `images/parchment-top.png`
+
+        create Bottom in ViewerPanel
+        set the style of Bottom to `width:100%;height:10vh;position:absolute;left:0;bottom:0`
+        set attribute `src` of Bottom to `images/parchment-bottom.png`
+    end
+    
+	create Container in ViewerPanel
+    if Mobile
+    begin
+        set style `font-size` of Container to `0.8em`
+    end
+    else
+    begin
+        set the style of Container to `width:calc(80vw - 20px);height:calc(80vh - 20px);`
+            cat `position:absolute;top:10vh;left:10vw;font-size:1.5em`
+    end
+    
+!    create Tracer in Container
+!    set the style of Tracer to `margin-top:2em;background:white`
+!    set the id of Tracer to `easycoder-tracer`
+!    trace ID TID N StackPointer Stack vertical
+    
+    create Title in Container
+    create TopicText in Container
+
+	create HomeButton in ViewerPanel
+    if Mobile set the class of HomeButton to `home-button-mobile`
+    else set the class of HomeButton to `home-button-pc`
+    set attribute `src` of HomeButton to `icons/home.png`
+    on click HomeButton
+    begin
+        put `home` into ID
+        put `index` into TID
+        go to ViewAnotherRecord
+    end
+
+	create BackButton in ViewerPanel
+    if Mobile set the class of BackButton to `back-button-mobile`
+    else set the class of BackButton to `back-button-pc`
+    set attribute `src` of BackButton to `icons/arrow-back.png`
+    on click BackButton go to Back
+
+	create InfoButton in ViewerPanel
+    if Mobile set the class of InfoButton to `info-button-mobile`
+    else set the class of InfoButton to `info-button-pc`
+    set attribute `src` of InfoButton to `icons/info.png`
+    on click InfoButton
+    begin
+        put `info` into ID
+        put `index` into TID
+        go to ViewAnotherRecord
+    end
+
+    create Mask in ViewerPanel
+    set the style of Mask to `position:absolute;top:0;left:0;width:100%;height:100%;`
+    	cat `opacity:70%;background:black;display:none`
+    create PicDiv in ViewerPanel
+    set the style of PicDiv to
+    	`position:absolute;top:0;left:0;text-align:center;width:100%;height:100%;display:none`
+    create BigPic in PicDiv
+    
+	load showdown
+  	on DecoratorCallback go to Decorate
+
+	set style `display` of InfoButton to `block`
+   	rest get Index from `/data/subjects.json`
+    if the json count of Index is 0 stop
+
+    get ID from storage as `id`
+    if ID is empty put element 0 of Index into ID
+    get TID from storage as `tid`
+    if TID is empty put `index` into TID
+    
+    put 0 into StackPointer
+
+ViewRecord:
+    rest get Record from `/data/` cat ID cat `/index.txt`
+    or begin
+    	put element 0 of Index into ID
+        put `index` into TID
+        continue
+    end
+    
+    put ID cat `/` cat TID into Stack
+    if StackPointer is greater than 0 set style `display` of BackButton to `inline-block`
+
+    remove element Title
+    remove element TopicText
+
+    create Title in Container
+    set the style of Title to `text-align:center;margin-top:0`
+    rest get TitleText from `/data/` cat ID cat `/title.txt`
+    if TitleText is empty
+    	put ID into TitleText
+        continue
+    end
+    set the content of Title to TitleText
+    if Mobile
+    begin
+    	set style `font-size` of Title to `1.4em`
+        set style `padding-top` of Title to `0.5em`
+    end
+
+    rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
+    or begin
+    	put `index` into TID
+        rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
+        continue
+    end
+        
+    put ID into storage as `id`
+    put TID into storage as `tid`
+
+    create TopicText in Container
+    set the style of TopicText to 
+    	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
+
+!	Set up the showdown extension
+    put 0 into LinkCount
+    put 0 into ImageCount
+    set the content of TopicText to showdown decode Topic with DecoratorCallback
+    set the elements of Link to LinkCount
+    set the elements of ImageDiv to ImageCount
+    set the elements of Image to ImageCount
+    put 0 into N
+    while N is less than LinkCount
+    begin
+        index Link to N
+        attach Link to `ec-link-` cat N
+        add 1 to N
+    end
+    on click Link
+    begin
+        put attribute `data-id` of Link into DataID
+        put left 1 of DataID into Prefix
+        if Prefix is `S`
+        begin
+            put from 1 of DataID into ID
+            put `index` into TID
+            go to ViewAnotherRecord
+        end
+        else if Prefix is `T`
+        begin
+            put from 1 of DataID into TID
+            go to ViewAnotherRecord
+        end
+    end
+    put 0 into N
+    while N is less than ImageCount
+    begin
+        index ImageDiv to N
+        index Image to N
+        attach ImageDiv to `ec-imagediv-` cat N
+        attach Image to `ec-image-` cat N
+        add 1 to N
+    end
+    on click Image
+    begin
+        put attribute `data-options` of Image into Options
+        print Options
+        if the position of `nolink` in Options is -1
+        begin
+            set style `display` of Mask to `block`
+            set style `display` of PicDiv to `block`
+            set the style of BigPic to `max-width:93%;max-height:93%;margin-top:2%`
+            put attribute `src` of Image into Source
+            set attribute `src` of BigPic to Source
+            on click PicDiv go to ClearBigPic
+            on click BigPic go to ClearBigPic
+        end
+    end
+	stop
+
+ViewAnotherRecord:
+    put the elements of Stack into N
+    add 1 to N
+    set the elements of Stack to N
+    add 1 to StackPointer
+    index Stack to StackPointer
+    go to ViewRecord 
+
+ClearBigPic:
+    set style `display` of Mask to `none`
+    set style `display` of PicDiv to `none`
+	stop
+
+!	This is called for every occurrence of ~...~ in the topic data
+Decorate:
+    put the payload of DecoratorCallback into Payload
+    put the position of `:` in Payload into N
+    if N is -1
+    begin
+    	if Payload is `clear` gosub to ProcessClear
+    end
+    else
+    begin
+        put left N of Payload into Function
+        add 1 to N
+        put from N of Payload into Data
+        if Function is `sid` gosub to ProcessSID
+        else if Function is `tid` gosub to ProcessTID
+        else if Function is `link` gosub to ProcessLink
+        else if Function is `img` gosub to ProcessImage
+    end
+    set the payload of DecoratorCallback to Payload
+    stop
+
+ProcessSID:
+	put Data into Display
+    put the position of `:` in Data into N
+    if N is not -1
+    begin
+	    put left N of Data into Data
+	    add 1 to N
+	    put from N of Display into Display
+    end
+    put `<button id="ec-link-` cat LinkCount cat `" class="button"`
+    	cat ` data-id="S` cat Data cat `">` cat Display cat `</button>` into Payload
+    add 1 to LinkCount
+    return
+
+ProcessTID:
+	put Data into Display
+    put the position of `:` in Data into N
+    if N is not -1
+    begin
+	    put left N of Data into Data
+	    add 1 to N
+	    put from N of Display into Display
+    end
+    put `<button id="ec-link-` cat LinkCount cat `" class="button"`
+    	cat ` data-id="T` cat Data cat `">` cat Display cat `</button>` into Payload
+    add 1 to LinkCount
+    return
+
+ProcessLink:
+    put `<a href="#" id="ec-link-` cat LinkCount cat `" data-id="` cat Data cat `">`
+		cat Data cat `</a>` into Payload
+    add 1 to LinkCount
+    return
+
+ProcessImage:
+	put empty into Options
+	put the position of `/` in Data into N
+    if N is -1 put ID into Source
+    else
+    begin
+    	put left N of Data into Source
+        add 1 to N
+        put from N of Data into Data
+    end
+    put the position of `:` in Data into N
+    put `image` into Class
+    if N is not -1 
+    begin
+        put Source cat `/images/` cat left N of Data into Source
+        add 1 to N
+        if Data is not empty put Class cat ` ` cat from N of Data into Class
+        put the position of `!` in Class into N
+        if N is not -1
+        begin
+        	put Class into Options
+            put left N of Class into Class
+            add 1 to N
+            put from N of Options into Options
+        end
+    end
+    put `<div id="ec-imagediv-` cat ImageCount into Payload
+    if Class is not empty put Payload cat `" class="` cat Class into Payload
+    if the position of `nolink` in Options is not -1
+    begin
+        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="data/` cat Source
+            cat `" data_options="nolink" style="width:100%" ></div>` into Payload
+    end
+    else
+    begin
+        put Payload cat `">` cat `<a href="#">`
+            cat `<img id="ec-image-` cat ImageCount cat `" src="data/` cat Source
+            cat `" style="width:100%" ></a></div>` into Payload
+    end
+    add 1 to ImageCount
+    return
+
+ProcessClear:
+    put `<div style="height:1px;clear:both"></div>` into Payload
+    return
+
+!	Return to the previous page
+Back:
+    put the elements of Stack into N
+    take 1 from N
+    set the elements of Stack to N
+    take 1 from StackPointer
+    index Stack to StackPointer
+    put the position of `/` in Stack into N
+    if N is -1 stop
+    put left N of Stack into ID
+    add 1 to N
+    put from N of Stack into TID
+    if StackPointer is 0 set style `display` of BackButton to `none`
+    go to ViewRecord

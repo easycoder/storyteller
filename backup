@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf data.tgz
+tar zcf data.tgz data
