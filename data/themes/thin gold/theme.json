@@ -1,6 +1,6 @@
 {
-    "scale-w":4,
-    "scale-h":3,
+    "aspect-w":4,
+    "aspect-h":3,
     "border":4,
     "font-scale":30
 }

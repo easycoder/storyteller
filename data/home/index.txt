@@ -1,9 +1,0 @@
-Storyteller is a template for building static websites that present multiple linked pages of text and images, somewhat like Wikipedia. The intention is to build websites with long-term continuity, that will continue to exist without requiring any annual hosting fees or domain registration.
-
-The kind of subject matter that lends itself to such treatment is quite varied. Personal histories are an obvious candidate; these sites need to continue after the author has moved on or died, particularly when it cannot be guaranteed that anyone will pay for hosting. Other good subjects are instruction manuals - such as for car maintenance - and cooking or gardening guides. Once created, these sites rarely need changing.
-
-There is a small but growing sector that caters for this need, often as a means of attracting customers for more advanced, paid-for products. Examples are Neocities, GitHub Pages and DropPages.
-
-## How to use Storyteller ##
-
-The first thing is to get the template; a zipped packge you can download from the [Storyteller repository](https://github.com/easycoder/storyteller).

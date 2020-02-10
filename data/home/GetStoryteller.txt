@@ -1,0 +1,23 @@
+## How to get Storyteller ##
+
+ 1. Download `storyteller.zip` from the [Storyteller repository](https://github.com/easycoder/storyteller).
+
+ 1. Unpack the zip file and copy its contents to the top level of your webserver.
+
+ 1. All your site code goes in the 'data' folder.
+
+### Additional files ###
+
+Some addditional files also available in the repository:
+
+ - a Python REST server so you can run the site on your local machine
+ - a PHP REST server so you can run the site on a LAMP server
+ - a script that enables you to edit EasyCoder scripts in a color-coded editor. This won't work on a static host as (by definition) you can't write files from the app itself.
+ 
+None of these are needed to build or run a Storyteller website on hosting such as Neocities.
+ 
+**How to get StoryTeller**
+
+~tid:Structure:The structure of a StoryTeller website~
+
+~tid:Markdown:Using Markdown in StoryTeller~

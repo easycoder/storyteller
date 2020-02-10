@@ -25,8 +25,8 @@
     variable Theme
     variable Layout
     variable Border
-    variable ScaleW
-    variable ScaleH
+    variable AspectW
+    variable AspectH
     variable ID
     variable TID
     variable Record
@@ -65,8 +65,8 @@
 
 	rest get Theme from `/data/theme.txt`
     rest get Layout from `/data/themes/` cat Theme cat `/theme.json`
-    put property `scale-w` of Layout into ScaleW
-    put property `scale-h` of Layout into ScaleH
+    put property `aspect-w` of Layout into AspectW
+    put property `aspect-h` of Layout into AspectH
     
 	attach Body to body
     clear Body
@@ -109,16 +109,16 @@
     get ID from storage as `id`
     if ID is empty put `home` into ID
     get TID from storage as `tid`
-    if TID is empty put `index` into TID
+    if TID is empty put `content` into TID
     
     put 0 into StackPointer
 
 !	View a record, given its Subject abd Topic ids.
 ViewRecord:
-    rest get Record from `/data/` cat ID cat `/index.txt`
+    rest get Record from `/data/` cat ID cat `/content.txt`
     or begin
     	put `home` into ID
-        put `index` into TID
+        put `content` into TID
         continue
     end
 
@@ -148,7 +148,7 @@ ViewRecord:
 
     rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
     or begin
-    	put `index` into TID
+    	put `content` into TID
         rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
         continue
     end
@@ -183,7 +183,7 @@ ViewRecord:
         if Prefix is `S`
         begin
             put from 1 of DataID into ID
-            put `index` into TID
+            put `content` into TID
             go to ViewAnotherRecord
         end
         else if Prefix is `T`
@@ -225,7 +225,7 @@ CreateButtons:
     on click HomeButton
     begin
         put `home` into ID
-        put `index` into TID
+        put `content` into TID
         go to ViewAnotherRecord
     end
 
@@ -253,7 +253,7 @@ CreateButtons:
     on click InfoButton
     begin
         put `info` into ID
-        put `index` into TID
+        put `content` into TID
         go to ViewAnotherRecord
     end
 	return
@@ -280,8 +280,8 @@ SetStyles:
     
 !	Choose an optimum width based on the window height
 	put WindowHeight into Height
-	multiply Height by ScaleW giving Width
-    divide Width by ScaleH
+	multiply Height by AspectW giving Width
+    divide Width by AspectH
 
 !	Make sure the window is wide enough
     take Width from WindowWidth giving Margin
@@ -313,8 +313,8 @@ SetStyles:
     take Left from Width
     take Left from Width
 
-    multiply Border by ScaleH giving Top
-    divide Top by ScaleW
+    multiply Border by AspectW giving Top
+    divide Top by AspectH
     take Top from Height giving Height
     take Top from Height
 

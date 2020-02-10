@@ -1,0 +1,15 @@
+Storyteller is a software toolkit for building static websites that present multiple linked pages of text and images, somewhat like Wikipedia. It's well suited to building websites that must have long-term continuity and that will continue to exist without requiring any annual hosting fees or domain registration.
+
+~img:demo0.jpg:left pc25~The kind of subject matter that lends itself to such treatment is quite varied. Personal histories are an obvious candidate; these sites need to continue after the author has moved on or died, particularly when it cannot be guaranteed that anyone will pay for hosting. Other good subjects are instruction manuals - such as for car maintenance - and cooking or gardening guides. Once created, these sites rarely need changing.
+
+~img:demo3.jpg:right pc25~There is a small but growing sector that caters for this need, often as a means of attracting customers for more advanced, paid-for products. Examples are Neocities, GitHub Pages and DropPages.
+
+~img:demo5.jpg:left pc25~To build a Storyteller website does not require any programming experience, not even of HTML. Virtually everything is done with "Markdown", a much simpler coding system that is mostly plain text, with special symbols used to create headings, link to other pages, call external websites and so on. All this is documented here.
+
+This site is of course built with StoryTeller. The images on the page have no relevance; they were just chosen at random.
+
+~tid:GetStoryteller:How to get StoryTeller~
+
+~tid:Structure:The structure of a StoryTeller website~
+
+~tid:Markdown:Using Markdown in StoryTeller~

@@ -1,0 +1,27 @@
+## Using Markdown in StoryTeller ##
+
+Markdown is a standard, widely used lightweight document formatting system. It’s possible you’ve encountered Markdown without realizing it. Facebook chat, Skype, and Reddit all let you use different flavors of Markdown to format your messages.
+
+There are many resources on the Web that describe the standard syntax of Markdown. Try Googling _markdown cheatsheet_ or _try markdown_, the latter of which lets you try out various constructs and see the results.
+
+StoryTeller adds custom enhancements to Markdown, to do things that would be impossible otherwise. (They would be pretty hard to do in in HTML too, not to mention inconvenient.) For example, although you can easily define a link to another page outside the current one there's no standard construct that will tell Markdown you want to go to another Topic in the same Subject. So here's a list of our custom additions. Each one is text you put inside a pair of &#126; symbols. Please note that StoryTeller is a new product so more Markdown additions may be added over the course of time.
+
+ - &#126;`sid:{name}:{link text}`&#126; sets up a hyperlink that looks like any other hyperlink, with a blue underline, but when the user clicks it the page changes to the Subject whose name is `{name}`
+
+ - &#126;`tid:{name}:{link text}`&#126; sets up a hyperlink that when the user clicks it the page changes to the Topic whose name is `{name}` in the current Subject. In this case the `.txt` part of the name is omitted.
+
+ - &#126;`img:{url}:{class}!{options}`&#126; Although standard Markdown has markup to add an image, this takes it further. The first part, `{url}` is the URL of the image. If this begins with `http` it's taken to be an external image at the full path given. If not, then it's assumed to be an image in the `images` folder of the current Topic. So the images for each Topic are independent.
+ 
+ The second part, `class`, separated from the first part by a colon, is a list of space-delimited CSS classes you want to apply to the image, for example to have it float left or right, add a margin around it or whatever. In the standard StoryTeller package a CSS file is provided that has a number of simple classes to do some of these things.
+ 
+ The final part, separated from the second part by an exclamation mark, is a list of options. At present there is only one; `nolink`. The standard behavior of a link is to display it as a bigger image when the user clicks it. If you don't want this to happen, use `nolink`.
+
+&#126;`clear`&#126; adds a 'clear' - an empty `DIV` that sits below all other content so far.
+
+In all of the multi-part options above you can use the first part and leave out the second colon and what follows it. The system will simply use the same text for both. In the case of `img` you can leave out the exclamation mark and the options that follow it.
+
+~tid:GetStoryteller:How to get StoryTeller~
+
+~tid:Structure:The structure of a StoryTeller website~
+
+**Using Markdown in StoryTeller**
