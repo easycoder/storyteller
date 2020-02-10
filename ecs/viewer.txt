@@ -5,30 +5,40 @@
     div Tracer
     div Body
     div Container
-    div ViewerPanel
+    div Content
     div TopicText
     div ImageDiv
     div Mask
-    div Label
     div PicDiv
     img BigPic
-    img Top
-    img Mid
-    img Bottom
+    img TopImage
+    img MidImage
+    img BottomImage
     img HomeButton
     img BackButton
     img InfoButton
     h1 Title
     a Link
     img Image
-    button ChoiceButton
     callback DecoratorCallback
     variable Mobile
+    variable Theme
+    variable Layout
+    variable Border
+    variable ScaleW
+    variable ScaleH
     variable ID
     variable TID
-    variable Index
     variable Record
     variable N
+    variable Margin
+    variable WindowWidth
+    variable WindowHeight
+    variable Left
+    variable Top
+    variable Width
+    variable Height
+    variable ButtonSize
     variable TitleText
     variable Payload
     variable Function
@@ -44,132 +54,97 @@
     variable Topic
     variable Stack
     variable StackPointer
+    variable FontScale
+    variable FontSize
     
     clear Mobile
     if mobile
     begin
     	if portrait set Mobile
     end
-    
-    clear body
-    create Body in body
-    if Mobile set the style of Body to `width:100%;height:100%;background:#dbc19a`
-    else set the style of Body to `position:relative;width:calc(100vw - 20px)`
-    
-    create ViewerPanel in Body
-    set the style of ViewerPanel to `width:100%;height:100%;padding:0.5em 0`
-    
-    if not Mobile
-    begin
-        create Mid in ViewerPanel
-        set the style of Mid to `width:100%;height:100%;position:relative`
-        set attribute `src` of Mid to `images/parchment-mid.png`
 
-        create Top in ViewerPanel
-        set the style of Top to `width:100%;height:10vh;position:absolute;left:0;top:0`
-        set attribute `src` of Top to `images/parchment-top.png`
+	rest get Theme from `/data/theme.txt`
+    rest get Layout from `/data/themes/` cat Theme cat `/theme.json`
+    put property `scale-w` of Layout into ScaleW
+    put property `scale-h` of Layout into ScaleH
+    
+	attach Body to body
+    clear Body
+    set the style of Body to `overflow:hidden`
+    
+    create Container in Body
+    set style `position` of Container to `relative`
+    
+    create MidImage in Container
+    set attribute `src` of MidImage to `/data/themes/` cat Theme cat `/mid.jpg`
+    create TopImage in Container
+    set attribute `src` of TopImage to `/data/themes/` cat Theme cat `/top.jpg`
+    create BottomImage in Container
+    set attribute `src` of BottomImage to `/data/themes/` cat Theme cat `/bottom.jpg`
+    create Content in Container
+    create Title in Content
+    create TopicText in Content
 
-        create Bottom in ViewerPanel
-        set the style of Bottom to `width:100%;height:10vh;position:absolute;left:0;bottom:0`
-        set attribute `src` of Bottom to `images/parchment-bottom.png`
-    end
+    gosub to CreateButtons
+    gosub to SetStyles
     
-	create Container in ViewerPanel
-    if Mobile
-    begin
-        set style `font-size` of Container to `0.8em`
-    end
-    else
-    begin
-        set the style of Container to `width:calc(80vw - 20px);height:calc(80vh - 20px);`
-            cat `position:absolute;top:10vh;left:10vw;font-size:1.5em`
-    end
-    
-!    create Tracer in Container
+!    create Tracer in Content
 !    set the style of Tracer to `margin-top:2em;background:white`
 !    set the id of Tracer to `easycoder-tracer`
 !    trace ID TID N StackPointer Stack vertical
     
-    create Title in Container
-    create TopicText in Container
-
-	create HomeButton in ViewerPanel
-    if Mobile set the class of HomeButton to `home-button-mobile`
-    else set the class of HomeButton to `home-button-pc`
-    set attribute `src` of HomeButton to `icons/home.png`
-    on click HomeButton
-    begin
-        put `home` into ID
-        put `index` into TID
-        go to ViewAnotherRecord
-    end
-
-	create BackButton in ViewerPanel
-    if Mobile set the class of BackButton to `back-button-mobile`
-    else set the class of BackButton to `back-button-pc`
-    set attribute `src` of BackButton to `icons/arrow-back.png`
-    on click BackButton go to Back
-
-	create InfoButton in ViewerPanel
-    if Mobile set the class of InfoButton to `info-button-mobile`
-    else set the class of InfoButton to `info-button-pc`
-    set attribute `src` of InfoButton to `icons/info.png`
-    on click InfoButton
-    begin
-        put `info` into ID
-        put `index` into TID
-        go to ViewAnotherRecord
-    end
-
-    create Mask in ViewerPanel
+    create Mask in Container
     set the style of Mask to `position:absolute;top:0;left:0;width:100%;height:100%;`
     	cat `opacity:70%;background:black;display:none`
-    create PicDiv in ViewerPanel
+    create PicDiv in Container
     set the style of PicDiv to
     	`position:absolute;top:0;left:0;text-align:center;width:100%;height:100%;display:none`
     create BigPic in PicDiv
     
+    on window resize gosub to SetStyles
+    
 	load showdown
   	on DecoratorCallback go to Decorate
 
-	set style `display` of InfoButton to `block`
-   	rest get Index from `/data/subjects.json`
-    if the json count of Index is 0 stop
-
     get ID from storage as `id`
-    if ID is empty put element 0 of Index into ID
+    if ID is empty put `home` into ID
     get TID from storage as `tid`
     if TID is empty put `index` into TID
     
     put 0 into StackPointer
 
+!	View a record, given its Subject abd Topic ids.
 ViewRecord:
     rest get Record from `/data/` cat ID cat `/index.txt`
     or begin
-    	put element 0 of Index into ID
+    	put `home` into ID
         put `index` into TID
         continue
     end
-    
+
+! 	Add this topic to the stack
     put ID cat `/` cat TID into Stack
     if StackPointer is greater than 0 set style `display` of BackButton to `inline-block`
 
+!	Clear the previous content and build the new
     remove element Title
     remove element TopicText
 
-    create Title in Container
-    set the style of Title to `text-align:center;margin-top:0`
+    create Title in Content
+    set style `text-align` of Title to `center`
+	set style `margin-bottom` of Title to 0
+    if Mobile
+    begin
+	    multiply ButtonSize by 10 giving N
+	    divide N by 9
+	   	set style `margin-top` of Title to N cat `px`
+    end
     rest get TitleText from `/data/` cat ID cat `/title.txt`
     if TitleText is empty
     	put ID into TitleText
         continue
     end
     set the content of Title to TitleText
-    if Mobile
-    begin
-    	set style `font-size` of Title to `1.4em`
-        set style `padding-top` of Title to `0.5em`
-    end
 
     rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
     or begin
@@ -177,15 +152,17 @@ ViewRecord:
         rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
         continue
     end
-        
+
+!	Remember where we are
     put ID into storage as `id`
     put TID into storage as `tid`
 
-    create TopicText in Container
+    create TopicText in Content
     set the style of TopicText to 
     	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
+            cat `;padding-right:1em`
 
-!	Set up the showdown extension
+!	Handle the links created by the showdown extension
     put 0 into LinkCount
     put 0 into ImageCount
     set the content of TopicText to showdown decode Topic with DecoratorCallback
@@ -241,6 +218,47 @@ ViewRecord:
     end
 	stop
 
+!	Create the buttons at the top of the panel
+CreateButtons:
+	create HomeButton in Content
+    set attribute `src` of HomeButton to `icons/home.png`
+    on click HomeButton
+    begin
+        put `home` into ID
+        put `index` into TID
+        go to ViewAnotherRecord
+    end
+
+	create BackButton in Content
+    set style `display` of BackButton to `none`
+    set attribute `src` of BackButton to `icons/arrow-back.png`
+    on click BackButton
+    begin
+        put the elements of Stack into N
+        take 1 from N
+        set the elements of Stack to N
+        take 1 from StackPointer
+        index Stack to StackPointer
+        put the position of `/` in Stack into N
+        if N is -1 stop
+        put left N of Stack into ID
+        add 1 to N
+        put from N of Stack into TID
+        if StackPointer is 0 set style `display` of BackButton to `none`
+        go to ViewRecord
+    end
+
+	create InfoButton in Content
+    set attribute `src` of InfoButton to `icons/info.png`
+    on click InfoButton
+    begin
+        put `info` into ID
+        put `index` into TID
+        go to ViewAnotherRecord
+    end
+	return
+
+!	View another record, given the Subject and Topic ids
 ViewAnotherRecord:
     put the elements of Stack into N
     add 1 to N
@@ -249,12 +267,90 @@ ViewAnotherRecord:
     index Stack to StackPointer
     go to ViewRecord 
 
+!	Remove the mask and overlay image
 ClearBigPic:
     set style `display` of Mask to `none`
     set style `display` of PicDiv to `none`
 	stop
 
-!	This is called for every occurrence of ~...~ in the topic data
+!	Responsive design: Compute the size and position of all the screen elements
+SetStyles:
+    put the width of window into WindowWidth
+    put the height of window into WindowHeight
+    
+!	Choose an optimum width based on the window height
+	put WindowHeight into Height
+	multiply Height by ScaleW giving Width
+    divide Width by ScaleH
+
+!	Make sure the window is wide enough
+    take Width from WindowWidth giving Margin
+    divide Margin by 2
+    if Margin is less than 0
+    begin
+    	put 0 into Margin
+        put WindowWidth into Width
+    end
+    
+!	Style the Container
+    set style `left` of Container to Margin cat `px`
+    set style `top` of Container to 0
+	set style `width` of Container to Width cat `px`
+    set style `height` of Container to Height cat `px`
+    
+!	Style the background images
+    set the style of MidImage to `position:absolute;left:0;top:0;width:` cat Width
+    	cat `px;height:` cat `calc(` cat Height cat `px - 2vh)`
+    set the style of TopImage to `position:absolute;left:0;top:0;width:` cat Width cat `px`
+    set the style of BottomImage to `position:absolute;left0;bottom:2vh;width:` cat Width cat `px`
+
+!	Style the Content panel
+    put property `border` of Layout into Border
+    put property `font-scale` of Layout into FontScale
+    multiply Width by Border giving Border
+    divide Border by 100
+	put Border into Left
+    take Left from Width
+    take Left from Width
+
+    multiply Border by ScaleH giving Top
+    divide Top by ScaleW
+    take Top from Height giving Height
+    take Top from Height
+
+    divide Width by 20 giving ButtonSize
+    if Mobile multiply ButtonSize by 2
+    set style `position` of HomeButton to `absolute`
+    set style `left` of HomeButton to 0
+    set style `top` of HomeButton to 0
+    set style `width` of HomeButton to ButtonSize cat `px`
+    set style `height` of HomeButton to ButtonSize cat `px`
+
+    multiply ButtonSize by 2 giving N
+    set style `position` of BackButton to `absolute`
+    set style `left` of BackButton to N
+    set style `top` of BackButton to 0
+    set style `width` of BackButton to ButtonSize cat `px`
+    set style `height` of BackButton to ButtonSize cat `px`
+
+    set style `position` of InfoButton to `absolute`
+    set style `right` of InfoButton to 0
+    set style `top` of InfoButton to 0
+    set style `width` of InfoButton to ButtonSize cat `px`
+    set style `height` of InfoButton to ButtonSize cat `px`
+
+	set the style of Content to
+    	`position:absolute;left:` cat Left cat `px;top:` cat Top cat `px;`
+        cat `width:` cat Width cat `px;height:` cat Height cat `px`
+    
+    divide Height by FontScale giving FontSize
+    set style `font-size` of Container to FontSize cat `px`
+    return
+
+!------------------------------------------------------------------------------
+!	This is the Showndown extension.
+
+!	Decorate is called for every occurrence of ~...~ in the topic data
 Decorate:
     put the payload of DecoratorCallback into Payload
     put the position of `:` in Payload into N
@@ -269,12 +365,12 @@ Decorate:
         put from N of Payload into Data
         if Function is `sid` gosub to ProcessSID
         else if Function is `tid` gosub to ProcessTID
-        else if Function is `link` gosub to ProcessLink
         else if Function is `img` gosub to ProcessImage
     end
     set the payload of DecoratorCallback to Payload
     stop
 
+!	Process a request for a new subject
 ProcessSID:
 	put Data into Display
     put the position of `:` in Data into N
@@ -284,11 +380,12 @@ ProcessSID:
 	    add 1 to N
 	    put from N of Display into Display
     end
-    put `<button id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat ` data-id="S` cat Data cat `">` cat Display cat `</button>` into Payload
+    put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
+    	cat ` data-id="S` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
 
+!	Process a request for a new topic
 ProcessTID:
 	put Data into Display
     put the position of `:` in Data into N
@@ -298,17 +395,12 @@ ProcessTID:
 	    add 1 to N
 	    put from N of Display into Display
     end
-    put `<button id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat ` data-id="T` cat Data cat `">` cat Display cat `</button>` into Payload
+    put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
+    	cat `" data-id="T` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
 
-ProcessLink:
-    put `<a href="#" id="ec-link-` cat LinkCount cat `" data-id="` cat Data cat `">`
-		cat Data cat `</a>` into Payload
-    add 1 to LinkCount
-    return
-
+!	Process an image, including positioning and class infomation
 ProcessImage:
 	put empty into Options
 	put the position of `/` in Data into N
@@ -351,21 +443,7 @@ ProcessImage:
     add 1 to ImageCount
     return
 
+!	Process a 'clear'
 ProcessClear:
     put `<div style="height:1px;clear:both"></div>` into Payload
     return
-
-!	Return to the previous page
-Back:
-    put the elements of Stack into N
-    take 1 from N
-    set the elements of Stack to N
-    take 1 from StackPointer
-    index Stack to StackPointer
-    put the position of `/` in Stack into N
-    if N is -1 stop
-    put left N of Stack into ID
-    add 1 to N
-    put from N of Stack into TID
-    if StackPointer is 0 set style `display` of BackButton to `none`
-    go to ViewRecord

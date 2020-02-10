@@ -44,7 +44,8 @@ const EasyCoder_Browser = {
 			if (compiler.isSymbol()) {
 				//				const symbol = compiler.getProgram()[compiler.getSymbol().pc];
 				const symbol = compiler.getSymbolRecord();
-				switch (symbol.keyword) {
+				let type = symbol.keyword;
+				switch (type) {
 				case `a`:
 				case `blockquote`:
 				case `button`:
@@ -77,7 +78,16 @@ const EasyCoder_Browser = {
 				case `ul`:
 					compiler.next();
 					if (compiler.tokenIs(`to`)) {
-						const cssId = compiler.getNextValue();
+						let cssID = null;
+						if (compiler.nextTokenIs(`body`)) {
+							if (type=== `div`) {
+								cssId = `body`;
+								compiler.next();
+							} else {
+								throw Error(`Body variable must be a div`);
+							}
+						}
+						else cssId = compiler.getValue();
 						let onError = 0;
 						if (compiler.tokenIs(`or`)) {
 							compiler.next();
@@ -88,7 +98,7 @@ const EasyCoder_Browser = {
 							domain: `browser`,
 							keyword: `attach`,
 							lino,
-							type: symbol.keyword,
+							type,
 							symbol: symbol.name,
 							cssId,
 							onError
@@ -107,8 +117,14 @@ const EasyCoder_Browser = {
 
 		run: (program) => {
 			const command = program[program.pc];
-			const content = program.value.evaluate(program, command.cssId).content;
-			const element = document.getElementById(content);
+			let content = null;
+			let element = null;
+			if (command.cssId === `body`) {
+				element = document.body;
+			} else {
+				content = program.value.evaluate(program, command.cssId).content;
+				element = document.getElementById(content);
+			}
 			if (!element) {
 				if (command.onError) {
 					program.run(command.onError);
@@ -1053,6 +1069,18 @@ const EasyCoder_Browser = {
 					action
 				});
 				return compiler.completeHandler();
+			case `window`:
+				if (compiler.nextTokenIs(`resize`)) {
+					compiler.next();
+					compiler.addCommand({
+						domain: `browser`,
+						keyword: `on`,
+						lino,
+						action: `windowResize`
+					});
+					return compiler.completeHandler();
+				}
+				return false;
 			case `browser`:
 			case `restore`:
 				if (action === `browser` && !compiler.nextTokenIs(`back`)) {
@@ -1338,6 +1366,12 @@ const EasyCoder_Browser = {
 					}
 					return true;
 				};
+				break;
+			case `windowResize`:
+				program.onWindowResize = command.pc + 2;
+				window.addEventListener('resize', function() {
+					program.run(program.onWindowResize);
+				});
 				break;
 			case `browserBack`:
 				program.onBrowserBack = command.pc + 2;
@@ -2108,7 +2142,15 @@ const EasyCoder_Browser = {
 				break;
 			case `setBodyStyle`:
 				const bodyStyleValue = program.getValue(command.styleValue);
-				document.body.style[command.styleName.content] = bodyStyleValue.content;
+				switch (command.styleName.content) {
+					case `background`:
+						document.body.style.background = bodyStyleValue;
+						break;
+					default:
+						program.runtimeError(command.lino,
+							 `Unsupported body attribute '${command.styleName.content}'`);
+						return 0;
+				}
 				break;
 			case `setTitle`:
 				document.title = program.getValue(command.value);
@@ -2739,14 +2781,24 @@ const EasyCoder_Browser = {
 
 		getCoord: (compiler, type, offset) => {
 			if (compiler.nextTokenIs(`of`)) {
-				if (compiler.nextIsSymbol()) {
-					const symbol = compiler.getSymbolRecord();
+				if (compiler.nextTokenIs(`window`)) {
 					compiler.next();
-					if (symbol.extra === `dom`) {
+					return {
+						domain: `browser`,
+						type,
+						symbol: `window`,
+						offset
+					};
+				}
+				let symbolRecord = null;
+				if (compiler.isSymbol()) {
+					symbolRecord = compiler.getSymbolRecord();
+					if (symbolRecord.extra === `dom`) {
+						compiler.next();
 						return {
 							domain: `browser`,
 							type,
-							symbol: symbol.name,
+							symbol: symbolRecord.name,
 							offset
 						};
 					}
@@ -2861,6 +2913,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `top`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.screenY
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				element = symbolRecord.element[symbolRecord.index];
 				content = Math.round(value.offset ? element.offsetTop : element.getBoundingClientRect().top);
@@ -2870,6 +2929,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `bottom`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.screenY + window.innerHeight
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				content = Math.round(symbolRecord.element[symbolRecord.index].getBoundingClientRect().bottom);
 				return {
@@ -2878,6 +2944,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `left`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.screenLeft
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				element = symbolRecord.element[symbolRecord.index];
 				content = Math.round(value.offset ? element.offsetLeft : element.getBoundingClientRect().left);
@@ -2887,6 +2960,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `right`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.screenX + window.innerWidth
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				content = Math.round(symbolRecord.element[symbolRecord.index].getBoundingClientRect().right);
 				return {
@@ -2895,6 +2975,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `width`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.innerWidth
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				content = Math.round(symbolRecord.element[symbolRecord.index].getBoundingClientRect().width);
 				return {
@@ -2903,6 +2990,13 @@ const EasyCoder_Browser = {
 					content
 				};
 			case `height`:
+				if (value.symbol == `window`) {
+					return {
+						type: `constant`,
+						numeric: true,
+						content: window.innerHeight
+					};
+				}
 				symbolRecord = program.getSymbolRecord(value.symbol);
 				content = Math.round(symbolRecord.element[symbolRecord.index].getBoundingClientRect().height);
 				return {
