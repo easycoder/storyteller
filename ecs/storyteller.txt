@@ -1,11 +1,12 @@
-!   Storyteller main script
+!   Record viewer
 
-    script Storyteller
+    script Viewer
     
-    div Tracer
     div Body
     div Container
     div Content
+    div TitleDiv
+    div ButtonBar
     div TopicText
     div ImageDiv
     div Mask
@@ -17,14 +18,20 @@
     img HomeButton
     img BackButton
     img InfoButton
-    h1 Title
     a Link
     img Image
     callback DecoratorCallback
     variable Mobile
     variable Theme
     variable Layout
-    variable Border
+    variable BorderL
+    variable BorderT
+    variable BorderR
+    variable BorderB
+    variable BorderLeft
+    variable BorderTop
+    variable BorderRight
+    variable BorderBottom
     variable AspectW
     variable AspectH
     variable ID
@@ -34,12 +41,10 @@
     variable Margin
     variable WindowWidth
     variable WindowHeight
-    variable Left
-    variable Top
     variable Width
     variable Height
     variable ButtonSize
-    variable TitleText
+    variable Title
     variable Payload
     variable Function
     variable Data
@@ -67,6 +72,11 @@
     rest get Layout from `/data/themes/` cat Theme cat `/theme.json`
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
+    put property `border-l` of Layout into BorderL
+    put property `border-r` of Layout into BorderR
+    put property `border-t` of Layout into BorderT
+    put property `border-b` of Layout into BorderB
+    put property `font-scale` of Layout into FontScale
     
 	attach Body to body
     clear Body
@@ -74,6 +84,8 @@
     
     create Container in Body
     set style `position` of Container to `relative`
+    set style `width` of Container to `100%`
+    set style `height` of Container to `100%`
     
     create MidImage in Container
     set attribute `src` of MidImage to `/data/themes/` cat Theme cat `/mid.jpg`
@@ -82,16 +94,13 @@
     create BottomImage in Container
     set attribute `src` of BottomImage to `/data/themes/` cat Theme cat `/bottom.jpg`
     create Content in Container
-    create Title in Content
+    set style `position` of Content to `absolute`
+    create TitleDiv in Content
+    create ButtonBar in Content
     create TopicText in Content
 
     gosub to CreateButtons
     gosub to SetStyles
-    
-!    create Tracer in Content
-!    set the style of Tracer to `margin-top:2em;background:white`
-!    set the id of Tracer to `easycoder-tracer`
-!    trace ID TID N StackPointer Stack vertical
     
     create Mask in Container
     set the style of Mask to `position:absolute;top:0;left:0;width:100%;height:100%;`
@@ -126,25 +135,20 @@ ViewRecord:
     put ID cat `/` cat TID into Stack
     if StackPointer is greater than 0 set style `display` of BackButton to `inline-block`
 
-!	Clear the previous content and build the new
-    remove element Title
-    remove element TopicText
-
-    create Title in Content
-    set style `text-align` of Title to `center`
-	set style `margin-bottom` of Title to `0.35em`
+!	Get the content
+    set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
     if Mobile
     begin
 	    multiply ButtonSize by 10 giving N
 	    divide N by 9
-	   	set style `margin-top` of Title to N cat `px`
+	   	set style `margin-top` of TitleDiv to N cat `px`
     end
-    rest get TitleText from `/data/` cat ID cat `/title.txt`
-    if TitleText is empty
-    	put ID into TitleText
+    rest get Title from `/data/` cat ID cat `/title.txt`
+    if Title is empty
+    	put ID into Title
         continue
     end
-    set the content of Title to TitleText
+    set the content of TitleDiv to Title
 
     rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
     or begin
@@ -152,12 +156,11 @@ ViewRecord:
         rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
         continue
     end
-
+    
 !	Remember where we are
     put ID into storage as `id`
     put TID into storage as `tid`
 
-    create TopicText in Content
     set the style of TopicText to 
     	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
             cat `;padding-right:1em`
@@ -220,7 +223,9 @@ ViewRecord:
 
 !	Create the buttons at the top of the panel
 CreateButtons:
-	create HomeButton in Content
+	set style `position` of ButtonBar to `relative`
+	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
+	create HomeButton in ButtonBar
     set attribute `src` of HomeButton to `icons/home.png`
     on click HomeButton
     begin
@@ -229,7 +234,7 @@ CreateButtons:
         go to ViewAnotherRecord
     end
 
-	create BackButton in Content
+	create BackButton in ButtonBar
     set style `display` of BackButton to `none`
     set attribute `src` of BackButton to `icons/arrow-back.png`
     on click BackButton
@@ -248,7 +253,7 @@ CreateButtons:
         go to ViewRecord
     end
 
-	create InfoButton in Content
+	create InfoButton in ButtonBar
     set attribute `src` of InfoButton to `icons/info.png`
     on click InfoButton
     begin
@@ -256,6 +261,7 @@ CreateButtons:
         put `content` into TID
         go to ViewAnotherRecord
     end
+
 	return
 
 !	View another record, given the Subject and Topic ids
@@ -304,21 +310,26 @@ SetStyles:
     set the style of TopImage to `position:absolute;left:0;top:0;width:` cat Width cat `px`
     set the style of BottomImage to `position:absolute;left0;bottom:2vh;width:` cat Width cat `px`
 
-!	Style the Content panel
-    put property `border` of Layout into Border
-    put property `font-scale` of Layout into FontScale
-    multiply Width by Border giving Border
-    divide Border by 100
-	put Border into Left
-    take Left from Width
-    take Left from Width
+!	Calculate the borders
+    multiply Width by BorderL giving BorderLeft
+    multiply Width by BorderR giving BorderRight
+    divide BorderLeft by 100
+    divide BorderRight by 100
+    take BorderLeft from Width
+    take BorderRight from Width
 
-    multiply Border by AspectW giving Top
-    divide Top by AspectH
-    take Top from Height giving Height
-    take Top from Height
+    multiply Height by BorderT giving BorderTop
+    multiply Height by BorderB giving BorderBottom
+    divide BorderTop by 100
+    divide BorderBottom by 100
+	take BorderTop from Height
+    take BorderBottom from Height
 
     divide Width by 20 giving ButtonSize
+    
+    set style `height` of ButtonBar to ButtonSize cat `px`
+
+!	Style the buttons
     if Mobile multiply ButtonSize by 2
     set style `position` of HomeButton to `absolute`
     set style `left` of HomeButton to 0
@@ -339,10 +350,13 @@ SetStyles:
     set style `width` of InfoButton to ButtonSize cat `px`
     set style `height` of InfoButton to ButtonSize cat `px`
 
-	set the style of Content to
-    	`position:absolute;left:` cat Left cat `px;top:` cat Top cat `px;`
-        cat `width:` cat Width cat `px;height:` cat Height cat `px`
-    
+!	Style the content
+    set style `left` of Content to BorderLeft cat `px`
+    set style `top` of Content to BorderTop cat `px`
+    set style `width` of Content to Width cat `px'
+    set style `height` of Content to Height cat `px'
+
+!	Compute the font size
     divide Height by FontScale giving FontSize
     set style `font-size` of Container to FontSize cat `px`
     return
