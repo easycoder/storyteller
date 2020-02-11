@@ -1,10 +1,10 @@
-## Using Markdown in StoryTeller ##
+## Using Markdown in Storyteller ##
 
 Markdown is a standard, widely used lightweight document formatting system. It’s possible you’ve encountered Markdown without realizing it. Facebook chat, Skype, and Reddit all let you use different flavors of Markdown to format your messages.
 
 There are many resources on the Web that describe the standard syntax of Markdown. Try Googling _markdown cheatsheet_ or _try markdown_, the latter of which lets you try out various constructs and see the results.
 
-StoryTeller adds custom enhancements to Markdown, to do things that would be impossible otherwise. (They would be pretty hard to do in in HTML too, not to mention inconvenient.) For example, although you can easily define a link to another page outside the current one there's no standard construct that will tell Markdown you want to go to another Topic in the same Subject. So here's a list of our custom additions. Each one is text you put inside a pair of &#126; symbols. Please note that StoryTeller is a new product so more Markdown additions may be added over the course of time.
+Storyteller adds custom enhancements to Markdown, to do things that would be impossible otherwise. (They would be pretty hard to do in in HTML too, not to mention inconvenient.) For example, although you can easily define a link to another page outside the current one there's no standard construct that will tell Markdown you want to go to another Topic in the same Subject. So here's a list of our custom additions. Each one is text you put inside a pair of &#126; symbols. Please note that StoryTeller is a new product so more Markdown additions may be added over the course of time.
 
  - &#126;`sid:{name}:{link text}`&#126; sets up a hyperlink that looks like any other hyperlink, with a blue underline, but when the user clicks it the page changes to the Subject whose name is `{name}`
 
@@ -20,8 +20,8 @@ StoryTeller adds custom enhancements to Markdown, to do things that would be imp
 
 In all of the multi-part options above you can use the first part and leave out the second colon and what follows it. The system will simply use the same text for both. In the case of `img` you can leave out the exclamation mark and the options that follow it.
 
-~tid:GetStoryteller:How to get StoryTeller~
+~tid:GetStoryteller:How to get Storyteller~
 
-~tid:Structure:The structure of a StoryTeller website~
+~tid:Structure:The structure of a Storyteller website~
 
-**Using Markdown in StoryTeller**
+**Using Markdown in Storyteller**

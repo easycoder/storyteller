@@ -113,7 +113,7 @@
     
     put 0 into StackPointer
 
-!	View a record, given its Subject abd Topic ids.
+!	View a record, given its Subject and Topic ids.
 ViewRecord:
     rest get Record from `/data/` cat ID cat `/content.txt`
     or begin
@@ -132,7 +132,7 @@ ViewRecord:
 
     create Title in Content
     set style `text-align` of Title to `center`
-	set style `margin-bottom` of Title to 0
+	set style `margin-bottom` of Title to `0.35em`
     if Mobile
     begin
 	    multiply ButtonSize by 10 giving N

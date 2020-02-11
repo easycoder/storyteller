@@ -16,8 +16,8 @@ Some addditional files also available in the repository:
  
 None of these are needed to build or run a Storyteller website on hosting such as Neocities.
  
-**How to get StoryTeller**
+**How to get Storyteller**
 
-~tid:Structure:The structure of a StoryTeller website~
+~sid:Structure:The structure of a Storyteller website~
 
-~tid:Markdown:Using Markdown in StoryTeller~
+~sid:Markdown:Using Markdown in Storyteller~

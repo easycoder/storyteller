@@ -6,10 +6,10 @@ Storyteller is a software toolkit for building static websites that present mult
 
 ~img:demo5.jpg:left pc25~To build a Storyteller website does not require any programming experience, not even of HTML. Virtually everything is done with "Markdown", a much simpler coding system that is mostly plain text, with special symbols used to create headings, link to other pages, call external websites and so on. All this is documented here.
 
-This site is of course built with StoryTeller. The images on the page have no relevance; they were just chosen at random.
+This site is of course built with Storyteller. The images on the page have no relevance; they were just chosen at random.
 
-~tid:GetStoryteller:How to get StoryTeller~
+~sid:GetStoryteller:How to get Storyteller~
 
-~tid:Structure:The structure of a StoryTeller website~
+~sid:Structure:The structure of a Storyteller website~
 
-~tid:Markdown:Using Markdown in StoryTeller~
+~sid:Markdown:Using Markdown in Storyteller~
