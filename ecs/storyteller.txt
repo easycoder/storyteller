@@ -1,6 +1,6 @@
-!   Record viewer
+!   Storyteller main script
 
-    script Viewer
+    script Storyteller
     
     div Tracer
     div Body
