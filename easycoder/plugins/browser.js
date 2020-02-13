@@ -66,6 +66,7 @@ const EasyCoder_Browser = {
 				case `label`:
 				case `legend`:
 				case `li`:
+				case `option`:
 				case `p`:
 				case `pre`:
 				case `select`:
@@ -342,6 +343,7 @@ const EasyCoder_Browser = {
 					`label`,
 					`legend`,
 					`li`,
+					`option`,
 					`p`,
 					`pre`,
 					`progress`,
@@ -580,6 +582,7 @@ const EasyCoder_Browser = {
 			const lino = compiler.getLino();
 			if (compiler.nextIsSymbol()) {
 				const target = compiler.getToken();
+				let targetRecord = compiler.getSymbolRecord();
 				if (compiler.nextTokenIs(`from`)) {
 					if (compiler.nextTokenIs(`storage`)) {
 						if (compiler.nextTokenIs(`as`)) {
@@ -606,8 +609,23 @@ const EasyCoder_Browser = {
 					}
 					if (compiler.isSymbol()) {
 						const symbolRecord = compiler.getSymbolRecord();
+						if (symbolRecord.keyword === `select`) {
+							if (targetRecord.keyword === `option`) {
+								compiler.next();
+								compiler.addCommand({
+									domain: `browser`,
+									keyword: `get`,
+									action: `getOption`,
+									lino,
+									target,
+									select: symbolRecord.name
+								});
+								return true;
+							}
+							throw Error(`Invalid variable type`);
+						}
 						if (symbolRecord.keyword !== `form`) {
-							throw Error(`Variable must be a form`);
+							throw Error(`Invalid variable type`);
 						}
 						compiler.next();
 						compiler.addCommand({
@@ -619,6 +637,9 @@ const EasyCoder_Browser = {
 							form: symbolRecord.name
 						});
 						return true;
+					}
+					else {
+						let targetRecord = compiler.getSymbolRecord(target);
 					}
 				}
 			}
@@ -665,6 +686,12 @@ const EasyCoder_Browser = {
 					numeric: false,
 					content: value
 				};
+				break;
+			case `getOption`:
+				let selectRecord = program.getSymbolRecord(command.select);
+				let select = selectRecord.element[selectRecord.index];
+				let option = select.options[select.selectedIndex];
+				targetRecord.element[targetRecord.index] = option;
 				break;
 			}
 			return command.pc + 1;
@@ -1144,23 +1171,30 @@ const EasyCoder_Browser = {
 			const command = program[program.pc];
 			switch (command.action) {
 			case `change`:
-				const changeItem = program.getSymbolRecord(command.symbol);
-				// if (changeItem.keyword === `select`) {
-				const target = changeItem.element[changeItem.index];
-				target.targetPc = command.pc + 2;
-				target.addEventListener(`change`, function () {
-					try {
-						program.run(target.targetPc);
-					} catch (err) {
-						console.log(err.message);
-						alert(err.message);
-					}
-					return false;
+				targetRecord = program.getSymbolRecord(command.symbol);
+				targetRecord.program = program.script;
+				targetRecord.element.forEach(function (target, index) {
+					target.targetRecord = targetRecord;
+					target.targetIndex = index;
+					target.targetPc = command.pc + 2;
+					target.addEventListener(`change`, (event) => {
+						event.stopPropagation();
+						if (program.length > 0) {
+							const eventTarget = event.target;
+							if (typeof eventTarget.targetRecord !== `undefined`) {
+								eventTarget.targetRecord.index = eventTarget.targetIndex;
+								setTimeout(function () {
+									EasyCoder.timestamp = Date.now();
+									let p = EasyCoder.scripts[eventTarget.targetRecord.program];
+									p.run(eventTarget.targetPc);
+								}, 1);
+							}
+						}
+					});
 				});
-				// }
 				break;
 			case `click`:
-				const targetRecord = program.getSymbolRecord(command.symbol);
+				targetRecord = program.getSymbolRecord(command.symbol);
 				targetRecord.program = program.script;
 				targetRecord.element.forEach(function (target, index) {
 					target.targetRecord = targetRecord;
@@ -1385,6 +1419,18 @@ const EasyCoder_Browser = {
 				break;
 			}
 			return command.pc + 1;
+		}
+	},
+
+	OPTION: {
+
+		compile: (compiler) => {
+			compiler.compileVariable(`browser`, `option`, false, `dom`);
+			return true;
+		},
+
+		run: (program) => {
+			return program[program.pc].pc + 1;
 		}
 	},
 
@@ -1879,6 +1925,33 @@ const EasyCoder_Browser = {
 							return true;
 						}
 					}
+				} else if (token === `attributes`) {
+					if (compiler.nextTokenIs(`of`)) {
+						if (compiler.nextIsSymbol()) {
+							const symbolRecord = compiler.getSymbolRecord();
+							const symbolName = symbolRecord.name;
+							if (symbolRecord.extra !== `dom`) {
+								compiler.warning(`'${symbolName}' is not a DOM type`);
+								return false;
+							}
+							if (compiler.nextTokenIs(`to`)) {
+								const attributes = compiler.getNextValue();
+								if (attributes) {
+									compiler.addCommand({
+										domain: `browser`,
+										keyword: `set`,
+										lino,
+										type: `setAttributes`,
+										symbolName,
+										attributes
+									});
+									return true;
+								}
+							}
+						}
+					}
+					compiler.warning(`'${compiler.getToken()}' is not a symbol`);
+					return false;
 				} else if (token === `style`) {
 					if (compiler.nextTokenIs(`of`)) {
 						if (compiler.nextIsSymbol()) {
@@ -2113,6 +2186,29 @@ const EasyCoder_Browser = {
 					target.setAttribute(attributeName, program.getValue(command.attributeValue));
 				}
 				break;
+			case `setAttributes`:
+					symbol = program.getSymbolRecord(command.symbolName);
+					target = symbol.element[symbol.index];
+					if (!target) {
+						targetId = program.getValue(symbol.value[symbol.index]);
+						target = document.getElementById(targetId);
+					}
+					for (let n = target.attributes.length - 1; n >= 0; n--) {
+						target.removeAttribute(target.attributes[n].name);
+					}
+					let attributes = program.getValue(command.attributes);
+					let list = attributes.split(" ");
+					for (let n = 0; n < list.length; n++) {
+						let attribute = list[n];
+						let p = attribute.indexOf(`=`);
+						if (p > 0) {
+							target.setAttribute(attribute.substr(0, p), attribute.substr(p + 1));
+						}
+						else {
+							target.setAttribute(attribute, attribute);
+						}
+					}
+					break;
 			case `setStyle`:
 			case `setStyles`:
 				symbol = program.getSymbolRecord(command.symbolName);
@@ -2502,6 +2598,8 @@ const EasyCoder_Browser = {
 			return EasyCoder_Browser.Mail;
 		case `on`:
 			return EasyCoder_Browser.On;
+		case `option`:
+			return EasyCoder_Browser.OPTION;
 		case `p`:
 			return EasyCoder_Browser.P;
 		case `play`:
