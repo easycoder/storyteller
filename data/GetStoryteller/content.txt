@@ -4,7 +4,7 @@
 
  1. Unpack the zip file and copy its contents to the top level of your webserver.
 
- 1. All your site code goes in the 'data' folder.
+ 1. All the text and images for your site go in the 'data' folder, in a folder structure described in these pages.
 
 ### Additional files ###
 

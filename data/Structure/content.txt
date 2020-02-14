@@ -12,9 +12,9 @@ As an example, suppose we are building a car maintenance website. Doing an oil c
 
 ### Subject folders ###
 
-All Subject folders, including `home` and `info`, contain at least 2 files; `title.txt` and `content.txt`. The first of these, `title.txt` contains a single line of text comprising the name of the Subject, which is displayed at the top of the page all the time you are in the same Subject. If `title.txt` is empty the system will use the name of the Subject. The page you are in now is part of the `Structure` Subject and its `title.txt` contains the word `Storyteller`.
+All Subject folders, including `home` and `info`, contain at least 2 files; `title.txt` and `content.txt`. The first of these, `title.txt`, contains a single line of text comprising the name of the Subject, which is displayed at the top of the page all the time you are in the same Subject. If `title.txt` is empty the system will use the name of the Subject. The page you are in now is part of the `Structure` Subject and its `title.txt` contains the word `Storyteller`.
 
-The second file, `content.txt`, contains the content of the main Topic. This is the text and images that will be seen by visitors to your website. Rather that expect you to be an HTML expert we use Markdown, a far simpler system that is very widely used for a variety of documentation projects. Markdown is less comprehensive than HTML but is very quick to learn and much more forgiving of mistakes. See our ~sid:Markdown:Markdown Guide~.
+The second file, `content.txt`, contains the content of the main Topic. This is the text and images that will be seen by visitors to your website. Rather than expect you to be an HTML expert we use Markdown, a far simpler system that is very widely used for a variety of documentation projects. Markdown is less comprehensive than HTML but is very quick to learn and much more forgiving of mistakes. See our ~sid:Markdown:Markdown Guide~.
 
 If your Subject has additional Topics, each of these appears in the Subject folder as `{topicname}.txt`. You can have as many as you like. It's your responsibility to take care of linking between Subjects and Topics. In general, the more links the better as it makes it easier for users to discover all the parts of your website.
 

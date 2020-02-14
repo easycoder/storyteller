@@ -137,6 +137,7 @@
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
+	scroll TopicText to 0
     rest get Record from `/data/` cat ID cat `/content.txt`
     or begin
     	put `home` into ID
@@ -489,6 +490,7 @@ Decorate:
         else if Function is `tid` gosub to ProcessTID
         else if Function is `img` gosub to ProcessImage
         else if Function is `select` gosub to ProcessSelect
+        else if Function is `space` gosub to ProcessSpace
         else if Function is `comment` gosub to ProcessComment
     end
     set the payload of DecoratorCallback to Payload
@@ -578,6 +580,22 @@ ProcessSelect:
     	cat ` data-options="` cat Data cat `"`
     	cat `></select>` into Payload
     add 1 to SelectCount
+    return
+
+!	Process a space
+ProcessSpace:
+	if Mobile put `<br>` into Payload
+    else
+    begin
+		put empty into Payload
+		put the value of Data into M
+	    put 0 into N
+	    while N is less than M
+	    begin
+	    	put Payload cat `&nbsp;` into Payload
+	        add 1 to N
+	    end
+    end
     return
 
 !	Process a 'comment'
