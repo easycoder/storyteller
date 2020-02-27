@@ -6,7 +6,7 @@ Inside the `data` folder are a number of other folders and one file. The file is
 
 One of the folders is called `themes`. It contains a folder for each of the available themes, and the one you are using is named in the `theme.txt` file. To change theme it's a simple matter of changing the name in `theme.txt`.
 
-The other folders in `data` are _Subject_ folders. A Subject is a group of pages that belong together. Every Subject can have as many _Topics_ as you like, where a Topic is another page belonging to the same Subject. Every Storyteller website has two fixed Subjects, called `home` and `info`. These Subjects will be seen when the user clicks the Home or the Info buttons at the top of the screen. The `home` Subject and its various Topics form the home page for the website and the `info` Subject is normally used to provide informaiton not directly related to the website itself. All other folders in `data` are Subjects chosen by the site builder. For example, this site has a three Subjects in addition to `home`, all of which are linked to at the bottom of each page. (The link for the current Subject is disabled as there's no point in clicking it.) Each Subject has a single `content` Topic.
+The other folders in `data` are _Subject_ folders. A Subject is a group of pages that belong together. Every Subject can have as many _Topics_ as you like, where a Topic is another page belonging to the same Subject. Every Storyteller website has two fixed Subjects, called `home` and `info`. These Subjects will be seen when the user clicks the Home or the Info buttons at the top of the screen. The `home` Subject and its various Topics form the home page for the website and the `info` Subject is normally used to provide information not directly related to the website itself. All other folders in `data` are Subjects chosen by the site builder. For example, this site has a three Subjects in addition to `home`, all of which are linked to at the bottom of each page. (The link for the current Subject is disabled as there's no point in clicking it.) Each Subject has a single `content` Topic.
 
 As an example, suppose we are building a car maintenance website. Doing an oil change, checking the brakes, replacing a hose etc could each be Sections and the steps involved in each one of the jobs could be Topics. If it were a classic car catalog there might be a Section for each car model, with Topics for the various aspects of interest such as History, Specification, Performance and so on. The division is rather arbitrary and entirely up to the site builder.
 
@@ -19,6 +19,8 @@ The second file, `content.txt`, contains the content of the main Topic. This is 
 If your Subject has additional Topics, each of these appears in the Subject folder as `{topicname}.txt`. You can have as many as you like. It's your responsibility to take care of linking between Subjects and Topics. In general, the more links the better as it makes it easier for users to discover all the parts of your website.
 
 ~sid:GetStoryteller:How to get Storyteller~
+
+~sid:Starting:How to start~
 
 **The structure of a Storyteller website**
 

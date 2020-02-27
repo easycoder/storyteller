@@ -6,7 +6,7 @@ app = Bottle()
 ###############################################################################
 # Endpoints for EasyCoder script editing
 
-# Endpoint: GET localhost:17000/list
+# Endpoint: GET localhost:<port>/list
 # Lists all files in the given directory
 @app.get('/list/<path:path>')
 def listScripts(path):
@@ -24,7 +24,7 @@ def listScripts(path):
     f = json.dumps(ff)
     return '{"dirs":' + d + ',"files":' + f + '}'
 
-# Endpoint: POST localhost:17000/saveScript/<path>
+# Endpoint: POST localhost:<port>/saveScript/<path>
 # Writes the POST body to a named file in the given directory
 @app.post('/save/<path:path>')
 def saveScript(path):
@@ -34,7 +34,7 @@ def saveScript(path):
     f.close()
     return
 
-# Endpoint: POST localhost:17000/makedirs/<path>
+# Endpoint: POST localhost:<port>/makedirs/<path>
 # Creates (nested) directories in the given directory
 @app.post('/makedirs/<path:path>')
 def makedirs(path):
@@ -44,7 +44,7 @@ def makedirs(path):
         print(err)
     return
 
-# Endpoint: POST localhost:17000/delete/<path>
+# Endpoint: POST localhost:<port>/delete/<path>
 # Deletes a named script in the given directory
 @app.post('/delete/<path:path>')
 def deleteScript(path):
@@ -55,7 +55,7 @@ def deleteScript(path):
 ###############################################################################
 # Generic endpoints
 
-# Endpoint: GET localhost:17000/<path>
+# Endpoint: GET localhost:<port>/<path>
 # Gets a file
 @app.get('/<path:path>')
 def getFile(path):
