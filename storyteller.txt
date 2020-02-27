@@ -82,8 +82,8 @@
     
     gosub to GetStyles
 
-	rest get Theme from `/data/theme.txt`
-    rest get Layout from `/data/themes/` cat Theme cat `/theme.json`
+	rest get Theme from `/stories/theme.txt`
+    rest get Layout from `/stories/themes/` cat Theme cat `/theme.json`
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
     put property `border-l` of Layout into BorderL
@@ -105,11 +105,11 @@
     set style `height` of Container to `100%`
     
     create MidImage in Container
-    set attribute `src` of MidImage to `/data/themes/` cat Theme cat `/mid.jpg`
+    set attribute `src` of MidImage to `/stories/themes/` cat Theme cat `/mid.jpg`
     create TopImage in Container
-    set attribute `src` of TopImage to `/data/themes/` cat Theme cat `/top.jpg`
+    set attribute `src` of TopImage to `/stories/themes/` cat Theme cat `/top.jpg`
     create BottomImage in Container
-    set attribute `src` of BottomImage to `/data/themes/` cat Theme cat `/bottom.jpg`
+    set attribute `src` of BottomImage to `/stories/themes/` cat Theme cat `/bottom.jpg`
     create Content in Container
     set style `position` of Content to `absolute`
     create TitleDiv in Content
@@ -142,7 +142,7 @@
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
 	scroll TopicText to 0
-    rest get Record from `/data/` cat ID cat `/content.txt`
+    rest get Record from `/stories/` cat ID cat `/content.txt`
     or begin
     	put `home` into ID
         put `content` into TID
@@ -161,17 +161,17 @@ ViewRecord:
 	    divide N by 9
 	   	set style `margin-top` of TitleDiv to N cat `px`
     end
-    rest get Title from `/data/` cat ID cat `/title.txt`
+    rest get Title from `/stories/` cat ID cat `/title.txt`
     if Title is empty
     	put ID into Title
         continue
     end
     set the content of TitleDiv to Title
 
-    rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
+    rest get Topic from `/stories/` cat ID cat `/` cat TID cat `.txt`
     or begin
     	put `content` into TID
-        rest get Topic from `/data/` cat ID cat `/` cat TID cat `.txt`
+        rest get Topic from `/stories/` cat ID cat `/` cat TID cat `.txt`
         continue
     end
     
@@ -589,13 +589,13 @@ ProcessImage:
     if Class is not empty put Payload cat `" class="` cat Class into Payload
     if the position of `nolink` in Options is not -1
     begin
-        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="data/` cat Source
+        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="stories/` cat Source
             cat `" style="width:100%" ></div>` into Payload
     end
     else
     begin
         put Payload cat `">` cat `<a href="#">`
-            cat `<img id="ec-image-` cat ImageCount cat `" src="data/` cat Source
+            cat `<img id="ec-image-` cat ImageCount cat `" src="stories/` cat Source
             cat `" style="width:100%" ></a></div>` into Payload
     end
     add 1 to ImageCount
