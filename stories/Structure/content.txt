@@ -1,4 +1,4 @@
-## The structure of a Storyteller website ##
+## The structure of a Storyteller website
 
 A Storyteller website has a number of files and folders, but the only files you, the site maintainer, will usually be interested in are in the `data` folder. From time to time you may need to update some of the files in other folders as new versions become available, but unless you want to do further development of the system you will not make any changes yourself outside of `data`.
 
@@ -10,7 +10,7 @@ The other folders in `data` are _Subject_ folders. A Subject is a group of pages
 
 As an example, suppose we are building a car maintenance website. Doing an oil change, checking the brakes, replacing a hose etc could each be Sections and the steps involved in each one of the jobs could be Topics. If it were a classic car catalog there might be a Section for each car model, with Topics for the various aspects of interest such as History, Specification, Performance and so on. The division is rather arbitrary and entirely up to the site builder.
 
-### Subject folders ###
+### Subject folders
 
 All Subject folders, including `home` and `info`, contain at least 2 files; `title.txt` and `content.txt`. The first of these, `title.txt`, contains a single line of text comprising the name of the Subject, which is displayed at the top of the page all the time you are in the same Subject. If `title.txt` is empty the system will use the name of the Subject. The page you are in now is part of the `Structure` Subject and its `title.txt` contains the word `Storyteller`.
 
