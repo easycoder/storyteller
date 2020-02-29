@@ -8,11 +8,17 @@
 
   <body>
 
-    <pre id="easycoder-script" style="display:none">!
+    <pre id="storyteller-version" style="display:none">master</pre>
+
+    <pre id="easycoder-script" style="display:none">
 
       script Boot
+      pre Version
+      variable V
       variable Script
-      rest get Script from `/test.ecs`
+      attach Version to `storyteller-version`
+      put the content of Version into V
+      rest get Script from `/storyteller.txt`
       run Script
 
     </pre>
