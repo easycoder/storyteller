@@ -22,15 +22,28 @@ Then click the button to create a new folder and type the name `stories`.
 
 You now have an empty Storyteller website. The real work starts now, to add all the text and pictures that make up your website.
 
-Go into the `stories` folder. Create a new folder called `themes`. Go into this and create a folder called `storyteller`. Go into this and upload all the contents of the same folder on your computer.
+As well as writing your stories you will probably want to choose the theme to be used for your site. A theme is a bunch of files that comprise the border round the content; you can see it here as the black scroll and the blue sky. There are currently 3 themes to choose from:
 
-Now you can actually start building your website. Create a folder called `home` inside your stories folder. Inside this create a folder called `images` and two text files called `title.txt` and `content.txt`. Click the `Edit` button for `title.txt`, type the title of your website. and save it. Then click the `Edit` button for `content.txt` and type a short paragraph - anything you like just to test the system. Save this file.
+ - `storyteller` - the theme you see here
+ - `herbal` ` a border of what looks like short grass
+ - `none` - no border at all.
+
+Whichever one you choose, make sure its name is in the file `theme.txt`. Just that, with nothing else.
+
+The other top-level text file is `title.txt`. Whatever you put in here will appear as the title of the browser window while on your site.
+
+Now you can actually start building your website. The way it works is that inside the `stories` folder you can have any number of _subject_ folders, each handling some subdivision of the pages on your site. Each of these folders has inside it a folder for any images that will be used by that subject, plus 2 text files:
+
+ - `title.txt` - holds the text of the title that will appear at the top of the page (here it's `How to start`).
+ - `content.txt` - holds the content of your page, which is text plus images, where the images are not directly embedded but are referred to by their names in the `images` folder.
+
+Create a folder called `home` inside your stories folder. Inside this create the `images` folder and the `title.txt` and `content.txt` text files. Click the `Edit` button for `title.txt`, type the title of your website and save it. Then click the `Edit` button for `content.txt` and type a short paragraph - anything you like just to test the system. Save this file.
 
 Now you can view your website by clicking the big box at the top left of the editor screen or the site title to its right. Your content with the title you chose should appear in a new browser window. It it doesn't, look carefully at all the files, compare the structure of your site with the folders on your computer and make any necessary corrections.
 
-Sometimes your browser may not notice you have made changes to your website and will continue to show you the old version. To get round this you will need to learn how to clear the browser cache. This process varies from browser to browser but Google will be able to tell you how to do it.
+Sometimes your browser may not notice you have made changes to your website and will continue to show you the old version. To get round this you will need to learn how to clear the browser cache. This process varies from browser to browser but Google will be able to tell you how to do it. Just search for _firefox clear cache_ or _chrome clear cache_ etc.
 
-From now on you can do all your editing on the site itself. Or you can maintain a corresponding set of files on your computer and upload each one after making changes. If you understand the processes involved you can also run a copy of the website on your own computer by using the `rest.py` webserver provided in our [Github repository](https://github.com/easycoder/storyteller), which makes for a quicker way to make changes and test them before uploading to the live site. (You will also need to download `bottle.py` for this to work.)
+You can do all your editing on the site itself using the built-in edtor or you can maintain a corresponding set of files on your computer and upload each one after making changes. If you understand the processes involved you can also run a copy of the website on your own computer by using the `rest.py` webserver provided in our [Github repository](https://github.com/easycoder/storyteller), which makes for a quicker way to make changes and test them before uploading to the live site. (You will also need to download `bottle.py` for this to work.)
 
 ~sid:GetStoryteller:How to get Storyteller~
 
