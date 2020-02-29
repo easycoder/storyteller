@@ -84,7 +84,7 @@
     	if portrait set Mobile
     end
     
-    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller` into CDNPath
+    put `https://cdn.jsdelivr.net/gh/easycoder@v1.0.0/storyteller` into CDNPath
     
     gosub to GetStyles
     
