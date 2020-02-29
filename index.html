@@ -3,16 +3,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/storyteller@1.0.1/storyteller.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.js'></script>
   </head>
 
   <body>
 
-    <pre id="easycoder-script" style="display:none">!
+    <pre id="storyteller-version" style="display:none">1.0.1</pre>
+
+    <pre id="easycoder-script" style="display:none">
 
       script Boot
+      pre Version
+      variable V
       variable Script
-      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@1.0.1/storyteller.ecs`
+      attach Version to `storyteller-version`
+      put the content of Version into V
+      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat V cat `/storyteller.ecs`
       run Script
 
     </pre>
