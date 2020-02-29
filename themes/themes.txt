@@ -1,0 +1,3 @@
+https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller
+https://cdn.jsdelivr.net/gh/easycoder/storyteller/herbal
+https://cdn.jsdelivr.net/gh/easycoder/storyteller/none
