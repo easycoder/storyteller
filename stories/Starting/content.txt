@@ -8,7 +8,7 @@ Once you have your name your website is live and can be seen by anyone who knows
 
 The first thing is to download a small zipped file from the Storyteller repository. Click this link:
 
-[Storyteller files](https://github.com/easycoder/easycoder.github.io/blob/master/storyteller/storyteller.zip)
+[Storyteller files](https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.zip)
 
 Click the `download button` and download the file onto your computer. Make sure you know where it is! Then find the file and right-click it. Click the option to unzip it. It contains 3 files:
 
