@@ -8,13 +8,13 @@ Once you have your name your website is live and can be seen by anyone who knows
 
 The first thing is to download a small zipped file from the Storyteller repository. Click this link:
 
-[Storyteller files](https://github.com/easycoder/easycoder.github.io/blob/master/storyteller/Unzip%20me.zip)
+[Storyteller files](https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.zip)
 
 Click the `download button` and download the file onto your computer. Make sure you know where it is! Then find the file and right-click it. Click the option to unzip it. It contains 3 files:
 
- - easycoder.js
  - index.html
- - storyteller.txt
+ - theme.txt
+ - title.txt
 
 In the Neocities editor, click Upload, find the 3 files, select them and click OK or Upload (it may vary accoring to your system). Check they all arrived inthe Neocities editor.
 
