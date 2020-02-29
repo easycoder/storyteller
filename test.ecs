@@ -26,7 +26,6 @@
     option Option
     callback DecoratorCallback
     variable Mobile
-    variavle CDNPath
     variable Themes
     variable Theme
     variable Layout
@@ -82,8 +81,6 @@
     begin
     	if portrait set Mobile
     end
-    
-    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller` into CDNPath
     
     gosub to GetStyles
     
@@ -199,7 +196,7 @@ ViewRecord:
         put attribute `data-id` of Link into DataID
         if DataID is `theme`
         begin
-        	rest get Themes from CDNPath cat `/themes/themes.txt`
+        	rest get Themes from `/stories/themes/themes.txt`
             json split Themes on newline into Themes
             put `Here are the available themes:` cat newline into Item
             put 0 into N
@@ -325,13 +322,8 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from CDNPath cat `/theme.txt`
-    rest get Layout from Theme cat `/theme.json`
-    or begin
-    	put empty into storage as `theme`
-    	rest get Theme from CDNPath cat `/theme.txt`
-    	rest get Layout from Theme cat `/theme.json`
-    end
+    if Theme is empty rest get Theme from `/stories/themes/theme.txt`
+    rest get Layout from `/stories/themes/` cat Theme cat `/theme.json`
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
     put property `border-l` of Layout into BorderL
@@ -339,9 +331,9 @@ SetupTheme:
     put property `border-t` of Layout into BorderT
     put property `border-b` of Layout into BorderB
     put property `font-scale` of Layout into FontScale
-    set attribute `src` of MidImage to Theme cat `/mid.jpg`
-    set attribute `src` of TopImage to Theme cat `/top.jpg`
-    set attribute `src` of BottomImage to Theme cat `/bottom.jpg`
+    set attribute `src` of MidImage to `/stories/themes/` cat Theme cat `/mid.jpg`
+    set attribute `src` of TopImage to `/stories/themes/` cat Theme cat `/top.jpg`
+    set attribute `src` of BottomImage to `/stories/themes/` cat Theme cat `/bottom.jpg`
 	return
 
 !	Create the buttons at the top of the panel
@@ -349,7 +341,7 @@ CreateButtons:
 	set style `position` of ButtonBar to `relative`
 	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
 	create HomeButton in ButtonBar
-    set attribute `src` of HomeButton to CDNPath cat `/icons/home.png`
+    set attribute `src` of HomeButton to `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/home.png`
     on click HomeButton
     begin
         put `home` into ID
@@ -359,7 +351,7 @@ CreateButtons:
 
 	create BackButton in ButtonBar
     set style `display` of BackButton to `none`
-    set attribute `src` of BackButton to CDNPath cat `/icons/arrow-back.png`
+    set attribute `src` of BackButton to `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-back.png`
     on click BackButton
     begin
         put the elements of Stack into N
@@ -379,7 +371,7 @@ CreateButtons:
 
 	create ForwardButton in ButtonBar
     set style `display` of ForwardButton to `none`
-    set attribute `src` of ForwardButton to CDNPath cat `/icons/arrow-forward.png`
+    set attribute `src` of ForwardButton to `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-forward.png`
     on click ForwardButton
     begin
 !trace Stack StackPointer N vertical
@@ -400,7 +392,7 @@ CreateButtons:
     end
 
 	create InfoButton in ButtonBar
-    set attribute `src` of InfoButton to CDNPath cat `/icons/info.png`
+    set attribute `src` of InfoButton to `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/info.png`
     on click InfoButton
     begin
         put `info` into ID
