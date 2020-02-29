@@ -48,7 +48,7 @@
     put the content of ContentEditor into Content
     if Content is not Current
     begin
-      rest post Content to `save/storyteller.ecs`
+      rest post Content to `save/storyteller.txt`
       put Content into Current
       set the content of Status to `Script saved`
       fork to ResetStatus
@@ -62,7 +62,7 @@
   end
 
 SelectFile:
-  put `storyteller.ecs` into File
+  put `storyteller.txt` into File
   rest get Content from `/` cat File
   put Content into Current
   set the content of Status to `Script '` cat File cat `' loaded`

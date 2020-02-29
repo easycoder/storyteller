@@ -614,6 +614,7 @@ ProcessImage:
         else if C is `left` begin end
         else if C is `right` begin end
         else if C is `center` begin end
+        else if C is `clear` begin end
         else if C is `10%` put `pc10` into C
         else if C is `25%` put `pc25` into C
         else if C is `33%` put `pc33` into C
