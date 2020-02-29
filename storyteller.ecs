@@ -26,7 +26,7 @@
     option Option
     callback DecoratorCallback
     variable Mobile
-    variavle CDNPath
+    variable CDNPath
     variable Themes
     variable Theme
     variable Layout
@@ -326,11 +326,11 @@ ViewRecord:
 SetupTheme:
 	get Theme from storage as `theme`
     if Theme is empty rest get Theme from CDNPath cat `/theme.txt`
-    rest get Layout from Theme cat `/theme.json`
+    rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     or begin
     	put empty into storage as `theme`
     	rest get Theme from CDNPath cat `/theme.txt`
-    	rest get Layout from Theme cat `/theme.json`
+    	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     end
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
@@ -339,9 +339,9 @@ SetupTheme:
     put property `border-t` of Layout into BorderT
     put property `border-b` of Layout into BorderB
     put property `font-scale` of Layout into FontScale
-    set attribute `src` of MidImage to Theme cat `/mid.jpg`
-    set attribute `src` of TopImage to Theme cat `/top.jpg`
-    set attribute `src` of BottomImage to Theme cat `/bottom.jpg`
+    set attribute `src` of MidImage to CDNPath cat `/themes/` cat Theme cat `/mid.jpg`
+    set attribute `src` of TopImage to CDNPath cat `/themes/` cat Theme cat `/top.jpg`
+    set attribute `src` of BottomImage to CDNPath cat `/themes/` cat Theme cat `/bottom.jpg`
 	return
 
 !	Create the buttons at the top of the panel
