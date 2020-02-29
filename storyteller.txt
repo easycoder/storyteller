@@ -341,6 +341,7 @@ CreateButtons:
 	set style `position` of ButtonBar to `relative`
 	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
 	create HomeButton in ButtonBar
+    alert `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/home.png`
     set attribute `src` of HomeButton to `https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/home.png`
     on click HomeButton
     begin
