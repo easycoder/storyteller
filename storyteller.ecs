@@ -76,6 +76,7 @@
     variable StackPointer
     variable FontScale
     variable FontSize
+    debug step
     
     clear Mobile
     if mobile
