@@ -6,17 +6,23 @@ Start by opening a [Neocities](https://neocities.org) account. This is pretty si
 
 Once you have your name your website is live and can be seen by anyone who knows its name. All editing of your site is done in the Neocities online editor, so go into that. You'll see some standard files as supplied by the Neocities registration robot. You'll be providing your own files so you can delete most of them; all except `index.html`.
 
-You need to replicate the structure of the site represented by the files you downloaded and unzipped. Feel free to replicate the entire structure if you like; you'll get an identical copy of this website. After that you can delete the parts you don't want and replace them with your own. Some of the files are essential for the site to work at all, so I'll describe the minimum you need to get up and running.
+The first thing is to download a small zipped file from the Storyteller repository. Click this link:
 
-Click the Upload button and navigate to the folder on your computer containing the downloaded and unzipped Storyteller files. Locate `index.html` and select it; this will copy it to Neocities. Do the same for `easycoder.js` and `storyteller.txt`. Then click the button to create a new folder and type the name `stories`. Do the same again to create an `icons` folder.
+[Storyteller files](https://github.com/easycoder/easycoder.github.io/blob/master/storyteller/Unzip%20me.zip)
 
-Open your new `icons` folder and click Upload. Navigate to the corresponding `icons` folder on your computer and upload all the files you see there.
+Click the `download button` and download the file onto your computer. Make sure you know where it is! Then find the file and right-click it. Click the option to unzip it. It contains 3 files:
 
-If you make any mistakes in all this you can easily make corrections, by renaming files or folders, deleting them or copying them again as appropriate.
+ - easycoder.js
+ - index.html
+ - storyteller.txt
 
-That's all the standard site-related files. The rest is the text and pictures that make up your website and it's all inside the `stories` folder.
+In the Neocities editor, click Upload, find the 3 files, select them and click OK or Upload (it may vary accoring to your system). Check they all arrived inthe Neocities editor.
 
-Go into the `stories` folder. The first thing is to upload the file `theme.txt` from the corresponding place on your computer, that tells the system which theme to use. Now create a new folder called `themes`. Go into this and create a folder called `storyteller`. Go into this and upload all the contents of the same folder on your computer.
+Then click the button to create a new folder and type the name `stories`.
+
+You now have an empty Storyteller website. The real work starts now, to add all the text and pictures that make up your website.
+
+Go into the `stories` folder. Create a new folder called `themes`. Go into this and create a folder called `storyteller`. Go into this and upload all the contents of the same folder on your computer.
 
 Now you can actually start building your website. Create a folder called `home` inside your stories folder. Inside this create a folder called `images` and two text files called `title.txt` and `content.txt`. Click the `Edit` button for `title.txt`, type the title of your website. and save it. Then click the `Edit` button for `content.txt` and type a short paragraph - anything you like just to test the system. Save this file.
 
