@@ -8,7 +8,7 @@
 
   <body>
 
-    <pre id="storyteller-version" style="display:none">master</pre>
+    <pre id="storyteller-version" style="display:none">dev</pre>
 
     <pre id="easycoder-script" style="display:none">
 
@@ -18,8 +18,8 @@
       variable Script
       attach Version to `storyteller-version`
       put the content of Version into V
-      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat V cat `/storyteller.txt`
-!      rest get Script from `/storyteller.txt`
+!      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat V cat `/storyteller.txt`
+      rest get Script from `/storyteller.txt`
       run Script
 
     </pre>
