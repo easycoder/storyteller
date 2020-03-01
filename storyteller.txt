@@ -104,8 +104,16 @@
     create BottomImage in Container
     create Content in Container
     set style `position` of Content to `absolute`
-    create TitleDiv in Content
-    create ButtonBar in Content
+    if Mobile
+    begin
+        create ButtonBar in Content
+        create TitleDiv in Content
+    end
+    else
+    begin
+        create TitleDiv in Content
+        create ButtonBar in Content
+    end
     create TopicText in Content
     
     rest get Title from `/title.txt`
@@ -382,8 +390,6 @@ CreateButtons:
     set attribute `src` of ForwardButton to CDNPath cat `/icons/arrow-forward.png`
     on click ForwardButton
     begin
-!trace Stack StackPointer N vertical
-!trace
         put the elements of Stack into N
         take 1 from N
         if N is StackPointer stop
