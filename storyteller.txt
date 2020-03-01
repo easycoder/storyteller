@@ -89,15 +89,13 @@
     
 	attach Body to body
     clear Body
-    set the style of Body to `overflow:hidden`
-    
-    create Tracer in Body
-    set the id of Tracer to `easycoder-tracer`
+    set the style of Body to `overflow:hidden;width:100vw;height:100vh`
     
     create Container in Body
-    set style `position` of Container to `relative`
-    set style `width` of Container to `100%`
-    set style `height` of Container to `100%`
+    set the style of Container to `position:relative;overflow:hidden;padding-right:0.5em`
+    
+    create Tracer in Container
+    set the id of Tracer to `easycoder-tracer`
     
     create MidImage in Container
     create TopImage in Container
@@ -116,7 +114,7 @@
     end
     create TopicText in Content
     
-    rest get Title from `/title.txt`
+    rest get Title from `/stories/title.txt`
     set the title to Title
 
     gosub to SetupTheme
@@ -159,12 +157,6 @@ ViewRecord:
 
 !	Get the content
     set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
-    if Mobile
-    begin
-	    multiply ButtonSize by 10 giving N
-	    divide N by 9
-	   	set style `margin-top` of TitleDiv to N cat `px`
-    end
     rest get Title from `/stories/` cat ID cat `/title.txt`
     if Title is empty
     	put ID into Title
@@ -333,11 +325,11 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from CDNPath cat `/theme.txt`
+    if Theme is empty rest get Theme from `/stories/theme.txt`
     rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     or begin
     	put empty into storage as `theme`
-    	rest get Theme from CDNPath cat `/theme.txt`
+    	rest get Theme from `/stories/theme.txt`
     	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     end
     put property `aspect-w` of Layout into AspectW
@@ -355,7 +347,12 @@ SetupTheme:
 !	Create the buttons at the top of the panel
 CreateButtons:
 	set style `position` of ButtonBar to `relative`
-	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
+    if Mobile
+    begin
+    	set style `top` of ButtonBar to `-1em`
+    	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
+    end
+    else set style `margin` of ButtonBar to `0 1em 0.5em 1em`
 	create HomeButton in ButtonBar
     set attribute `src` of HomeButton to CDNPath cat `/icons/home.png`
     on click HomeButton
