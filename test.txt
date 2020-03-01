@@ -89,15 +89,13 @@
     
 	attach Body to body
     clear Body
-    set the style of Body to `overflow:hidden`
-    
-    create Tracer in Body
-    set the id of Tracer to `easycoder-tracer`
+    set the style of Body to `overflow:hidden;width:100vw;height:100vh`
     
     create Container in Body
-    set style `position` of Container to `relative`
-    set style `width` of Container to `100%`
-    set style `height` of Container to `100%`
+    set the style of Container to `position:relative;overflow:hidden;width:100vw;height:100vh`
+    
+    create Tracer in Container
+    set the id of Tracer to `easycoder-tracer`
     
     create MidImage in Container
     create TopImage in Container
@@ -324,12 +322,13 @@ ViewRecord:
 
 !	Set up the theme
 SetupTheme:
+debug step
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from CDNPath cat `/theme.txt`
+    if Theme is empty rest get Theme from `/theme.txt`
     rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     or begin
     	put empty into storage as `theme`
-    	rest get Theme from CDNPath cat `/theme.txt`
+    	rest get Theme from `/theme.txt`
     	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
     end
     put property `aspect-w` of Layout into AspectW
@@ -382,8 +381,6 @@ CreateButtons:
     set attribute `src` of ForwardButton to CDNPath cat `/icons/arrow-forward.png`
     on click ForwardButton
     begin
-!trace Stack StackPointer N vertical
-!trace
         put the elements of Stack into N
         take 1 from N
         if N is StackPointer stop
