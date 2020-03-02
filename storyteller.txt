@@ -42,6 +42,8 @@
     variable AspectH
     variable ID
     variable TID
+    variable CurrentID
+    variable CurrentTID
     variable Record
     variable C
     variable N
@@ -174,6 +176,8 @@ ViewRecord:
 !	Remember where we are
     put ID into storage as `id`
     put TID into storage as `tid`
+    put ID into CurrentID
+    put TID into CurrentTID
 
     set the style of TopicText to 
     	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
@@ -369,7 +373,6 @@ CreateButtons:
     begin
         put the elements of Stack into N
         take 1 from N
-!        set the elements of Stack to N
         take 1 from StackPointer
         index Stack to StackPointer
         put the position of `/` in Stack into N
@@ -415,6 +418,10 @@ CreateButtons:
 
 !	View another record, given the Subject and Topic ids
 ViewAnotherRecord:
+	if ID is not CurrentID go to VAR2
+    if TID is not CurrentTID go to VAR2
+    stop
+VAR2:
     add 1 to StackPointer
     add 1 to StackPointer giving N
     set the elements of Stack to N

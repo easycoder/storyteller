@@ -1,4 +1,4 @@
-## How to get Storyteller ##
+# How to get Storyteller
 
  1. Download `storyteller.zip` from the [Storyteller repository](https://github.com/easycoder/storyteller).
 
@@ -6,7 +6,7 @@
 
  1. All the text and images for your site go in the 'data' folder, in a folder structure described in these pages.
 
-### Additional files ###
+## Additional files
 
 Some addditional files also available in the repository:
 
