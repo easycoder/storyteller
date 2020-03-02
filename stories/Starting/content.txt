@@ -1,4 +1,4 @@
-## How to start ##
+# How to start
 
 Once you have downloaded Storyteller you need to copy it to your website. How you do this depends on the hosting you are using. One of the simplest is Neocities so that's what I'll describe here.
 
@@ -16,9 +16,9 @@ Click the `storyteller.zip` file name, then on the next screen click the `downlo
  - theme.txt
  - title.txt
 
-In the Neocities editor, click Upload, find the 3 files, select them (one at a time or all together) and click OK or Upload (it may vary accoring to your system). Check they all arrive in the Neocities editor.
+In the Neocities editor, click Upload, find the downloaded `index.html` and click `OK`, `Open` or `Upload` (it may vary according to your system).
 
-Then click the button to create a new folder and type the name `stories`.
+Then click the button to create a new folder and type the name `stories`. Click its icon to go into the folder. Click `Upload` and look for the remaining 2 files from the Zip package; `theme.txt` and `title.txt`. Select these individually or together and upload them to Neocities.
 
 You now have an empty Storyteller website. The real work starts now, to add all the text and pictures that make up your website.
 
@@ -28,9 +28,9 @@ As well as writing your stories you will probably want to choose the theme to be
  - `herbal` - a border of what looks like short grass
  - `none` - no border at all.
 
-Whichever one you choose, make sure its name is in the file `theme.txt`. Just that, with nothing else.
+Whichever one you choose, make sure its name is in the file `theme.txt`. Just that, with nothing else. Use the Neocities editor or update a suitable replacement from your computer.
 
-The contents of the other top-level text file, `title.txt`, will appear as the title of the browser window while visitors are on your site.
+The contents of the other top-level text file, `title.txt`, will appear as the title of the browser window while visitors are on your site. In the version from the Zip file it contains "Storyteller" so you'll want to change that to the name of your website.
 
 Now you can actually start building your website. The way it works is that inside the `stories` folder you can have any number of _subject_ folders, each handling some subdivision of the pages on your site. Each of these folders has inside it another folder for any images that will be used by that subject, plus 2 text files:
 
@@ -39,9 +39,11 @@ Now you can actually start building your website. The way it works is that insid
 
 The system always starts off by looking in the subject folder whose name is `home`, so create a folder called `home` inside your stories folder. Inside this create the `images` folder and the `title.txt` and `content.txt` text files. Click the `Edit` button for `title.txt`, type the title of your website and save it. Then click the `Edit` button for `content.txt` and type a couple of short paragraphs - anything you like just to test the system. Save this file.
 
-Now you can view your website by clicking the big box at the top left of the editor screen or the site title to its right. Your content with the title you chose should appear in a new browser window. It it doesn't, look carefully at all the files, compare the structure of your site with the folders on your computer and make any necessary corrections.
+Each Subject starts off with just the one topic (`content.txt`) but you can add as many more as you like. For example, if you want to write a page about a holiday in India you might call it `India.txt`. There'a full description of all this on our ~sid:Structure~ page.
 
-Sometimes your browser may not notice you have made changes to your website and will continue to show you the old version. To get round this you will need to learn how to clear the browser cache. This process varies from browser to browser but Google will be able to tell you how to do it. Just search for _firefox clear cache_ or _chrome clear cache_ etc.
+Now you can view your website by clicking the big box at the top left of the editor screen or the site title to its right. Your content with the title you chose should appear in a new browser window. It it doesn't, look carefully at all the files and make any necessary corrections. On our ~sid:info~ page you'll see contact details if you need to ask questions.
+
+Sometimes your browser may not notice you have made changes to your website and will continue to show you the old version. This is rather annoying and to get round it you will need to learn how to clear the browser cache. This process varies from browser to browser but Google will be able to tell you how to do it. Just search for _firefox clear cache_ or _chrome clear cache_ etc.
 
 You can do all your editing in Neocities using their built-in editor or you can maintain a corresponding set of files on your computer and upload each one after making changes. If you understand the processes involved you can also run a copy of the website on your own computer by using the `rest.py` webserver provided in our [Github repository](https://github.com/easycoder/storyteller), which makes for a quicker way to make changes and test them before uploading to the live site. (You will also need to download `bottle.py` for this to work.)
 

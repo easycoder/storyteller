@@ -1,4 +1,4 @@
-## Using Markdown in Storyteller ##
+# Using Markdown in Storyteller
 
 Markdown is a standard, widely used lightweight document formatting system. It’s possible you’ve encountered Markdown without realizing it. Facebook chat, Skype, and Reddit all let you use different flavors of Markdown to format your messages.
 
@@ -17,6 +17,7 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
      - `left` Make the image float to the left
      - `right` Make the image float to the right
      - `center` Make the image sit in the middle of the page
+     - `clear` Make the image sit below anything else already on the page
      - `10%` Make the width of the image 10% of the page
      - `25%` Make the width of the image 25% of the page
      - `33%` Make the width of the image 33% of the page
@@ -42,7 +43,7 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
  
  - &#126;`space:{n}`&#126; adds non-breaking spaces, the number of spaces being the value of `{n}`. If the page is running on a smartphone in portrait mode a single new line is added instead of the spaces.
 
-### Page style
+## Page style
 
 As well as content, the page style itself is also a variable. At present we have a single style, that of a bordered page. In future we'll add a convential scrolling page option too. There's also the theme, being the appearance and size of the border. This only applies to the _bordered_ style; scrolling pages may well have their own themes in due course. We'll be offering a selection of themes that you can try out here or even in your own page. To do this you need a special Markdown tag, as follows:
 
