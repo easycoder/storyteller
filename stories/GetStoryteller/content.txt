@@ -1,6 +1,8 @@
 Links: ~select:-:Select a subject!selected disabled hidden|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:Structure:Website structure~
 
-There are two ways to use Storyteller.
+# How to set up a Storyteller website
+
+There are two ways to use Storyteller:
 
  1. Open up a Neocities account and build your site using the instructions below.
  
@@ -69,7 +71,7 @@ Now carefully follow these steps:
  
  1. Click `Edit` against the new file.
  
- 1. Type the name of a theme, currently either `storyteller` (the theme used by this site, with a scroll border and blue sky header)` or `herbal`, which uses a border of what looks like short grass.
+ 1. Type the name of a theme, currently either `storyteller` (the theme used by this site, with a scroll border and blue sky header) or `herbal`, which uses a border of what looks like short grass.
  
  1. Click `Save`.
  
