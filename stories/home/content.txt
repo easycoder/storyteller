@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown~~space:3~Next: ~sid:GetStoryteller:Getting started with Storyteller~
+Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:GetStoryteller:Getting started with Storyteller~
 
 Storyteller is a software toolkit for building websites that present multiple linked pages of text with images, for presenting news, information or stories. It's well suited to building websites that must have long-term continuity and that will continue to exist without requiring any annual hosting fees or domain registration.
 
@@ -15,3 +15,5 @@ This site is of course built with Storyteller. The images on the page have no re
 ~sid:Structure:The structure of a Storyteller website~
 
 ~sid:Markdown:Using Markdown in Storyteller~
+
+~sid:Images:Handling images~

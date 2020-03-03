@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SMarkdown:Using Markdown~~space:3~Next: ~sid:Markdown:Using Markdown~
+Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:Markdown:Using Markdown~
 
 # The structure of a Storyteller website
 
@@ -16,8 +16,8 @@ The second file, `content.txt`, contains the content of the main Topic. This is 
 
 If your Subject has additional Topics, each of these appears in the Subject folder as `{topicname}.txt`. You can have as many as you like. It's your responsibility to take care of linking between Subjects and Topics. In general, the more links the better as it makes it easier for users to discover all the parts of your website.
 
-~sid:GetStoryteller:Getting started~
-
-**The structure of a Storyteller website**
+~sid:GetStoryteller:Getting started with Storyteller~
 
 ~sid:Markdown:Using Markdown in Storyteller~
+
+~sid:Images:Handling images~

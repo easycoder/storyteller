@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown~~space:3~Next: ~sid:Structure:Website structure~
+Links: ~select:-:Select a subject!selected disabled hidden|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:Structure:Website structure~
 
 There are two ways to use Storyteller.
 
@@ -90,9 +90,8 @@ Sometimes your browser may not notice you have made changes to your website and 
 
 You can do all your editing in Neocities using their built-in editor or you can maintain a corresponding set of files on your computer and upload each one after making changes. If you understand the processes involved you can also run a copy of the website on your own computer by using the `rest.py` webserver provided in our [Github repository](https://github.com/easycoder/storyteller), which makes for a quicker way to make changes and test them before uploading to the live site. (You will also need to download `bottle.py` for this to work.)
 
-
-**How to start**
-
 ~sid:Structure:The structure of a Storyteller website~
 
 ~sid:Markdown:Using Markdown in Storyteller~
+
+~sid:Images:Handling images~

@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website~~space:3~
+Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SImages:Handling images~~space:3~Next: ~sid:Images:Handling images~
 
 # Using Markdown in Storyteller
 
@@ -51,8 +51,8 @@ As well as content, the page style itself is also a variable. At present we have
 
  - &#126;`theme:{prompt}`&#126; invokes the theme selector. If you choose a theme it overrides the one named in your `theme.txt` file, but only for your current browser and computer. Nobody else is affected. If that's not clear, try it and see by clicking ~theme:here~.
 
-~sid:GetStoryteller:Getting started~
+~sid:GetStoryteller:Getting started with Storyteller~
 
 ~sid:Structure:The structure of a Storyteller website~
 
-**Using Markdown in Storyteller**
+~sid:Images:Handling images~
