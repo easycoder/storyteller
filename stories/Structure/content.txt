@@ -1,3 +1,5 @@
+Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SMarkdown:Using Markdown~~space:3~Next: ~sid:Markdown:Using Markdown~
+
 # The structure of a Storyteller website
 
 A Storyteller website has an `index.html` file and a `stories` folder. Inside `stories` are a number of other folders and two text files. One of these is `theme.txt`; it contains the name of the _theme_ you will use for your site. A small number of themes are available. The second text file is `title.txt`, which contains the title that goes in the browser's title bar.
@@ -14,9 +16,7 @@ The second file, `content.txt`, contains the content of the main Topic. This is 
 
 If your Subject has additional Topics, each of these appears in the Subject folder as `{topicname}.txt`. You can have as many as you like. It's your responsibility to take care of linking between Subjects and Topics. In general, the more links the better as it makes it easier for users to discover all the parts of your website.
 
-~sid:GetStoryteller:How to get Storyteller~
-
-~sid:Starting:How to start~
+~sid:GetStoryteller:Getting started~
 
 **The structure of a Storyteller website**
 
