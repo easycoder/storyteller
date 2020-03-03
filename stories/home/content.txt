@@ -1,4 +1,6 @@
-Storyteller is a software toolkit for building static websites that present multiple linked pages of text and images, somewhat like Wikipedia. It's well suited to building websites that must have long-term continuity and that will continue to exist without requiring any annual hosting fees or domain registration.
+Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown~~space:3~Next: ~sid:GetStoryteller:Getting started with Storyteller~
+
+Storyteller is a software toolkit for building websites that present multiple linked pages of text with images, for presenting news, information or stories. It's well suited to building websites that must have long-term continuity and that will continue to exist without requiring any annual hosting fees or domain registration.
 
 ~img:demo0.jpg:left 25%~The kind of subject matter that lends itself to such treatment is quite varied. Personal histories are an obvious candidate; these sites need to continue after the author has moved on or died, particularly when it cannot be guaranteed that anyone will pay for hosting. Other good subjects are instruction manuals - such as for car maintenance - and cooking or gardening guides. Once created, these sites rarely need changing.
 
@@ -8,9 +10,7 @@ Storyteller is a software toolkit for building static websites that present mult
 
 This site is of course built with Storyteller. The images on the page have no relevance; they were just chosen at random.
 
-~sid:GetStoryteller:How to get Storyteller~
-
-~sid:Starting:How to start~
+~sid:GetStoryteller:Getting started with Storyteller~
 
 ~sid:Structure:The structure of a Storyteller website~
 
