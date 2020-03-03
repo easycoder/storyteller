@@ -1,3 +1,7 @@
+Source code of the 'info' page
+
+Below the line is the page source as typed by the site author.
+-----------------------------------------------------------------------------------------------------------
 # About Storyteller
 
 Storyteller is a system for creating online personal stories and family histories, though it can be used for many other things as well.

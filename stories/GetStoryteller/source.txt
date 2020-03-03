@@ -1,3 +1,7 @@
+Source code of the 'Setting up' page
+
+Below the line is the page source as typed by the site author.
+-----------------------------------------------------------------------------------------------------------
 Links: ~select:-:Select a subject!selected disabled hidden|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:Structure:Website structure~
 
 # How to set up a Storyteller website
@@ -26,6 +30,7 @@ Once you have chosen your name your website will be live and can be seen by anyo
  
  1. Click `Dashboard` on the left of the button bar to return to the file listing screen.
 <hr>
+
 ```
 <html>
   <head>
@@ -104,4 +109,4 @@ You can do all your editing in Neocities using their built-in editor or you can 
 
 ~sid:Images:Handling images~
 
-[Click here to see the source code for this page](/stories/GetStoryteller/source.txt)
+[Click here to see the source code for this page(/stories/GetStoryteller/source.txt)
