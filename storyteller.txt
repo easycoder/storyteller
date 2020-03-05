@@ -12,6 +12,7 @@
     div ImageDiv
     div Mask
     div PicDiv
+    pre Branch
     img BigPic
     img TopImage
     img MidImage
@@ -85,7 +86,10 @@
     	if portrait set Mobile
     end
     
-    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller` into CDNPath
+    attach Branch to `storyteller-branch`
+    put the content of Branch into Value
+    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
+    print CDNPath
     
     gosub to GetStyles
     
