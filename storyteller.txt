@@ -89,7 +89,6 @@
     attach Branch to `storyteller-branch`
     put the content of Branch into Value
     put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
-    print CDNPath
     
     gosub to GetStyles
     
