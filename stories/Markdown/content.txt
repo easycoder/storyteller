@@ -31,13 +31,13 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
 
  - &#126;`select:item|item|item...  ...`&#126; specifies a drop-down list with as many items as you like, separated from each other by the vertical pipe (|) symbol. Each item is in 2 or 3 parts as follows:
  
- 1. The first part is the _value_ of the item. This is either a Subject or a Topic; the value has S or T prefixed to indicate which. See the example below.
+ 1. The first part is the _value_ of the item. This is either a Subject or a Topic; the value has S- or T- prefixed to indicate which. See the example below.
  
  1. A colon, then the text that will appear in the drop-down list for the item
  
  1. Optionally, an exclamation mark then a list of attributes for the item
  
- Example: &#126;select:-:Select a subject!selected disabled hidden|SFood:Food and drink|STransport:Transport links|SEntertainment:Cinemas, theaters and clubs|TMore:Other resources&#126;
+ Example: &#126;select:-:Select a subject!selected disabled hidden|S-Food:Food and drink|S-Transport:Transport links|S-Entertainment:Cinemas, theaters and clubs|T-More:Other resources&#126;
  
  In this example, the first option is the current selected value, which is disabled and hidden so it shows when the selector is closed but not in the list itself. The next 3 items are all Sections and will take you there when selected. The last item is a Topic in the current Subject.
 
