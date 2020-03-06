@@ -2,7 +2,7 @@ Source code of the 'Images' page
 
 Below the line is the page source as typed by the site author.
 -----------------------------------------------------------------------------------------------------------
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SMarkdown:Using Markdown~~space:3~
+Links: ~select:-:Select a subject!selected disabled hidden|S-GetStoryteller:Getting started with Storyteller|S-Structure:The structure of a Storyteller website|S-Markdown:Using Markdown~~space:3~
 
 # How to handle images
 

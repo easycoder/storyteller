@@ -2,7 +2,7 @@ Source code of the 'Markdown' page
 
 Below the line is the page source as typed by the site author.
 -----------------------------------------------------------------------------------------------------------
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SImages:Handling images~~space:3~Next: ~sid:Images:Handling images~
+Links: ~select:-:Select a subject!selected disabled hidden|S-GetStoryteller:Getting started with Storyteller|S-Structure:The structure of a Storyteller website|S-Images:Handling images~~space:3~Next: ~sid:Images:Handling images~
 
 # Using Markdown in Storyteller
 

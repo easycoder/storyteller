@@ -292,8 +292,8 @@ ViewRecord:
                 add 1 to P
                 put from P of Display into Display
             end
-            set attribute `data-st` of Option to left 1 of Value
-            put from 1 of Value into Value
+            set attribute `data-st` of Option to left 2 of Value
+            put from 2 of Value into Value
             put Display into Attributes
             put the position of `!` in Display into P
             if P is -1 put empty into Attributes
@@ -315,7 +315,7 @@ ViewRecord:
         get Option from Select
         put attribute `data-st` of Option into Function
         put attribute `value` of Option into Value
-        if Function is `S`
+        if Function is `S-`
         begin
 	        put Value into ID
 	        put `content` into TID
@@ -567,7 +567,7 @@ ProcessSID:
 	    put from N of Display into Display
     end
     put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat ` data-id="S` cat Data cat `">` cat Display cat `</a>` into Payload
+    	cat ` data-id="S-` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
 
@@ -582,11 +582,11 @@ ProcessTID:
 	    put from N of Display into Display
     end
     put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat `" data-id="T` cat Data cat `">` cat Display cat `</a>` into Payload
+    	cat `" data-id="T-` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
 
-!	Process an image, including positioning and class infomation
+!	Process an image, including positioning and class information
 ProcessImage:
 	put empty into Options
 	put the position of `/` in Data into N
