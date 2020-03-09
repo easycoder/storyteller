@@ -228,16 +228,16 @@ ViewRecord:
         end
         else
         begin
-          put left 1 of DataID into Prefix
-          if Prefix is `S`
+          put left 2 of DataID into Prefix
+          if Prefix is `S-`
           begin
-              put from 1 of DataID into ID
+              put from 2 of DataID into ID
               put `content` into TID
               go to ViewAnotherRecord
           end
-          else if Prefix is `T`
+          else if Prefix is `T-`
           begin
-              put from 1 of DataID into TID
+              put from 2 of DataID into TID
               go to ViewAnotherRecord
           end
       end
