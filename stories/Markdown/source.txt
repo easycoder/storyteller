@@ -2,7 +2,7 @@ Source code of the 'Markdown' page
 
 Below the line is the page source as typed by the site author.
 -----------------------------------------------------------------------------------------------------------
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SStructure:The structure of a Storyteller website|SImages:Handling images~~space:3~Next: ~sid:Images:Handling images~
+Links: ~select:-:Select a subject!selected disabled hidden|S-GetStoryteller:Getting started with Storyteller|S-Structure:The structure of a Storyteller website|S-Images:Handling images~~space:3~Next: ~sid:Images:Handling images~
 
 # Using Markdown in Storyteller
 
@@ -35,15 +35,15 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
 
  - &#126;`select:item|item|item...  ...`&#126; specifies a drop-down list with as many items as you like, separated from each other by the vertical pipe (|) symbol. Each item is in 2 or 3 parts as follows:
  
- 1. The first part is the _value_ of the item. This is either a Subject or a Topic; the value has S or T prefixed to indicate which. See the example below.
+ 1. The first part is the _value_ of the item. This is either a Subject or a Topic; the value has S- or T- prefixed to indicate which. See the example below.
  
  1. A colon, then the text that will appear in the drop-down list for the item
  
  1. Optionally, an exclamation mark then a list of attributes for the item
  
- Example: &#126;select:-:Select a subject!selected disabled hidden|SFood:Food and drink|STransport:Transport links|SEntertainment:Cinemas, theaters and clubs|TMore:Other resources&#126;
+ Example: &#126;select:-:Select a subject!selected disabled hidden|S-Food:Food and drink|S-Transport:Transport links|S-Entertainment:Cinemas, theaters and clubs|T-More:Other resources&#126;
  
- In this example, the first option is the current selected value, which is disabled and hidden so it shows when the selector is closed but not in the list itself. The next 3 items are all Sections and will take you there when selected. The last item is a Topic in the current Subject.
+ In this example, the first option is is a prompt ("Select a subject") which is marked as being selected but also disabled and hidden, so it shows when the selector is closed but not in the list itself. The next 3 options are all Sections and will take you there when selected. The last option is a Topic in the current Subject.
 
  - &#126;`clear`&#126; adds a 'clear', that forces all following content to be below anything already on the page. This is not usually an issue except where you use the `left` or `right` classes for an image, which causes text to flow around the image. Don't try to get the next paragraph to appear in the right place by adding blank lines, as this will not give the same resuts on all browsers. Instead, use a 'clear' before adding the next paragraph.
  

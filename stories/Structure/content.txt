@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|SGetStoryteller:Getting started with Storyteller|SMarkdown:Using Markdown|SImages:Handling images~~space:3~Next: ~sid:Markdown:Using Markdown~
+Links: ~select:-:Select a subject!selected disabled hidden|S-GetStoryteller:Getting started with Storyteller|S-Markdown:Using Markdown|S-Images:Handling images~~space:3~Next: ~sid:Markdown:Using Markdown~
 
 # The structure of a Storyteller website
 

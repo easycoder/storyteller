@@ -2,8 +2,8 @@
     "aspect-w":4,
     "aspect-h":3,
     "border-l":14,
-    "border-t":11,
-    "border-r":14,
-    "border-b":10,
+    "border-t":14,
+    "border-r":20,
+    "border-b":20,
     "font-scale":30
 }
