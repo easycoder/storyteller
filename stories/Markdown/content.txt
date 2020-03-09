@@ -39,7 +39,7 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
  
  Example: &#126;select:-:Select a subject!selected disabled hidden|S-Food:Food and drink|S-Transport:Transport links|S-Entertainment:Cinemas, theaters and clubs|T-More:Other resources&#126;
  
- In this example, the first option is the current selected value, which is disabled and hidden so it shows when the selector is closed but not in the list itself. The next 3 items are all Sections and will take you there when selected. The last item is a Topic in the current Subject.
+ In this example, the first option is is a prompt ("Select a subject") which is marked as being selected but also disabled and hidden, so it shows when the selector is closed but not in the list itself. The next 3 options are all Sections and will take you there when selected. The last option is a Topic in the current Subject.
 
  - &#126;`clear`&#126; adds a 'clear', that forces all following content to be below anything already on the page. This is not usually an issue except where you use the `left` or `right` classes for an image, which causes text to flow around the image. Don't try to get the next paragraph to appear in the right place by adding blank lines, as this will not give the same resuts on all browsers. Instead, use a 'clear' before adding the next paragraph.
  
