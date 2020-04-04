@@ -28,6 +28,8 @@
     callback DecoratorCallback
     variable Mobile
     variable CDNPath
+    variable Args
+    variable Arg
     variable Themes
     variable Theme
     variable Layout
@@ -139,10 +141,31 @@
 	load showdown
   	on DecoratorCallback go to Decorate
 
-    get SID from storage as `id`
-    if SID is empty put `home` into SID
-    get TID from storage as `tid`
-    if TID is empty put `content` into TID
+  	json parse url the location as Args
+    put property `arg` of Args into Arg
+    if Arg is empty
+    begin
+        get SID from storage as `id`
+        if SID is empty put `home` into SID
+        get TID from storage as `tid`
+        if TID is empty put `content` into TID
+    end
+    else
+    begin
+        put property `arg` of Args into Arg
+        if Arg is not empty
+        begin
+            put from 2 of Arg into Item
+            put the position of `/` in Item into N
+            if N is greater than 0
+            begin
+            	put left N of Item into SID
+                add 1 to N
+                put from N of Item into TID
+            end
+            else put Item into SID
+        end
+    end
     
     put 0 into StackPointer
 
