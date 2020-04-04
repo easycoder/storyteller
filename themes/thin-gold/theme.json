@@ -1,9 +1,9 @@
 {
     "aspect-w":4,
     "aspect-h":3,
-    "border-l":2,
+    "border-l":3,
     "border-t":2,
     "border-r":2,
     "border-b":2,
-    "font-scale":30
+    "font-scale":35
 }
