@@ -91,7 +91,7 @@
     attach Branch to `storyteller-branch`
     put the content of Branch into Value
     put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
-!	put `` into CDNPath
+!    put `` into CDNPath
     
     gosub to GetStyles
     
@@ -166,15 +166,12 @@
             end
             else put Item into SID
         end
-        replace `+` with ` ` in SID
-        replace `+` with ` ` in TID
     end
     
     put 0 into StackPointer
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
-	history replace url `.`
 	scroll TopicText to 0
     rest get Record from `/stories/` cat SID cat `/content.txt`
     or begin
@@ -581,6 +578,11 @@ SetStyles:
 
 !	Compute the font size
     divide Height by FontScale giving FontSize
+    if Mobile
+    begin
+        multiply FontSize by 6
+        divide FontSize by 5
+    end
     set style `font-size` of Container to FontSize cat `px`
     return
 
