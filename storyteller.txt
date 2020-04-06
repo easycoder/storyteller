@@ -2,7 +2,6 @@
 
     script Storyteller
     
-    div Tracer
     div Body
     div Container
     div Content
@@ -91,23 +90,27 @@
     attach Branch to `storyteller-branch`
     put the content of Branch into Value
     put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
-!    put `` into CDNPath
     
     gosub to GetStyles
     
-	attach Body to body
+    attach Body to body
     clear Body
-    set the style of Body to `overflow:hidden;width:100vw;height:100vh`
+    if Mobile
+    begin
+    	create Container in Body
+        set style `margin` of Container to `0.5em`
+    end
+    else
+    begin
+    	set the style of Body to `overflow:hidden;width:100vw;height:100vh`
+    	create Container in Body
+        set the style of Container to `position:relative;overflow:hidden;padding-right:0.5em`
+	    create MidImage in Container
+	    create TopImage in Container
+	    create BottomImage in Container
+    	on window resize gosub to SetStyles
+    end
     
-    create Container in Body
-    set the style of Container to `position:relative;overflow:hidden;padding-right:0.5em`
-    
-    create Tracer in Container
-    set the id of Tracer to `easycoder-tracer`
-    
-    create MidImage in Container
-    create TopImage in Container
-    create BottomImage in Container
     create Content in Container
     set style `position` of Content to `absolute`
     if Mobile
@@ -136,8 +139,6 @@
     set the style of PicDiv to
     	`position:absolute;top:0;left:0;text-align:center;width:100%;height:100%;display:none`
     create BigPic in PicDiv
-    
-    on window resize gosub to SetStyles
     
 	load showdown
   	on DecoratorCallback go to Decorate
@@ -172,7 +173,7 @@
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
-	scroll TopicText to 0
+	if not Mobile scroll TopicText to 0
     rest get Record from `/stories/` cat SID cat `/content.txt`
     or begin
     	put `home` into SID
@@ -206,7 +207,8 @@ ViewRecord:
     put SID into CurrentSID
     put TID into CurrentTID
 
-    set the style of TopicText to 
+    if Mobile set the style of TopicText to `padding:0.5em`
+    else set the style of TopicText to 
     	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
             cat `;padding-right:1em`
 
@@ -398,20 +400,26 @@ SetupTheme:
     put property `border-t` of Layout into BorderT
     put property `border-b` of Layout into BorderB
     put property `font-scale` of Layout into FontScale
-    set attribute `src` of MidImage to CDNPath cat `/themes/` cat Theme cat `/mid.jpg`
-    set attribute `src` of TopImage to CDNPath cat `/themes/` cat Theme cat `/top.jpg`
-    set attribute `src` of BottomImage to CDNPath cat `/themes/` cat Theme cat `/bottom.jpg`
+    if not Mobile
+    begin
+	    set attribute `src` of MidImage to CDNPath cat `/themes/` cat Theme cat `/mid.jpg`
+	    set attribute `src` of TopImage to CDNPath cat `/themes/` cat Theme cat `/top.jpg`
+	    set attribute `src` of BottomImage to CDNPath cat `/themes/` cat Theme cat `/bottom.jpg`
+    end
 	return
 
 !	Create the buttons at the top of the panel
 CreateButtons:
-	set style `position` of ButtonBar to `relative`
+    set style `position` of ButtonBar to `relative`
     if Mobile
     begin
-    	set style `top` of ButtonBar to `-1em`
+    	set style `padding` of ButtonBar to `0.25em`
+        set style `background` of ButtonBar to `#eee`
+    end
+    else
+    begin
     	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
     end
-    else set style `margin` of ButtonBar to `0 1em 0.5em 1em`
 	create HomeButton in ButtonBar
     set attribute `src` of HomeButton to CDNPath cat `/icons/home.png`
     on click HomeButton
@@ -516,57 +524,70 @@ SetStyles:
     set style `height` of Container to Height cat `px`
     
 !	Style the background images
-    set the style of MidImage to `position:absolute;left:0;top:0;width:` cat Width
-    	cat `px;height:` cat `calc(` cat Height cat `px - 2vh)`
-    set the style of TopImage to `position:absolute;left:0;top:0;width:` cat Width cat `px`
-    set the style of BottomImage to `position:absolute;left0;bottom:2vh;width:` cat Width cat `px`
+	if not Mobile
+	begin
+	    set the style of MidImage to `position:absolute;left:0;top:0;width:` cat Width
+	    	cat `px;height:` cat `calc(` cat Height cat `px - 2vh)`
+	    set the style of TopImage to `position:absolute;left:0;top:0;width:` cat Width cat `px`
+	    set the style of BottomImage to `position:absolute;left0;bottom:2vh;width:` cat Width cat `px`
+    end
 
 !	Calculate the borders
-    multiply Width by BorderL giving BorderLeft
-    multiply Width by BorderR giving BorderRight
-    divide BorderLeft by 100
-    divide BorderRight by 100
-    take BorderLeft from Width
-    take BorderRight from Width
+	if Mobile
+    begin
+    	put 0 into BorderLeft
+    	put 0 into BorderRight
+    	put 0 into BorderTop
+    	put 0 into BorderBottom
+    end
+    else
+    begin
+	    multiply Width by BorderL giving BorderLeft
+	    multiply Width by BorderR giving BorderRight
+	    divide BorderLeft by 100
+	    divide BorderRight by 100
+	    take BorderLeft from Width
+	    take BorderRight from Width
 
-    multiply Height by BorderT giving BorderTop
-    multiply Height by BorderB giving BorderBottom
-    divide BorderTop by 100
-    divide BorderBottom by 100
-	take BorderTop from Height
-    take BorderBottom from Height
+	    multiply Height by BorderT giving BorderTop
+	    multiply Height by BorderB giving BorderBottom
+	    divide BorderTop by 100
+	    divide BorderBottom by 100
+		take BorderTop from Height
+	    take BorderBottom from Height
+    end
 
     divide Width by 20 giving ButtonSize
     
-    set style `height` of ButtonBar to ButtonSize cat `px`
-
 !	Style the buttons
     if Mobile multiply ButtonSize by 2
     set style `position` of HomeButton to `absolute`
-    set style `left` of HomeButton to 0
-    set style `top` of HomeButton to 0
+    set style `left` of HomeButton to `0.25em`
+    set style `top` of HomeButton to `0.25em`
     set style `width` of HomeButton to ButtonSize cat `px`
     set style `height` of HomeButton to ButtonSize cat `px`
+
+    set style `height` of ButtonBar to ButtonSize cat `px`
 
 	multiply ButtonSize by 3 giving M
     divide M by 2
     put M into N
     set style `position` of BackButton to `absolute`
-    set style `left` of BackButton to N
-    set style `top` of BackButton to 0
+    set style `left` of BackButton to `calc(` cat N cat `px + 0.25em)`
+    set style `top` of BackButton to `0.25em`
     set style `width` of BackButton to ButtonSize cat `px`
     set style `height` of BackButton to ButtonSize cat `px`
 
 	add M to N
     set style `position` of ForwardButton to `absolute`
-    set style `left` of ForwardButton to N
-    set style `top` of ForwardButton to 0
+    set style `left` of ForwardButton to `calc(` cat N cat `px + 0.25em)`
+    set style `top` of ForwardButton to `0.25em`
     set style `width` of ForwardButton to ButtonSize cat `px`
     set style `height` of ForwardButton to ButtonSize cat `px`
 
     set style `position` of InfoButton to `absolute`
-    set style `right` of InfoButton to 0
-    set style `top` of InfoButton to 0
+    set style `right` of InfoButton to `0.25em`
+    set style `top` of InfoButton to `0.25em`
     set style `width` of InfoButton to ButtonSize cat `px`
     set style `height` of InfoButton to ButtonSize cat `px`
 
