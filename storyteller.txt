@@ -125,7 +125,7 @@
     end
     create TopicText in Content
     
-    rest get Title from `/stories/title.txt`
+    rest get Title from `/stories/title.txt` cat `?t=` cat now
     set the title to Title
 
     gosub to SetupTheme
@@ -174,7 +174,7 @@
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
 	if not Mobile scroll TopicText to 0
-    rest get Record from `/stories/` cat SID cat `/content.txt`
+    rest get Record from `/stories/` cat SID cat `/content.txt` cat `?t=` cat now
     or begin
     	put `home` into SID
         put `content` into TID
@@ -187,17 +187,17 @@ ViewRecord:
 
 !	Get the content
     set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
-    rest get Title from `/stories/` cat SID cat `/title.txt`
+    rest get Title from `/stories/` cat SID cat `/title.txt` cat `?t=` cat now
     if Title is empty
     	put SID into Title
         continue
     end
     set the content of TitleDiv to Title
 
-    rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt`
+    rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt` cat `?t=` cat now
     or begin
     	put `content` into TID
-        rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt`
+        rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt` cat `?t=` cat now
         continue
     end
     
@@ -232,7 +232,7 @@ ViewRecord:
         put attribute `data-id` of Link into DataID
         if DataID is `theme`
         begin
-        	rest get Themes from CDNPath cat `/themes/themes.txt`
+        	rest get Themes from CDNPath cat `/themes/themes.txt` cat `?t=` cat now
             json split Themes on newline into Themes
             put `Here are the available themes:` cat newline into Item
             put 0 into N
@@ -386,12 +386,12 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from `/stories/theme.txt`
-    rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
+    if Theme is empty rest get Theme from `/stories/theme.txt` cat `?t=` cat now
+    rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json` cat `?t=` cat now
     or begin
     	put empty into storage as `theme`
-    	rest get Theme from `/stories/theme.txt`
-    	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json`
+    	rest get Theme from `/stories/theme.txt` cat `?t=` cat now
+    	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json` cat `?t=` cat now
     end
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
