@@ -601,8 +601,8 @@ SetStyles:
     divide Height by FontScale giving FontSize
     if Mobile
     begin
-        multiply FontSize by 6
-        divide FontSize by 5
+        multiply FontSize by 5
+        divide FontSize by 4
     end
     set style `font-size` of Container to FontSize cat `px`
     return
