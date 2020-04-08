@@ -59,7 +59,7 @@ def deleteScript(path):
 # Gets a file
 @app.get('/<path:path>')
 def getFile(path):
-    print(f'Get {path}')
+    print(f'getFile {path}')
     response = bottle.static_file(path, root='.')
     if response.status[0:3] in ['200', '304']:
         response.set_header("Cache-Control", "public, max-age=0")
