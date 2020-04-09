@@ -304,9 +304,15 @@ ViewRecord:
         put attribute `data-options` of Image into Options
         if the position of `nolink` in Options is -1
         begin
+        	if Mobile
+            begin
+            	put the scroll position into N
+                set style `top` of Mask to N
+                set style `top` of PicDiv to N
+            end
             set style `display` of Mask to `block`
             set style `display` of PicDiv to `block`
-            set the style of BigPic to `max-width:93%;max-height:93%;margin-top:2%`
+            set the style of BigPic to `max-width:93%;max-height:93%;position:relative;top:4em`
             put attribute `src` of Image into Source
             set attribute `src` of BigPic to Source
             on click PicDiv go to ClearBigPic
