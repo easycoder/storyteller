@@ -1,0 +1,11 @@
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Pre-school:My early years~
+
+Graham John Trott: 1948-
+
+My full name is Graham John Trott and this is my story. ~img:GT.jpg:right 25%~I am an ordinary Englishman; born in London and brought up in the south-east of England. I went to university in London and from there into a career as an electronics engineer, moving into software at the start of the computer revolution in the mid 1970s. Much later on I lived in Italy for about 10 years and now at the age of 72 I'm in Leeds, Yorkshire, where I expect to remain for the rest of my days. Computer software is still my passion and is the origin of the code that drives this website (see ~sid:info:Information~).
+
+I've divided these memoirs into several topics and there's a drop-down list on every page, plus a suggested link for where to go next. This is just a convenience; there's no particular reason to follow the suggested route as there's a lot of material and I don't expect many will want to read it all.
+
+Many of these stories are based on photographs where they exist. There's a fairly noticeable distinction between our current age and the pre-digital one when it cost money to take photos and to print them. Now they are free to take and we rarely commit them to hard copy, keeping them online instead. Since some time around the millennium, when digital cameras started to become common, there are far, far more photos than ever existed before and the challenge lies not in finding something to include but in deciding which of a huge number of choices to include and which to throw out.
+
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|S-Ronald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Pre-school:My early years~
