@@ -30,4 +30,4 @@ I haven't done an exhaustive study of online photo editors, but one that seems p
 
 ~sid:Markdown:Using Markdown in Storyteller~
 
-[Click here to see the source code for this page](/stories/Images/source.txt)
+[Click here to see the source code for this page](/storyteller/Images/source.txt)
