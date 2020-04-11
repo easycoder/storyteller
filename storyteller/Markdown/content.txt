@@ -57,4 +57,4 @@ As well as content, the page style itself is also a variable. At present we have
 
 ~sid:Images:Handling images~
 
-[Click here to see the source code for this page](/stories/Markdown/source.txt)
+[Click here to see the source code for this page](/storyteller/Markdown/source.txt)

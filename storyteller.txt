@@ -81,6 +81,7 @@
     variable StackPointer
     variable FontScale
     variable FontSize
+    variable Path
     
     clear Mobile
     if mobile
@@ -405,12 +406,24 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from Stories cat  `theme.txt?v=` cat now
-    rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json?v=` cat now
+    if Theme is empty rest get Theme from Stories cat  `theme.txt`
+    if left 1 of Theme is `/` 
+    begin
+        put from 1 of Theme into Theme
+        put empty into Path
+    end
+    else put CDNPath into Path
+    rest get Layout from Path cat `/themes/` cat Theme cat `/theme.json?v=` cat now
     or begin
     	put empty into storage as `theme`
-    	rest get Theme from Stories cat  `theme.txt?v=` cat now
-    	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json?v=` cat now
+    	rest get Theme from Stories cat  `theme.txt`
+        if left 1 of Theme is `/` 
+        begin
+            put from 1 of Theme into Theme
+            put empty into Path
+        end
+        else put CDNPath into Path
+    	rest get Layout from Path cat `/themes/` cat Theme cat `/theme.json?v=` cat now
     end
     put property `aspect-w` of Layout into AspectW
     put property `aspect-h` of Layout into AspectH
