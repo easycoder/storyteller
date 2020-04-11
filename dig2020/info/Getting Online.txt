@@ -1,0 +1,21 @@
+## Getting online
+
+If you are reading this you are already online. If you are on a PC this is most likely through a broadband connection, which gives you as much data as you want every month. However, for mobile phones it's not quite as simple.
+
+Smartphones can use data from a broadband wifi router, just as PCs do, but only as long as you are within range of the router. After that they switch over to _mobile data_, that is, data provided by your mobile phone operator. This is in most cases not unlimited. Many people don't have a PC at all, just a smartphone, and they rely on mobile data for everything.
+
+You can usually only get wifi if you have a phone line to your house. The broadband router connects to this and gives you wifi throughout your house. It also carries over to next door, which is why there's an access password; it's to prevent other people using your connection and maybe abusing it.
+
+Home wifi will cost you at least £20 per month for a package that includes both phone and wifi, with unlimited use of data. This is a pretty good deal, but of course it only operates inside your house; as soon as you go out you lose access to it. And of course you need to have a house, so it's no good for people who move frequently or don't have the permission of their landlord to install a phone line.
+
+The other alternative is mobile data. This is provided by your phone operator and you will see attractive-looking packages from many sources, starting at only a few pounds a month. However, these do not offer unlimited data. In fact the amount of data they give you can easily disappear in an afternoon of streaming a movie from YouTube, leaving you either with nothing for the rest of the month or a large bill for the extra data.
+
+### How much data do I need?
+
+This is hard to answer as it depends on what you want to do with it. However, if you intend to use video of any kind - YouTube, FaceTime or TV on demand, for example - and are likely to do this every day, then you should realistically be looking at a package that gives you 1GB per day, or 30GB per month. By comparison, the cheap offers frequently limit you to as little as 2GB per month, which you'll soon use up. If you're careful you might be able to get away with 20GB, but you'll have to keep a close eye on your usage.
+
+Currently, the only plans that give you 30GB or more per month cost £20 or more monthly. One or two cheaper offers _appear_ to give you a good deal, but when you look into the small print you find they don't support 4G, which means they will give poor performance on video.
+
+The leader at the moment appears to be Three, giving you true unlimited voice, text and data for £20 per month. The deal is even better, as they halve the cost to £10 for the first 6 months - but you have to sign up for 2 years to get that. And if you take your phone abroad you'll find they have a quite long list of countries where you can carry on using your phone just as though you were still at home.
+
+If you have any questions on the above, why not ask them in our WhatsApp Group? If you're not already a member you see joining instructions on our ~sid:home:home page~.

@@ -9,6 +9,7 @@
   <body>
 
     <pre id="storyteller-branch" style="display:none">dev</pre>
+    <pre id="storyteller-stories" style="display:none">graham-trott</pre>
     <pre id="easycoder-script" style="display:none">
 
       script Boot
@@ -17,7 +18,8 @@
       variable Script
       attach Branch to `storyteller-branch`
       put the content of Branch into B
-      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat B cat `/storyteller.txt?v=` cat now
+!      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat B cat `/storyteller.txt?v=200408`
+      rest get Script from `/storyteller.txt`
       run Script
 
     </pre>

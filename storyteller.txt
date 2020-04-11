@@ -10,8 +10,8 @@
     div TopicText
     div ImageDiv
     div Mask
-    div PicDiv
     pre Branch
+    pre Resources
     img BigPic
     img TopImage
     img MidImage
@@ -29,6 +29,7 @@
     variable CDNPath
     variable Args
     variable Arg
+    variable Stories
     variable Themes
     variable Theme
     variable Layout
@@ -91,6 +92,10 @@
     put the content of Branch into Value
     put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
     
+    attach Resources to `storyteller-stories`
+    put the content of Resources into Stories
+    put `/` cat Stories cat `/` into Stories
+    
     gosub to GetStyles
     
     attach Body to body
@@ -124,24 +129,6 @@
         create ButtonBar in Content
     end
     create TopicText in Content
-    
-    rest get Title from `/stories/title.txt?v=` cat now
-    set the title to Title
-
-    gosub to SetupTheme
-    gosub to CreateButtons
-    gosub to SetStyles
-    
-    create Mask in Container
-    set the style of Mask to `position:absolute;top:0;left:0;width:100%;height:100%;`
-    	cat `opacity:70%;background:black;font-size:90%;display:none`
-    create PicDiv in Container
-    set the style of PicDiv to
-    	`position:absolute;top:0;left:0;text-align:center;width:100%;height:100%;display:none`
-    create BigPic in PicDiv
-    
-	load showdown
-  	on DecoratorCallback go to Decorate
 
   	json parse url the location as Args
     put property `arg` of Args into Arg
@@ -157,25 +144,49 @@
         put property `arg` of Args into Arg
         if Arg is not empty
         begin
-            put from 2 of Arg into Item
-            put the position of `/` in Item into N
-            if N is greater than 0
+            put the position of `=` in Arg into N
+            if N is not -1
             begin
-            	put left N of Item into SID
-                add 1 to N
-                put from N of Item into TID
+                if left N of Arg is `s`
+                begin
+                    add 1 to N
+                    put from N of Arg into Stories
+                    put `/` cat Stories cat `/` into Stories
+                end
+                else if left N of Arg is `p`
+                begin
+                    add 1 to N
+                    put from N of Arg into Item
+                    put the position of `/` in Item into N
+                    if N is greater than 0
+                    begin
+                        put left N of Item into SID
+                        add 1 to N
+                        put from N of Item into TID
+                    end
+                    else put Item into SID
+                    history set url `.`
+                end
             end
-            else put Item into SID
-            history set url `.`
         end
     end
+    
+    rest get Title from Stories cat `title.txt?v=` cat now
+    set the title to Title
+
+    gosub to SetupTheme
+    gosub to CreateButtons
+    gosub to SetStyles
+    
+	load showdown
+  	on DecoratorCallback go to Decorate
     
     put 0 into StackPointer
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
 	if not Mobile scroll TopicText to 0
-    rest get Record from `/stories/` cat SID cat `/content.txt?v=` cat now
+    rest get Record from Stories cat SID cat `/content.txt?v=` cat now
     or begin
     	put `home` into SID
         put `content` into TID
@@ -189,17 +200,17 @@ ViewRecord:
 !	Get the content
     set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
     if Mobile set style `margin-top` of TitleDiv to `0.5em`
-    rest get Title from `/stories/` cat SID cat `/title.txt?v=` cat now
+    rest get Title from Stories cat SID cat `/title.txt?v=` cat now
     if Title is empty
     	put SID into Title
         continue
     end
     set the content of TitleDiv to Title
 
-    rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt?v=` cat now
+    rest get Topic from Stories cat SID cat `/` cat TID cat `.txt?v=` cat now
     or begin
     	put `content` into TID
-        rest get Topic from `/stories/` cat SID cat `/` cat TID cat `.txt?v=` cat now
+        rest get Topic from Stories cat SID cat `/` cat TID cat `.txt?v=` cat now
         continue
     end
     
@@ -304,19 +315,19 @@ ViewRecord:
         put attribute `data-options` of Image into Options
         if the position of `nolink` in Options is -1
         begin
-        	if Mobile
+        	if true !Mobile
             begin
-            	put the scroll position into N
-                set style `top` of Mask to N
-                set style `top` of PicDiv to N
+                create Mask
+                set the style of Mask to `position:fixed;top:0;left:0;width:100vw;height:150vh;`
+                    cat `text-align:center;background-color:rgba(0,0,0,0.7)`
+                create BigPic in Mask
+                set the style of BigPic to
+                    `max-width:93vw;max-height:93vh;margin-top:3%`
+                put attribute `src` of Image into Source
+                set attribute `src` of BigPic to Source
             end
-            set style `display` of Mask to `block`
-            set style `display` of PicDiv to `block`
-            set the style of BigPic to `max-width:93%;max-height:93%;position:relative;top:4em`
-            put attribute `src` of Image into Source
-            set attribute `src` of BigPic to Source
-            on click PicDiv go to ClearBigPic
-            on click BigPic go to ClearBigPic
+            on click Mask remove element Mask
+            on click BigPic remove element Mask
         end
     end
 
@@ -394,11 +405,11 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from `/stories/theme.txt?v=` cat now
+    if Theme is empty rest get Theme from Stories cat  `theme.txt?v=` cat now
     rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json?v=` cat now
     or begin
     	put empty into storage as `theme`
-    	rest get Theme from `/stories/theme.txt?v=` cat now
+    	rest get Theme from Stories cat  `theme.txt?v=` cat now
     	rest get Layout from CDNPath cat `/themes/` cat Theme cat `/theme.json?v=` cat now
     end
     put property `aspect-w` of Layout into AspectW
@@ -499,12 +510,6 @@ VAR2:
     index Stack to StackPointer
     set style `display` of ForwardButton to `none`
     go to ViewRecord 
-
-!	Remove the mask and overlay image
-ClearBigPic:
-    set style `display` of Mask to `none`
-    set style `display` of PicDiv to `none`
-	stop
 
 !	Responsive design: Compute the size and position of all the screen elements
 SetStyles:
@@ -748,15 +753,16 @@ ProcessImage:
     end
     put `<div id="ec-imagediv-` cat ImageCount into Payload
     if Class is not empty put Payload cat `" class="` cat Class into Payload
+    put from 1 of Stories into Value
     if the position of `nolink` in Options is not -1
     begin
-        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="stories/` cat Source
+        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="` cat Value cat Source
             cat `" style="width:100%" ></div>` into Payload
     end
     else
     begin
         put Payload cat `">` cat `<a href="#">`
-            cat `<img id="ec-image-` cat ImageCount cat `" src="stories/` cat Source
+            cat `<img id="ec-image-` cat ImageCount cat `" src="` cat Value cat Source
             cat `" style="width:100%" ></a></div>` into Payload
     end
     add 1 to ImageCount
