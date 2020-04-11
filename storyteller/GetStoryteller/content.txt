@@ -32,12 +32,13 @@ Once you have chosen your name your website will be live and can be seen by anyo
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.js'></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.js?v=200407'></script>
   </head>
 
   <body>
 
-    <pre id="storyteller-branch">master</pre>
+    <pre id="storyteller-branch" style="display:none">dev</pre>
+    <pre id="storyteller-stories" style="display:none">(Name of my resources folder)</pre>
     <pre id="easycoder-script" style="display:none">
 
       script Boot
@@ -46,7 +47,7 @@ Once you have chosen your name your website will be live and can be seen by anyo
       variable Script
       attach Branch to `storyteller-branch`
       put the content of Branch into B
-      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat B cat `/storyteller.txt`
+      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat B cat `/storyteller.txt?v=200411`
       run Script
 
     </pre>
@@ -57,9 +58,17 @@ Once you have chosen your name your website will be live and can be seen by anyo
 <hr>
 Now carefully follow these steps:
 
- 1. Click the `New Folder` button and type the name `stories`. 
+ 1. Click the `Edit` button for `index.html`.
  
- 1. Click its name (`stories`) to go into the folder.
+ 1. Where you see the line containing `(Name of my resources folder)`, replace it with a name you will use for your stories folder. The name can be anything you like (but no spaces, please) so make it appropriate. For example, if you are writing about holidays you could call it `MyHolidays`.
+ 
+ 1. Click `Save`.
+ 
+ 1. Back out of the editor to the Dashboard.
+ 
+ 1. Click the `New Folder` button and type the name you just gave for your stories. This folder is where you will keep all your story files.
+ 
+ 1. Click its name to go into your stories folder.
  
  1. Click `New File` and type the name `title.txt`. Click `Create`.
  
