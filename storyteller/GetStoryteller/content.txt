@@ -127,4 +127,4 @@ You can do all your editing in Neocities using their built-in editor or you can 
 
 ~sid:Images:Handling images~
 
-[Click here to see the source code for this page](/stories/GetStoryteller/source.txt)
+[Click here to see the source code for this page](/storyteller/GetStoryteller/source.txt)
