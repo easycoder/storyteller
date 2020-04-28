@@ -767,16 +767,16 @@ ProcessImage:
     put `<div id="ec-imagediv-` cat ImageCount into Payload
     if Class is not empty put Payload cat `" class="` cat Class into Payload
     put from 1 of Stories into Value
-    if the position of `nolink` in Options is not -1
-    begin
-        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="` cat Value cat Source
-            cat `" style="width:100%" ></div>` into Payload
-    end
-    else
+    if the position of `nolink` in Options is -1
     begin
         put Payload cat `">` cat `<a href="#">`
             cat `<img id="ec-image-` cat ImageCount cat `" src="` cat Value cat Source
-            cat `" style="width:100%" ></a></div>` into Payload
+            cat `" data-options="` cat Options cat `" style="width:100%" ></a></div>` into Payload
+    end
+    else
+    begin
+        put Payload cat `">` cat `<img id="ec-image-` cat ImageCount cat `" src="` cat Value cat Source
+            cat `" data-options="` cat Options cat `" style="width:100%" ></div>` into Payload
     end
     add 1 to ImageCount
     return
