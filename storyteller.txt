@@ -555,7 +555,7 @@ SetStyles:
 	    set the style of MidImage to `position:absolute;left:0;top:0;width:` cat Width
 	    	cat `px;height:` cat `calc(` cat Height cat `px - 2vh)`
 	    set the style of TopImage to `position:absolute;left:0;top:0;width:` cat Width cat `px`
-	    set the style of BottomImage to `position:absolute;left0;bottom:2vh;width:` cat Width cat `px`
+	    set the style of BottomImage to `position:absolute;left:0;bottom:2vh;width:` cat Width cat `px`
     end
 
 !	Calculate the borders
