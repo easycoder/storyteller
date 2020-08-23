@@ -1,4 +1,4 @@
- Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Family Holidays:Family Holidays~~space:3~Next: ~tid:Family Holidays~
+ Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ronald:Ron|T-Family Holidays:Family Holidays~~space:3~Next: ~tid:Family Holidays~
 
  Joan and Ron were married on October 7, 1945, a month after the end of the Second World War.
  ~img:Wedding.jpg:center 50%~
@@ -18,4 +18,4 @@ With retirement at the age of 60, Dad was still young and fit enough to embark o
 
 My wife at the time, Frances, was involved with the local Amateur Dramatic group, who put on an annual show at the Spa Pavilion in Felixstowe, located at about sea level with the main town behind it at the top of a small cliff. Mum and Dad came to a couple of these events but in 1986, as they were making their way down the cliff path, which didn't have a handrail, Dad tripped and fell, striking his head on the path. He was rushed unconscious to hospital, where he remained in a coma for about a week until it became fruitless to continue with the life support system. He died at the age of 68. Mum took it hard and for the next couple of years grieved terribly. She tried all sorts of remedies, most notably golf, but the only thing that seemed to help was her own artistic talent, which came out in painting and in wood sculpture. She and Malcolm, who had moved around the country quite a lot, hatched up a plan to buy and share a house in the Medway town of Gillingham so the bungalow was sold. I had also gone by that time to a new phase of my own life, this time in Norfolk.
 
- Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Family Holidays:Family Holidays~~space:3~Next: ~tid:Family Holidays~
+ Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ronald:Ron|T-Family Holidays:Family Holidays~~space:3~Next: ~tid:Family Holidays~
