@@ -172,7 +172,7 @@
         end
     end
     
-    rest get Title from Stories cat `title.txt?v=` cat now
+    rest get Title from Stories cat `title.txt?v=` cat now or begin end
     set the title to Title
 
     gosub to SetupTheme
