@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|T-Memories:Early memories|S-Joan and Ron:Joan and Ron|S-Olive and Arthur:Parents: Olive and Arthur|S-Graham:Son: Graham|S-Ronald:Joan and Husband 1: Ron|S-Albert:Joan and Husband 2: Albert|S-George:Joan and Partner:George|T-Obituary:Obituary~~space:3~Next: ~sid:Joan and Ron:Joan and Ron~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Memories:Early memories|S-Joan and Ron:Joan and Ron|S-Joan and Albert:Joan and Albert|S-Olive and Arthur:Parents: Olive and Arthur|S-Graham:Son: Graham|S-Ronald:Husband 1: Ron|S-Albert:Husband 2: Albert|S-George:Partner:George|T-Obituary:Obituary~~space:3~Next: ~sid:Joan and Ron:Joan and Ron~
 
 Joan Eileen Rosa Trott, neé Matthews: 1922-2013
 
@@ -28,4 +28,4 @@ Joan used to travel to work by bus with a group of friends, and started to notic
 
 Joan outlived two husbands and became the travelling companion of a third partner until her death in 2013 at the age of nearly 91. From here on my account is of Mum and each of her husbands/partner as couples rather than individually.
 
-Links: ~select:-:Select a subject!selected disabled hidden|TMemories:Early memories|SJoan and Ron:Joan and Ron|SOlive and Arthur:Parents: Olive and Arthur|SGraham:Son: Graham|SRonald:Joan and Husband 1: Ron|SAlbert:Joan and Husband 2: Albert|SGeorge:Joan and Partner:George|T-Obituary:Obituary~~space:3~Next: ~sid:Joan and Ron:Joan and Ron~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Memories:Early memories|S-Joan and Ron:Joan and Ron|S-Joan and Albert:Joan and Albert|S-Olive and Arthur:Parents: Olive and Arthur|S-Graham:Son: Graham|S-Ronald:Husband 1: Ron|S-Albert:Husband 2: Albert|S-George:Partner:George|T-Obituary:Obituary~~space:3~Next: ~sid:Joan and Ron:Joan and Ron~
