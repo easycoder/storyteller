@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Joan and Ron:Joan and Ron~~space:3~Next: 
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Joan and Ron:Joan and Ron~~space:3~Next: ~tid:Last Part:Later in life~
  
 ## Family Holidays
 
@@ -16,4 +16,4 @@ I'm a bit hazy about where we went next but we certainly passed through Germany,
 
 In Turin itself we tried to change some travellers cheques but ran into some difficulty. Although Dad evidently knew a few words of Italian after his time in the Army recapturing the country, it was in no way up to the task of explaining to the currency exchange guy, who although quite happy to help us couldn't figure why his newspaper (printing the current exchange rate) quoted the British currency as being something called 'Sterlino' but the cheques themselves were printed "Pounds". They obviously didn't get many crazy British tourists in Turin. I don't remember the eventual outcome but we evidently survived intact. 
 
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Joan and Ron:Joan and Ron~~space:3~Next: 
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Joan|S-Ron:Ron|T-Joan and Ron:Joan and Ron~~space:3~Next: ~tid:Last Part:Later in life~
