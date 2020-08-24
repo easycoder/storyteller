@@ -752,6 +752,7 @@ ProcessImage:
         else if C is `10%` put `pc10` into C
         else if C is `25%` put `pc25` into C
         else if C is `33%` put `pc33` into C
+        else if C is `45%` put `pc45` into C
         else if C is `50%` put `pc50` into C
         else if C is `90%` put `pc90` into C
         else if C is `100%` put `pc100` into C
@@ -850,6 +851,8 @@ GetStyles:
     set style `.pc25` to `{width:25%}`
 !   Set the item width to 33% of the page width
     set style `.pc33` to `{width:33%}`
+!   Set the item width to 45% of the page width
+    set style `.pc45` to `{width:45%}`
 !   Set the item width to 50% of the page width
     set style `.pc50` to `{width:50%}`
 !   Set the item width to 90% of the page width
