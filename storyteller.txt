@@ -201,7 +201,7 @@ ViewRecord:
 !	Get the content
     set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
     if Mobile set style `margin-top` of TitleDiv to `0.5em`
-    rest get Title from Stories cat SID cat `/title.txt?v=` cat now
+    rest get Title from Stories cat SID cat `/title.txt?v=` cat now else put empty into Title
     if Title is empty
     	put SID into Title
         continue
