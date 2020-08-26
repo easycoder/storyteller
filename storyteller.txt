@@ -1,4 +1,4 @@
-!   Storyteller main script
+!   Storyteller script
 
     script Storyteller
     
