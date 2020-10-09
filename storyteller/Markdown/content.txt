@@ -20,12 +20,7 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
      - `right` Make the image float to the right
      - `center` Make the image sit in the middle of the page
      - `clear` Make the image sit below anything else already on the page
-     - `10%` Make the width of the image 10% of the page
-     - `25%` Make the width of the image 25% of the page
-     - `33%` Make the width of the image 33% of the page
-     - `50%` Make the width of the image 50% of the page
-     - `90%` Make the width of the image 90% of the page
-     - `100%` Make the width of the image 100% of the page
+     - `<w>%` Make the width of the image <w>% of the page width, e.g. 10%, 25%, 50% etc.
  
  The final part is optional. When used, an exclamation mark is followed by a list of options. At present there is only one; `nolink`. The standard behavior of a link is to display it as a bigger image when the user clicks it. If you don't want this to happen, use `nolink`.
 
