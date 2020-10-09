@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career3:Windrush|T-Relationships:Relationships~~space:3~Next: ~tid:Career3:Windrush~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career3:Windrush|T-Technology:The Geek's Progress|T-Relationships:Relationships~~space:3~Next: ~tid:Career3:Windrush~
 
 ## Post Office Telecommunications
 
@@ -36,4 +36,4 @@ At that time, the Post office Telecommunications Research Department was startin
 
 I continued working on telephone testing but was growing increasingly keen on computer software. Although I'd been promoted once since joining The Post Office I turned down opportunities for further advancement, as I had no interest in becoming a manager commuting to London for meetings several times a week, preferring to remain hands-on with the development work. I eventually left BT in 1989 and moved to Norfolk to join a small computer company for whom I'd been writing software for more than a decade as a part-time activity, but that's a story for another page.
 
-Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career3:Windrush|T-Relationships:Relationships~~space:3~Next: ~tid:Career3:Windrush~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career3:Windrush|T-Technology:The Geek's Progress|T-Relationships:Relationships~~space:3~Next: ~tid:Career3:Windrush~
