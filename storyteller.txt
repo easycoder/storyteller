@@ -49,9 +49,11 @@
     variable CurrentTID
     variable Record
     variable C
+    variable L
     variable N
     variable M
     variable P
+    variable S
     variable Margin
     variable WindowWidth
     variable WindowHeight
@@ -65,6 +67,7 @@
     variable Display
     variable Attributes
     variable Source
+    variable Style
     variable Class
     variable Classes
     variable Options
@@ -740,33 +743,45 @@ ProcessImage:
     end
     json split Class on ` ` into Classes
     put empty into Class
+    put empty into Style
     put 0 into N
     while N is less than the json count of Classes
     begin
+    	put empty into S
     	put element N of Classes into C
         if C is `border` begin end
         else if C is `left` begin end
         else if C is `right` begin end
         else if C is `center` begin end
         else if C is `clear` begin end
-        else if C is `10%` put `pc10` into C
-        else if C is `25%` put `pc25` into C
-        else if C is `33%` put `pc33` into C
-        else if C is `45%` put `pc45` into C
-        else if C is `50%` put `pc50` into C
-        else if C is `90%` put `pc90` into C
-        else if C is `100%` put `pc100` into C
+		else if right 1 of C is `%`
+        begin
+        	put the length of C into L
+            take 1 from L
+            put left L of C into S
+            put `width:` cat S cat `%` into S
+            put empty into C
+        end
         else
         begin
         	alert `Unknown style ` cat C
             return
         end
-        if Class is not empty put Class cat ` ` into Class
-        put Class cat C into Class
+        if C is not empty
+        begin
+	        if Class is not empty put Class cat ` ` into Class
+	        put Class cat C into Class
+        end
+        if S is not empty
+        begin
+	        if Style is not empty put Style cat ` ` into Style
+    	    put Style cat S into Style
+        end
     	add 1 to N
     end
     put `<div id="ec-imagediv-` cat ImageCount into Payload
     if Class is not empty put Payload cat `" class="` cat Class into Payload
+    if Style is not empty put Payload cat `" style="` cat Style into Payload
     put from 1 of Stories into Value
     if the position of `nolink` in Options is -1
     begin
@@ -831,7 +846,7 @@ ProcessTheme:
     add 1 to LinkCount
     return
 
-!   Put all the styles needed into the head
+!   Put some styles into the head
 GetStyles:
 !   Set the font size of all selectors
     set style `select` to `{font-size:1em}`
@@ -845,18 +860,4 @@ GetStyles:
     set style `.right` to `{float:right;margin:0.5em}`
 !   Put the item in the centre of the page
     set style `.center` to `{margin:0 auto}`
-!   Set the item width to 10% of the page width
-    set style `.pc10` to `{width:10%}`
-!   Set the item width to 25% of the page width
-    set style `.pc25` to `{width:25%}`
-!   Set the item width to 33% of the page width
-    set style `.pc33` to `{width:33%}`
-!   Set the item width to 45% of the page width
-    set style `.pc45` to `{width:45%}`
-!   Set the item width to 50% of the page width
-    set style `.pc50` to `{width:50%}`
-!   Set the item width to 90% of the page width
-    set style `.pc90` to `{width:90%}`
-!   Set the item width to 100% of the page width
-    set style `.pc100` to `{width:100%}`
     return

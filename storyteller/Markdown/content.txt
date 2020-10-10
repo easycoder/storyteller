@@ -12,20 +12,15 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
 
  - &#126;`tid:{name}:{link text}`&#126; sets up a hyperlink that when the user clicks it the page changes to the Topic whose name is `{name}` in the current Subject. In this case the `.txt` part of the name is omitted. As with `sid`, id the colon and the second part are omitted the system will use the same text for both.
 
- - &#126;`img:{url}:{class}!{options}`&#126; Although standard Markdown has markup to add an image, this takes it further. The first part, `{url}` is the URL of the image. If this begins with `http` it's taken to be an external image at the full path given. If not, then it's assumed to be an image in the `images` folder of the current Subject. So the images for each Subject are independent.
+ - &#126;`img:{url}:{styles}!{options}`&#126; Although standard Markdown has markup to add an image, this takes it further. The first part, `{url}` is the URL of the image. If this begins with `http` it's taken to be an external image at the full path given. If not, then it's assumed to be an image in the `images` folder of the current Subject. So the images for each Subject are independent.
  
- The second part, `class`, separated from the first part by a colon, is a list of space-delimited styles you want to apply to the image, for example to have it float left or right, add a border around it or whatever. The current list of styles available are:
+ The second part, `styles`, separated from the first part by a colon, is a list of space-delimited styles you want to apply to the image, for example to have it float left or right, add a border around it or whatever. The current list of styles available are:
      - `border` Place a thin border around the image
      - `left` Make the image float to the left
      - `right` Make the image float to the right
      - `center` Make the image sit in the middle of the page
      - `clear` Make the image sit below anything else already on the page
-     - `10%` Make the width of the image 10% of the page
-     - `25%` Make the width of the image 25% of the page
-     - `33%` Make the width of the image 33% of the page
-     - `50%` Make the width of the image 50% of the page
-     - `90%` Make the width of the image 90% of the page
-     - `100%` Make the width of the image 100% of the page
+     - `<w>%` Make the width of the image &lt;w&gt;% of the page width, e.g. 10%, 25%, 50% etc.
  
  The final part is optional. When used, an exclamation mark is followed by a list of options. At present there is only one; `nolink`. The standard behavior of a link is to display it as a bigger image when the user clicks it. If you don't want this to happen, use `nolink`.
 
