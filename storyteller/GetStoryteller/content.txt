@@ -58,7 +58,7 @@ Once you have chosen your name your website will be live and can be seen by anyo
 </html>
 ```
 <hr>
-Now carefully follow these steps:
+That's the file that will run when your site is loaded; apart from the name of the stories folder it's the same for all StoryTeller websites. What follows next is all the stuff that makes your own site distictive. Carefully follow these steps:
 
  1. Click the `Edit` button for `index.html`.
  
