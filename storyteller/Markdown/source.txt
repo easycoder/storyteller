@@ -48,7 +48,7 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
 
 As well as content, the page style itself is also a variable. At present we have a single style, that of a bordered page. In future we'll add a convential scrolling page option too. There's also the theme, being the appearance and size of the border. This only applies to the _bordered_ style; scrolling pages may well have their own themes in due course. We'll be offering a selection of themes that you can try out here or even in your own page. To do this you need a special Markdown tag, as follows:
 
- - &#126;`theme:{prompt}`&#126; invokes the theme selector. If you choose a theme from the list offered it overrides the one named in your `theme.txt` file, but only for your current browser and computer. Nobody else is affected. If that's not clear, try it and see by clicking ~theme:here~.
+ - &#126;`theme:{prompt}`&#126; invokes the theme selector. If you choose a theme from the list offered it overrides the one named in your `theme.txt` file, but only for your current browser and computer. Nobody else is affected. If that's not clear, try it and see by clicking ~theme:here~. You may have to refresh your browser to see the new layout properly.
 
 ~sid:GetStoryteller:Getting started with Storyteller~
 
