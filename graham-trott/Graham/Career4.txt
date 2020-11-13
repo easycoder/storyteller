@@ -1,6 +1,6 @@
 Links: ~select:-:Select a subject!selected disabled hidden|T-University:University|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career3:Windrush Micro Systems|T-Career5:Audix Broadcast|T-Relationships:Relationships~~space:3~Next: ~tid:Career5:Audix Broadcast~
 
-## Backs Electronic Publishing
+## CD-Interactive
 
 The economy went into a shallow recession in 1990, less than a year after I left the safety of BT to join a small computer company in Norfolk. The move suddenly seemed a rather less than wise decision. We'd moved to a 5-bedroom new-build on the edge of North Walsham, in the heart of rural East Anglia; not the most likely place to find a job in computing. However, Serendipity delivered the most unlikely of solutions, in the form of Backs Electronic Publishing (BEPL).
 

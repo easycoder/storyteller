@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Relationships:Relationships|T-Career4:Backs Electronic Publishing~~space:3~Next: ~tid:Career4:Backs Electronic Publishing~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career4:CD-Interactive|T-Relationships:Relationships~~space:3~Next: ~tid:Career4:CD-Interactive~
 
 ## Windrush Micro Systems
 
@@ -20,4 +20,4 @@ After I working my notice I left and went to work as a director at Windrush. I s
 
 My joining Windrush as a director was almost followed by the early 1990s recession. We supplied custom computer hardware and software and this was to be an early casualty of the downturn. Within a year of my leaving BT, Windrush was in financial trouble and I was looking for another job. Fortunately it didn't take me long, as nearby in Norfolk there was someone looking for exactly my skill set. And that's the next page in my story.
 
-Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Relationships:Relationships|T-Career4:Backs Electronic Publishing~~space:3~Next: ~tid:Career4:Backs Electronic Publishing~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Grammar school:Grammar school|T-University:University|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career4:CD-Interactive|T-Relationships:Relationships~~space:3~Next: ~tid:Career4:CD-Interactive~

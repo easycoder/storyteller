@@ -1,6 +1,6 @@
 Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Music:Favourite music|T-Films:Favourite films|T-Technology:The Geek's Progress~~space:3~Next: ~tid:Computer2:Assemblers and Compilers~
 
-# Building my first computer
+## Building my first computer
 
 It was hard to be a computer enthusiast in 1975. Basically you had to work in a university or company that gave access, usually via a TeleType - a very slow electric typewriter device - to a distant time-shared computer that charged significant fees for its use.
 
