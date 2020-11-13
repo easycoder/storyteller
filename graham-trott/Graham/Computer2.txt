@@ -1,10 +1,10 @@
 Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Music:Favourite music|T-Films:Favourite films|T-Technology:The Geek's Progress~~space:3~
 
-# Assemblers and compilers
+## Assemblers and compilers
 
 Each generation of technology is built on the backs of the previous ones; nothing is ever built from scratch. This makes for a rapid rate of development but also for a considerable degree of vulnerability that's hard to spot. The whole of the Internet - and with it the rest of our society - is dependent on everything working and going on working. A sobering thought. Here's an amusing illustration from the online comic [xkcd.com](https://xkcd.com) illustrating the problem:
 
-~img:dependency.png:center 25%!nolink~
+~img:dependency.png:center 25%~
 
 Modern programmers are used to pulling software components from the Internet and integrating them into their own projects, but when I started there was no Internet and few other places to discover how things should be done. I developed my own ways of doing things and the software techniques I've used over the past 4 decades are in many ways little changed from when I started. This no doubt explains why in my later years I found it hard to fit into teams of programmers; I was used to doing things my own way.
 
