@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|S-Ronald:Dad|T-Pre-school:My early years|T-Grammar school:Grammar school|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Grammar school~
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|S-Ronald:Dad|T-Pre-school:My early years|T-Grammar school:Grammar school|T-University:University|T-Career1:Careers|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Grammar school~
 
 ## The move to Kent
 
@@ -28,4 +28,4 @@ Broadstairs was close to ideal for those times, with none of the distractions so
 
 ~img:Cleaning vehicles.jpg:right 25%~The Triumph was a huge lump of metal to use for everday getting about so Dad bought a little Garelli "Capri" scooter, probably 80cc. I don't think I ever went as a pillion passenger, but given he was a somewhat erratic driver that was probably no bad thing. Here are Mum and Dad (on separate occasions) buffing up the family transport. I was the proud owner of a Brownie 127 camera and these photos were taken by me when I was about 13 or 14.
 
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|S-Ronald:Dad|T-Pre-school:My early years|T-Grammar school:Grammar school|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Grammar school~
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|S-Ronald:Dad|T-Pre-school:My early years|T-Grammar school:Grammar school|T-University:University|T-Career1:Careers|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:Grammar school~

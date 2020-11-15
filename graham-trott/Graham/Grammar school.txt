@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|T-Barnet:Pre-school|T-Kent:The move to Kent|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:University~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Barnet:Pre-school|T-Kent:The move to Kent|T-University:University|T-Career1:Careers|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:University~
 
 ## Grammar school ##
 
@@ -28,6 +28,6 @@ The symbol eventually faded out as the grass grew so no permanent harm was done,
 
 In spite of all this teenage rebellion I managed to net a decent clutch of 'O' and  'A' levels, sufficient to get me into university. My parting act of defiance was to choose an engineering course at the City University, newly promoted from Northampton Polytechnic, rather than the expected arts course at a red-brick university (my grades weren't good enough for Oxbridge). The punishment for this was exclusion from the annual University Entrance list painted onto wooden panels surrounding the school Chapel. As far as Judd was concerned I was a non-person.
 
-Links: ~select:-:Select a subject!selected disabled hidden|T-Barnet:Pre-school|T-Kent:The move to Kent|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:University~
+Links: ~select:-:Select a subject!selected disabled hidden|T-Barnet:Pre-school|T-Kent:The move to Kent|T-Career1:Careers|T-University:University|T-Music:Favourite music|T-Films:Favourite films~~space:3~Next: ~tid:University~
 
 
