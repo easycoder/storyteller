@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career3:Windrush Micro Systems|T-Career4:CD-Interactive|T-Relationships:Relationships~~space:3~Next:
+Links: ~select:-:Select a subject!selected disabled hidden|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career3:Leaving British Telecom|T-Career4:CD-Interactive||T-Technology:The Geek's ProgressT-Relationships:Relationships~~space:3~Next:
 
 ## Audix Broadcast Limited
 
@@ -16,4 +16,4 @@ When in 1999 I had to leave BEPL I carried on working for Audix. The biggest - a
 
 We returned to the UK to sort things out and Audix decided to continue without me. I have no idea how it all turned out. I only ever got paid for the 2 initial weeks (though all my expenses were covered) and I never even got to see much of China. In the six weeks we had just one day off, to a local theme park; the only place where I ever saw another non-Chinese (I think they were Russians). Looking back on it now, it was all a rather odd, almost surreal experience, being in a part of China where Europeans were rare (and something to be stared at). I have a set of rather disconnected memories, such as that of going out for dinner in a group. None of the restaurants thought it necessary to provide all their guests with food at the same time, so one of us would be finished long before the next had even started. I took a lot of photos while there, but I'm sad to say they have all gone missing.
 
-Links: ~select:-:Select a subject!selected disabled hidden|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career3:Windrush Micro Systems|T-Career4:CD-Interactive|T-Relationships:Relationships~~space:3~Next:
+Links: ~select:-:Select a subject!selected disabled hidden|T-Career1:Working through University|T-Career2:Post Office Telecommunications|T-Career3:Leaving British Telecom|T-Career4:CD-Interactive||T-Technology:The Geek's ProgressT-Relationships:Relationships~~space:3~Next:
