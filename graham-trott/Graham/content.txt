@@ -1,4 +1,4 @@
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Holidays:Holidays|T-Music:Favourite music|T-Films:Favourite films|T-Miscellany:Miscellany|T-Technology:The Geek's Progress~~space:3~Next: ~tid:Pre-school:My early years~
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Career1:Careers|T-Holidays:Holidays|T-Music:Favourite music|T-Films:Favourite films|T-Miscellany:Miscellany|T-Technology:The Geek's Progress~~space:3~Next: ~tid:Pre-school:My early years~
 
 ## Graham John Trott: 1948-
 
@@ -8,4 +8,4 @@ I've divided these memoirs into several topics and there's a drop-down list on e
 
 Many of these stories are based on photographs where they exist. There's a fairly noticeable distinction between our current age and the pre-digital one when it cost money to take photos and to print them. Now they are free to take and we rarely commit them to hard copy, keeping them online instead. Since some time around the millennium, when digital cameras started to become common, there are far, far more photos than ever existed before and the challenge lies not in finding something to include but in deciding which of a huge number of choices to include and which to throw out.
 
-Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Holidays:Holidays|T-Music:Favourite music|T-Films:Favourite films|T-Miscellany:Miscellany|T-Technology:The Geek's Progress~~space:3~Next: ~tid:Pre-school:My early years~
+Links: ~select:-:Select a subject!selected disabled hidden|S-Joan:Mum|SRonald:Dad|T-Pre-school:My early years|T-Kent:The move to Kent|T-Grammar school:Grammar school|T-University:University|T-Career1:Careers|T-Holidays:Holidays|T-Music:Favourite music|T-Films:Favourite films|T-Miscellany:Miscellany|T-Technology:The Geek's Progress~~space:3~Next: ~tid:Pre-school:My early years~
