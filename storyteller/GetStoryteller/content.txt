@@ -37,7 +37,7 @@ Once you have chosen your name your website will be live and can be seen by anyo
   <body>
 
     <pre id="storyteller-branch" style="display:none">master</pre>
-    <pre id="storyteller-stories" style="display:none">(Name of my stories folder)</pre>
+    <pre id="storyteller-stories" style="display:none">(Name-of-my-stories-folder)</pre>
     <pre id="easycoder-script" style="display:none">
 
       script Boot
@@ -62,7 +62,7 @@ That's the file that will run when your site is loaded; apart from the name of t
 
  1. Click the `Edit` button for `index.html`.
  
- 1. Find the text `(Name of my stories folder)` and replace it (and the 2 brackets) with a name you will use for your stories folder. The name can be anything you like (but no spaces, please) so make it appropriate. For example, if you are writing about holidays you could call it `MyHolidays`.
+ 1. Find the text `(Name-of-my-stories-folder)` and replace it (the text and the 2 brackets) with a name you will use for your stories folder. The name can be anything you like (but no spaces, please) so make it appropriate. For example, if you are writing about holidays you could call it `MyHolidays`.
  
  1. Click `Save`.
  
