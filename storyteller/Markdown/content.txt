@@ -12,6 +12,8 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
 
  - &#126;`tid:{name}:{link text}`&#126; sets up a hyperlink that when the user clicks it the page changes to the Topic whose name is `{name}` in the current Subject. In this case the `.txt` part of the name is omitted. As with `sid`, id the colon and the second part are omitted the system will use the same text for both.
 
+ - &#126;`stid:{subject}/{topic}:{link text}`&#126; sets up a hyperlink that when the user clicks it the page changes to the Subject and Topic whose names are `{subject}` and `{topic}`. This lets you link to anywhere in the entire page structure.
+
  - &#126;`img:{url}:{styles}!{options}`&#126; Although standard Markdown has markup to add an image, this takes it further. The first part, `{url}` is the URL of the image. If this begins with `http` it's taken to be an external image at the full path given. If not, then it's assumed to be an image in the `images` folder of the current Subject. So the images for each Subject are independent.
  
  The second part, `styles`, separated from the first part by a colon, is a list of space-delimited styles you want to apply to the image, for example to have it float left or right, add a border around it or whatever. The current list of styles available are:
