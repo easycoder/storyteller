@@ -139,7 +139,7 @@ Springs and fountains
 Ask the mountains  
 Springs and…
 
-<div style="text-align:center" ><iframe width="560" height="315" src="https://www.youtube.com/embed/QFlcs8vwLK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<div style="text-align:center" ><iframe width="560" height="315" src="https://www.youtube.com/embed/70xFeDxozRk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 ## Other favourites
 
