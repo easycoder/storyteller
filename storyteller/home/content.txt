@@ -8,7 +8,7 @@ Storyteller is a software toolkit for building websites that are mainly text wit
 
 Personal/family histories and other forms of legacy website need to continue after the author has moved on or died and it often cannot be guaranteed that anyone will pay for hosting. Other good subjects for this kind of presentation are instruction manuals - such as for car maintenance - and cooking or gardening guides. Once created, these sites rarely need changing.
 
-~img:demo5.jpg:right 25%~ In these pages we will also show you how to quickly setup a free website on [Neocities](https://neocities.org) to supply information on any subject you choose. Storyteller is for _authors_; people with something to say who need a simple way to get their message out rather than getting bogged down in Web technologies.
+~img:demo5.jpg:left 25%~ In these pages we will also show you how to quickly setup a free website on [Neocities](https://neocities.org) to supply information on any subject you choose. Storyteller is for _authors_; people with something to say who need a simple way to get their message out rather than getting bogged down in Web technologies.
 
 This site is of course built with Storyteller. The images on the page have no relevance; they were just chosen at random.
 
