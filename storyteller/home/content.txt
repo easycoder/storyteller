@@ -12,7 +12,7 @@ Personal/family histories and other forms of legacy website need to continue aft
 
 This site is of course built with Storyteller. The images on the page have no relevance; they were just chosen at random.
 
-~sid:GetStoryteller:Getting started with Storyteller~
+~clear~~sid:GetStoryteller:Getting started with Storyteller~
 
 ~sid:Structure:The structure of a Storyteller website~
 
