@@ -10,7 +10,6 @@
     div TopicText
     div ImageDiv
     div Mask
-    pre Branch
     pre Resources
     img BigPic
     img TopImage
@@ -92,10 +91,7 @@
     	if portrait set Mobile
     end
     
-!    attach Branch to `storyteller-branch`
-!    put the content of Branch into Value
-!    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@` cat Value into CDNPath
-    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@master` into CDNPath
+    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller` into CDNPath
     
     attach Resources to `storyteller-stories`
     put the content of Resources into Stories

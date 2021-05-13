@@ -18,8 +18,8 @@ Neocities provide you with the means to manage your website, in the form of a si
 
 Storyteller makes it a little easier to manage this process, by removing the need for you to directly deal with HTML and CSS files. The text files you create are plain text, not HTML, and they include a few special "tags" that identify features such as headers, hyperlinks or pictures. These special tags are very easy to learn and after a while become second nature to most people. The system is called **_Markdown_**; a Google search will turn up plenty of information about it. Storyteller adds a few special tags of its own; these are documented here on our ~sid:Markdown~ page.
 
-Storyteller is easy to use and anyone can build their own website with it. Most of the work is in writing the copy and finding the photos that will illustrate that copy. As with this website, yours can be hosted for free on [Neocities](https://neocities.org), where setting up an account is very simple.
+Storyteller is easy to use and anyone can build their own website with it. Most of the work is in writing the copy and finding the photos that will illustrate that copy. Your website can be hosted for free on [Neocities](https://neocities.org), where setting up an account is very simple.
 
-If you have questions, feel free to write to [the author of the Storyteller system](mailto:gtanyware@gmail.com). Since Storyteller is very new and currently under development, if you are intending to try it out I strongly recommend you get in touch, as features tend to change from time to time and the documentation doesn't always keep up.
+If you have questions, feel free to write to [the author of the Storyteller system](mailto:gtanyware@gmail.com). If you need help you are welcome to get in touch.
 
 [Click here to see the source code for this page](/storyteller/info/source.txt)
