@@ -432,11 +432,16 @@ SetupTheme:
     put property `border-t` of Layout into BorderT
     put property `border-b` of Layout into BorderB
     put property `font-scale` of Layout into FontScale
-    if not Mobile
+    if Mobile
     begin
-	    set attribute `src` of MidImage to CDNPath cat `/themes/` cat Theme cat `/mid.jpg`
-	    set attribute `src` of TopImage to CDNPath cat `/themes/` cat Theme cat `/top.jpg`
-	    set attribute `src` of BottomImage to CDNPath cat `/themes/` cat Theme cat `/bottom.jpg`
+        multiply FontScale by 3
+        divide FontScale by 2
+    end
+    else
+    begin
+	    set attribute `src` of MidImage to Path cat `/themes/` cat Theme cat `/mid.jpg`
+	    set attribute `src` of TopImage to Path cat `/themes/` cat Theme cat `/top.jpg`
+	    set attribute `src` of BottomImage to Path cat `/themes/` cat Theme cat `/bottom.jpg`
     end
 	return
 
