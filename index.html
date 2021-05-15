@@ -12,8 +12,8 @@
 
       script Boot
       variable Script
-      require js `https://cdn.jsdelivr.net/gh/easycoder/easycoder.github.io/dist/plugins/showdown.js?v=200825`
-      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller@master/storyteller.txt?v=201130`
+      require js `https://cdn.jsdelivr.net/gh/easycoder/easycoder.github.io/dist/plugins/showdown.js?v=` cat now
+      rest get Script from `https://cdn.jsdelivr.net/gh/easycoder/storyteller/storyteller.txt?v=` cat now
 !      rest get Script from `/storyteller.txt`
       run Script
 
