@@ -406,7 +406,7 @@ ViewRecord:
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
-    if Theme is empty rest get Theme from Stories cat  `theme.txt`
+    if Theme is empty rest get Theme from Stories cat  `theme.txt?v=` cat now
     if left 1 of Theme is `/` 
     begin
         put from 1 of Theme into Theme
