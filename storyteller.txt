@@ -1,6 +1,6 @@
 !   Storyteller script
 
-    script StoryTeller
+    script Storyteller
     
     div Body
     div Container
