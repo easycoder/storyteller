@@ -186,7 +186,8 @@
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
-	if not Mobile scroll TopicText to 0
+!	if not Mobile
+        scroll TopicText to 0
     rest get Record from Stories cat SID cat `/content.txt?v=` cat now
     or begin
     	put `home` into SID
