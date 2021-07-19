@@ -28,6 +28,8 @@
     variable CDNPath
     variable Args
     variable Arg
+    variable Mode
+    variable NClicks
     variable Stories
     variable Themes
     variable Theme
@@ -119,6 +121,7 @@
     
     create Content in Container
     set style `position` of Content to `absolute`
+    set style `height` of Content to `100vh`
     if Mobile
     begin
         create ButtonBar in Content
@@ -130,6 +133,27 @@
         create ButtonBar in Content
     end
     create TopicText in Content
+
+! Detect a triple click on the title
+    get Mode from storage as `mode`
+    put 0 into NClicks
+    on click TitleDiv
+    begin
+        add 1 to NClicks
+        if NClicks is 1
+        begin
+            if Mode is `admin`
+            begin
+                put empty into Mode
+                put 0 into NClicks
+            end
+        end
+        else if NClicks is 3
+        begin
+            put `admin` into Mode
+            put 0 into NClicks
+        end
+    end
 
   	json parse url the location as Args
     put property `arg` of Args into Arg
@@ -186,8 +210,6 @@
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
-!	if not Mobile
-        scroll TopicText to 0
     rest get Record from Stories cat SID cat `/content.txt?v=` cat now
     or begin
     	put `home` into SID
@@ -402,6 +424,12 @@ ViewRecord:
             end
         end
     end
+
+    wait 20 ticks
+    if Mode is `admin` alert `Scroll`
+    if Mobile scroll to 0 else scroll TopicText to 0
+!    scroll TopicText to 0 ! This doesn't work on mobile
+
  	stop
 
 !	Set up the theme
@@ -514,7 +542,6 @@ CreateButtons:
         put `content` into TID
         go to ViewAnotherRecord
     end
-
 	return
 
 !	View another record, given the Subject and Topic ids
