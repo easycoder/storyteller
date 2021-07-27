@@ -12,14 +12,16 @@
 
       script Boot
       variable Script
-      require js `https://cdn.jsdelivr.net/gh/easycoder/easycoder.github.io/dist/plugins/showdown.js?v=` cat now
+      require js `https://easycoder.github.io/dist/plugins/showdown.js?v=` cat now
       rest get Script from `https://storyteller-framework.netlify.app/storyteller.txt?v=` cat now
-!      rest get Script from `/storyteller.txt?v=` cat now
+      rest get Script from `/storyteller.txt?v=` cat now
       run Script
 
     </pre>
 
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/easycoder.github.io/dist/easycoder.js?v=2.7.5'></script>
+!    <script type='text/javascript' src='https://cdn.jsdelivr.net/gh/easycoder/easycoder.github.io/dist/easycoder.js?v=2.7.5'></script>
+
+    <script type='text/javascript' src='https://easycoder.github.io/dist/easycoder.js?v=2.7.5'></script>
 
   </body>
 </html>
