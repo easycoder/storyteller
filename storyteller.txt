@@ -758,9 +758,11 @@ ProcessImage:
         put Source cat `/images/` cat left N of Data into Source
         add 1 to N
         if Data is not empty
-        begin
-        	if Class is not empty put Class cat ` ` into Class 
-        	put Class cat from N of Data into Class
+        begin\
+! Redundant code removed, 27/7/21
+!        	if Class is not empty put Class cat ` ` into Class 
+!        	put Class cat from N of Data into Class
+        	put from N of Data into Class
         end
         put the position of `!` in Class into N
         if N is not -1
