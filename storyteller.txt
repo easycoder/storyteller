@@ -902,8 +902,16 @@ ProcessPreviousNext:
         put from N of Data into Data
         ! Check if there's a Next
         put the position of `:` in Data into M
-        if M is -1 clear Display else put left M of Data into Display
-        add 1 to M
+        if M is -1
+        begin
+            put the length of Data into M
+            put Data into Display
+        end
+        else
+        begin
+            put left M of Data into Display
+            add 1 to M
+        end
         put from M of Data into Data
         ! Do the Prev link
         if Stid is not empty
@@ -926,7 +934,8 @@ ProcessPreviousNext:
             add 1 to LinkCount
         end
         ! Now the Next link
-        if M is greater than 0
+        put empty into Stid
+        if Data is not empty
         begin
             put 0 into N
             put the position of `:` in Data into N
