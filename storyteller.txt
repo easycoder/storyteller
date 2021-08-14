@@ -94,7 +94,7 @@
     	if portrait set Mobile
     end
     
-    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller` into CDNPath
+    put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@master` into CDNPath
     
     attach Resources to `storyteller-stories`
     put the content of Resources into Stories
@@ -915,15 +915,15 @@ ProcessPreviousNext:
             if P is  -1
                 put `<a href="#" id="ec-link-` cat LinkCount
                     cat `" class="button" style="float:left"`
-                    cat `" data-id="S-` cat Stid cat `">`
-                    cat `<img src="https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-previous.png?v=12345" style="width:` cat S cat `px;margin-right:1em">`
+                    cat ` data-id="S-` cat Stid cat `">`
+                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png" style="width:` cat S cat `px;margin-right:1em">`
                     cat Display cat `</a>` into Payload
             else
                 put `<a href="#" id="ec-link-` cat LinkCount
                     cat `" class="button" style="float:left"`
-                    cat `" data-id="ST-` cat Stid cat `">` cat Display
-                    cat `<img src="https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-previous.png?v=12345" style="width:` cat S cat `px;margin-right:1em">`
-                    cat `</a>` into Payload
+                    cat ` data-id="ST-` cat Stid cat `">`
+                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png" style="width:` cat S cat `px;margin-right:1em">`
+                    cat Display cat `</a>` into Payload
             add 1 to LinkCount
         end
         if M is greater than 0
@@ -949,14 +949,14 @@ ProcessPreviousNext:
                 if P is  -1
                     put Payload cat  `<a href="#" id="ec-link-` cat LinkCount
                         cat `" class="button" style="float:right"`
-                        cat `" data-id="S-` cat Stid cat `">`
-                        cat `<img src="https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-next.png" style="width:` cat S cat `px;margin-left:1em">`
-                        cat Display cat `</a>` into Payload
+                        cat ` data-id="S-` cat Stid cat `">` cat Display
+                        cat `<img src="` cat CDNPath cat `/icons/arrow-next.png" style="width:` cat S cat `px;margin-left:1em">`
+                        cat `</a>` into Payload
                 else
                     put Payload cat `<a href="#" id="ec-link-`
                         cat LinkCount cat `" class="button" style="float:right"`
-                        cat `" data-id="ST-` cat Stid cat `">` cat Display
-                        cat `<img src="https://cdn.jsdelivr.net/gh/easycoder/storyteller/icons/arrow-next.png" style="width:` cat S cat `px;margin-left:1em">`
+                        cat ` data-id="ST-` cat Stid cat `">` cat Display
+                        cat `<img src="` cat CDNPath cat `/icons/arrow-next.png" style="width:` cat S cat `px;margin-left:1em">`
                         cat `</a>` into Payload
                 add 1 to LinkCount
             end
