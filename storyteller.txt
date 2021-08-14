@@ -891,6 +891,7 @@ ProcessTheme:
 !	Process a Previous ... Next
 !   Syntax: ~pn:{previous stid}:{display text}:{next stid}:{display text}~
 ProcessPreviousNext:
+    put empty into Payload
     divide ButtonSize by 2 giving S
     put the position of `:` in Data into N
     if N is not -1
@@ -901,13 +902,9 @@ ProcessPreviousNext:
         put from N of Data into Data
         ! Check if there's a Next
         put the position of `:` in Data into M
-        if M is greater than 0
-        begin
-            put left M of Data into Display
-            add 1 to M
-            put from M of Data into Data
-        end
-        else put Data into Display
+        if M is -1 clear Display else put left M of Data into Display
+        add 1 to M
+        put from M of Data into Data
         ! Do the Prev link
         if Stid is not empty
         begin
@@ -916,19 +913,21 @@ ProcessPreviousNext:
                 put `<a href="#" id="ec-link-` cat LinkCount
                     cat `" class="button" style="float:left"`
                     cat ` data-id="S-` cat Stid cat `">`
-                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png" style="width:` cat S cat `px;margin-right:1em">`
+                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png"`
+                    cat ` style="width:` cat S cat `px;margin-right:1em">`
                     cat Display cat `</a>` into Payload
             else
                 put `<a href="#" id="ec-link-` cat LinkCount
                     cat `" class="button" style="float:left"`
                     cat ` data-id="ST-` cat Stid cat `">`
-                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png" style="width:` cat S cat `px;margin-right:1em">`
+                    cat `<img src="` cat CDNPath cat `/icons/arrow-previous.png"`
+                    cat ` style="width:` cat S cat `px;margin-right:1em">`
                     cat Display cat `</a>` into Payload
             add 1 to LinkCount
         end
+        ! Now the Next link
         if M is greater than 0
         begin
-            ! Do the Next link
             put 0 into N
             put the position of `:` in Data into N
             if N is not -1
