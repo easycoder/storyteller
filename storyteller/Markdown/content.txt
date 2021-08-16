@@ -26,6 +26,8 @@ Storyteller adds custom enhancements to Markdown, to do things that would be imp
  
  The final part is optional. When used, an exclamation mark is followed by a list of options. At present there is only one; `nolink`. The standard behavior of a link is to display it as a bigger image when the user clicks it. If you don't want this to happen, use `nolink`.
 
+ - &#126;`pn:{previous id}:{previous display}:{next id}:{next display}`&#126; Add link to the previous and next pages. The Previous item floats to the left; the Next to the right. In each case the {id} is either the name of a subject folder or the names of a subject and a topic, separted by a forward slash (`/`). To link to another topic in the same subject you need to use the second form.
+
  - &#126;`select:item|item|item...  ...`&#126; specifies a drop-down list with as many items as you like, separated from each other by the vertical pipe (|) symbol. Each item is in 2 or 3 parts as follows:
  
  1. The first part is the _value_ of the item. This is either a Subject or a Topic; the value has S- or T- prefixed to indicate which. See the example below.
