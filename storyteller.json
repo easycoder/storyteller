@@ -1,0 +1,95 @@
+{
+  "#doc": "Storyteller layout — the complete static DOM. The .as script attaches to each @id and applies computed/responsive styles in SetStyles. Dynamic elements (Showdown-emitted images, links, selects; the click-to-zoom mask) are still created in code because they depend on topic content.",
+  "#element": "div",
+  "@id": "page",
+  "#": ["$Container"],
+
+  "$Container": {
+    "#element": "div",
+    "@id": "container",
+    "position": "relative",
+    "overflow": "hidden",
+    "#": ["$MidImage", "$TopImage", "$BottomImage", "$Content"]
+  },
+
+      "$MidImage": {
+        "#element": "img",
+        "@id": "mid-image",
+        "position": "absolute",
+        "left": "0",
+        "top": "0"
+      },
+
+      "$TopImage": {
+        "#element": "img",
+        "@id": "top-image",
+        "position": "absolute",
+        "left": "0",
+        "top": "0"
+      },
+
+      "$BottomImage": {
+        "#element": "img",
+        "@id": "bottom-image",
+        "position": "absolute",
+        "left": "0"
+      },
+
+      "$Content": {
+        "#element": "div",
+        "@id": "content",
+        "position": "absolute",
+        "display": "flex",
+        "flex-direction": "column",
+        "#": ["$TitleDiv", "$ButtonBar", "$TopicText"]
+      },
+
+          "$TitleDiv": {
+            "#element": "div",
+            "@id": "title-div"
+          },
+
+          "$ButtonBar": {
+            "#element": "div",
+            "@id": "button-bar",
+            "position": "relative",
+            "#": ["$HomeButton", "$BackButton", "$ForwardButton", "$InfoButton"]
+          },
+
+              "$HomeButton": {
+                "#element": "img",
+                "@id": "home-button",
+                "position": "absolute",
+                "left": "0.25em",
+                "top": "0.25em"
+              },
+
+              "$BackButton": {
+                "#element": "img",
+                "@id": "back-button",
+                "position": "absolute",
+                "top": "0.25em",
+                "display": "none"
+              },
+
+              "$ForwardButton": {
+                "#element": "img",
+                "@id": "forward-button",
+                "position": "absolute",
+                "top": "0.25em",
+                "display": "none"
+              },
+
+              "$InfoButton": {
+                "#element": "img",
+                "@id": "info-button",
+                "position": "absolute",
+                "right": "0.25em",
+                "top": "0.25em"
+              },
+
+          "$TopicText": {
+            "#element": "div",
+            "@id": "topic-text"
+          }
+}

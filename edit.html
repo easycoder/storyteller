@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AllSpeak Editor</title>
+	<link rel="stylesheet" href="https://allspeak.ai/dist/plugins/codemirror/codemirror.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/addon/dialog/dialog.css">
+</head>
+
+<body>
+<div id="editor-lang" style="display:none">en</div>
+<pre id="asedit-ui" style="display:none"></pre>
+<pre id="allspeak-script" style="display:none"></pre>
+
+<script>
+(async function() {
+	const ui = await fetch('asedit.json').then(r => r.text());
+	document.getElementById('asedit-ui').textContent = ui;
+	const ecs = await fetch('asedit.as').then(r => r.text());
+	document.getElementById('allspeak-script').textContent = ecs;
+
+	const t = Date.now();
+	const scripts = [
+		'https://allspeak.ai/dist/allspeak-min.js?v=' + t,
+		'https://allspeak.ai/dist/plugins/codemirror.js?v=' + t,
+		'https://allspeak.ai/dist/plugins/codemirror/codemirror.js?v=' + t,
+		'https://allspeak.ai/dist/plugins/codemirror-ecs.js?v=' + t,
+		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/addon/dialog/dialog.js',
+		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/addon/search/search.js',
+		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/addon/search/searchcursor.js',
+		'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.46.0/addon/search/jump-to-line.js'
+	];
+	for (const src of scripts) {
+		await new Promise((resolve, reject) => {
+			const s = document.createElement('script');
+			s.src = src;
+			s.onload = resolve;
+			s.onerror = reject;
+			document.head.appendChild(s);
+		});
+	}
+	AllSpeak_Startup();
+})();
+</script>
+</body>
+
+</html>

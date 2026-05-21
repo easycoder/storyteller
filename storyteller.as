@@ -1,7 +1,12 @@
-!   Storyteller script
+!   Storyteller script — extended-markdown viewer that turns a folder of
+!   .txt topics into a hyperlinked, themed browser app.
 
     script Storyteller
-    
+
+!! All DOM-element types and scratch variables used throughout the script.
+!!
+!! AllSpeak requires every variable to be declared before use, including loop counters. Grouping them here gives the reader the full surface in one place: typed DOM variables (divs, imgs, anchors, selects), the Showdown decorator callback, and the long list of scalars that subroutines reuse for state and arithmetic.
+
     div Body
     div Container
     div Content
@@ -87,53 +92,87 @@
     variable FontScale
     variable FontSize
     variable Path
-    
+!! @hash 5fd519b4
+!!!
+
+!! Detect a phone in portrait mode; the layout branches on `Mobile` throughout.
+!!
+!! Landscape phones and desktops follow the same code path — only portrait phones get the simplified stacked layout without the framed parchment background.
+
     clear Mobile
     if mobile
     begin
     	if portrait set Mobile
     end
-    
+!! @hash 6ad0e50c
+!!!
+
+!! Pin the shared-asset CDN root to the upstream Storyteller GitHub repository on jsDelivr.
+!!
+!! Themes, icons, and any other framework assets are fetched from this base. Themes whose name begins with `/` opt out of the CDN and load from the local server instead (see SetupTheme).
+
     put `https://cdn.jsdelivr.net/gh/easycoder/storyteller@master` into CDNPath
-    
+!! @hash 687e2ea4
+!!!
+
+!! Discover the stories directory by reading the embedded `storyteller-stories` element in the host page.
+!!
+!! Letting the HTML pick the directory name lets one script serve different content bundles by changing one line of host markup. The wrapping slashes turn the bare name into a path fragment that can be safely concatenated.
+
     attach Resources to `storyteller-stories`
     put the content of Resources into Stories
     put `/` cat Stories cat `/` into Stories
-    
+!! @hash 95c623c6
+!!!
+
+!! Install global CSS rules into the document head before any topic renders.
+
     gosub to GetStyles
-    
+!! @hash 620c9ea3
+!!!
+
+!! Render the static layout from `storyteller.json` and attach every variable to its rendered element by id.
+!!
+!! Webson owns the structure now: container, the three parchment-frame background images, the content area, the title/button-bar/topic-text stack, and the four navigation buttons. From here the script only attaches and applies dynamic/responsive styles — it never builds DOM for static elements. On mobile the three frame images hide and the button-bar's flex `order` flips to put it above the title; Content is `display:flex; flex-direction:column` in Webson, so the CSS `order` swap is enough.
+
     attach Body to body
     clear Body
+    rest get Layout from `storyteller.json`
+    render Layout in Body
+
+    attach Container to `container`
+    attach MidImage to `mid-image`
+    attach TopImage to `top-image`
+    attach BottomImage to `bottom-image`
+    attach Content to `content`
+    attach TitleDiv to `title-div`
+    attach ButtonBar to `button-bar`
+    attach HomeButton to `home-button`
+    attach BackButton to `back-button`
+    attach ForwardButton to `forward-button`
+    attach InfoButton to `info-button`
+    attach TopicText to `topic-text`
+
     if Mobile
     begin
-    	create Container in Body
         set style `margin` of Container to `0.5em`
+        set style `display` of MidImage to `none`
+        set style `display` of TopImage to `none`
+        set style `display` of BottomImage to `none`
+        set style `order` of ButtonBar to `-1`
     end
     else
     begin
-    	set the style of Body to `overflow:hidden;width:100vw;height:100vh`
-    	create Container in Body
-        set the style of Container to `position:relative;overflow:hidden;padding-right:0.5em`
-	    create MidImage in Container
-	    create TopImage in Container
-	    create BottomImage in Container
-    	on window resize gosub to SetStyles
+        set the style of Body to `overflow:hidden;width:100vw;height:100vh`
+        set style `padding-right` of Container to `0.5em`
+        on window resize gosub to SetStyles
     end
-    
-    create Content in Container
-    set style `position` of Content to `absolute`
-    set style `height` of Content to `100vh`
-    if Mobile
-    begin
-        create ButtonBar in Content
-        create TitleDiv in Content
-    end
-    else
-    begin
-        create TitleDiv in Content
-        create ButtonBar in Content
-    end
-    create TopicText in Content
+!! @hash f5297048
+!!!
+
+!! Hidden admin entry: triple-click the title to toggle `admin` mode.
+!!
+!! `Mode` is persisted to localStorage. A click while already in admin clears it immediately; three quick clicks while out of admin set it. There's no timer, so a stray slow click doesn't disarm the sequence — the counter just keeps incrementing until it lands on a multiple of three.
 
 ! Detect a triple click on the title
     get Mode from storage as `mode`
@@ -155,6 +194,12 @@
             put 0 into NClicks
         end
     end
+!! @hash 8465de1f
+!!!
+
+!! Parse the URL: honour `?arg=s=<dir>` (override stories directory) and `?arg=p=<sid>[/<tid>]` (deep-link to a page).
+!!
+!! Without overrides we pick up the last-viewed SID/TID from localStorage; first-time visitors land on `home/content`. The `history set url \`.\`` after a `p=` override cleans the query string from the address bar so a reload doesn't re-trigger it.
 
   	json parse url the location as Args
     put property `arg` of Args into Arg
@@ -196,65 +241,123 @@
             end
         end
     end
-    
+!! @hash bf28efa6
+!!!
+
+!! Set the browser tab title from the stories root.
+!!
+!! The empty `or begin end` swallows a missing `title.txt` silently — the page just keeps whatever title the host HTML already declared.
+
     rest get Title from Stories cat `title.txt?v=` cat now or begin end
     set the title to Title
+!! @hash 691648b6
+!!!
+
+!! Run the deferred one-time setup: load the theme, build the buttons, compute responsive sizing.
 
     gosub to SetupTheme
     gosub to CreateButtons
     gosub to SetStyles
-    
+!! @hash a2ec4e75
+!!!
+
+!! Load Showdown and register the decorator callback that turns `~tag:data~` tokens into HTML.
+!!
+!! Showdown is the markdown→HTML engine. DecoratorCallback fires once per `~...~` token; the registered `Decorate` label dispatches to a per-tag ProcessXxx subroutine that rewrites the payload before Showdown splices it back into the output stream.
+
 	load showdown
   	on DecoratorCallback go to Decorate
-    
+!! @hash c59be3a9
+!!!
+
+!! Initialise the navigation stack used by the back/forward buttons.
+
     put 0 into StackPointer
+!! @hash 23cc7303
+!!!
+
+!! ViewRecord — fetch a record's content; on failure, fall back to `home/content`.
+!!
+!! This is the central jump target for any navigation: buttons, links, selects all eventually land here (directly or via ViewAnotherRecord). The `on failure` clause catches a missing record by routing the user back to home rather than leaving them on a blank page.
 
 !	View a record, given its Subject and Topic ids.
 ViewRecord:
     rest get Record from Stories cat SID cat `/content.txt?v=` cat now
-    or begin
+    on failure begin
     	put `home` into SID
         put `content` into TID
-        continue
     end
+!! @hash 7180a581
+!!!
+
+!! Push the current location onto the back-button stack and reveal the back button if there's somewhere to return to.
 
 ! 	Add this topic to the stack
     put SID cat `/` cat TID into Stack
     if StackPointer is greater than 0 set style `display` of BackButton to `inline-block`
+!! @hash f95cd7b6
+!!!
+
+!! Display the subject title, falling back to the SID itself when no `title.txt` exists.
 
 !	Get the content
     set the style of TitleDiv to `text-align:center;font-size:1.6em;font-weight:bold`
     if Mobile set style `margin-top` of TitleDiv to `0.5em`
-    rest get Title from Stories cat SID cat `/title.txt?v=` cat now or put empty into Title
+    rest get Title from Stories cat SID cat `/title.txt?v=` cat now on failure put empty into Title
     if Title is empty
+    begin
     	put SID into Title
-        continue
     end
     set the content of TitleDiv to Title
+!! @hash 4490b11a
+!!!
+
+!! Fetch the topic text; if a specific topic is missing, fall back to the subject's `content` topic.
 
     rest get Topic from Stories cat SID cat `/` cat TID cat `.txt?v=` cat now
-    or begin
+    on failure begin
     	put `content` into TID
         rest get Topic from Stories cat SID cat `/` cat TID cat `.txt?v=` cat now
-        continue
     end
-    
+!! @hash e1dd198e
+!!!
+
+!! Persist the current location to localStorage so a reload returns to the same page.
+
 !	Remember where we are
     put SID into storage as `id`
     put TID into storage as `tid`
     put SID into CurrentSID
     put TID into CurrentTID
+!! @hash 8bbd4a86
+!!!
+
+!! Style the topic-text panel: mobile gets simple padding, desktop gets a scrollable height-constrained box.
+!!
+!! `calc(100% - 5em)` leaves room above for the button bar and title. `overflow-y:auto` gives the panel its own scrollbar so the page chrome stays fixed while the topic scrolls.
 
     if Mobile set the style of TopicText to `padding:0.5em`
-    else set the style of TopicText to 
+    else set the style of TopicText to
     	`width:100%;height:calc(100% - 5em);background:none;overflow-y: auto`
             cat `;padding-right:1em`
+!! @hash 059123cd
+!!!
+
+!! Convert the markdown topic to HTML via Showdown, with the Decorate callback rewriting `~...~` tokens to links, images, and selectors.
+!!
+!! The three counters are reset *before* the conversion because the callback bumps them per token; the next three sections then use those counts to wire up the rendered elements by ID.
 
 !	Handle the links created by the showdown extension
     put 0 into LinkCount
     put 0 into ImageCount
     put 0 into SelectCount
     set the content of TopicText to showdown decode Topic with DecoratorCallback
+!! @hash 06f729a1
+!!!
+
+!! Wire up every link the decorator emitted: attach by id, then route clicks by `data-id` prefix.
+!!
+!! Prefix → target: `S-<sid>` jumps to a subject's content topic, `T-<tid>` jumps within the current subject, `ST-<sid>/<tid>` jumps to a specific subject+topic, and the bare `theme` id opens an interactive theme-picker prompt. One shared handler reads the click target through the cursor model.
 
 !	Process links
     set the elements of Link to LinkCount
@@ -322,6 +425,12 @@ ViewRecord:
           end
       	end
     end
+!! @hash 8ac0e926
+!!!
+
+!! Wire up images and provide a click-to-zoom modal overlay.
+!!
+!! Clicking an image (unless its `data-options` includes `nolink`) covers the page with a translucent mask hosting a 93vw/93vh copy of the image. Clicking either the mask or the big picture removes the overlay. `if true !Mobile` keeps the comment as a marker that the behaviour was once desktop-only.
 
 !	Process images
     set the elements of ImageDiv to ImageCount
@@ -355,6 +464,12 @@ ViewRecord:
             on click BigPic remove element Mask
         end
     end
+!! @hash e17335f3
+!!!
+
+!! Wire up every `<select>` the decorator emitted and route its onchange to navigation.
+!!
+!! Each select's `data-options` is a `|`-separated list of `<2-char-prefix><value>:<display>[!<extra-attrs>]` entries. Prefixes `S-`, `T-`, and `ST-` mirror the link prefixes; the optional `!` segment lets the markdown set arbitrary HTML attributes on the option (e.g. marking one as the default).
 
 !	Process selectors
     set the elements of Select to SelectCount
@@ -425,6 +540,12 @@ ViewRecord:
             end
         end
     end
+!! @hash 2cc2871c
+!!!
+
+!! Reset the scroll to the top of the newly rendered topic, then stop until the next click/navigation event.
+!!
+!! The 20-tick wait lets the browser finish laying out the rendered HTML before the scroll request, otherwise the scroll-to-zero races layout. Mobile scrolls the window; desktop scrolls the bounded TopicText panel.
 
     wait 20 ticks
     if Mode is `admin` alert `Scroll`
@@ -432,12 +553,18 @@ ViewRecord:
 !    scroll TopicText to 0 ! This doesn't work on mobile
 
  	stop
+!! @hash 1326522a
+!!!
+
+!! SetupTheme — load the chosen theme's `theme.json` and apply its border/aspect/font settings.
+!!
+!! Themes live on the CDN by default (e.g. `pencil`); a theme name prefixed with `/` is read from the local server instead. The outer `or begin … end` clause recovers from a stale stored theme by clearing storage and falling back to the stories' default `theme.txt`. Mobile inflates the font scale 50% so the smaller viewport stays readable; desktop pulls the three parchment-frame images from the theme.
 
 !	Set up the theme
 SetupTheme:
 	get Theme from storage as `theme`
     if Theme is empty rest get Theme from Stories cat  `theme.txt?v=` cat now
-    if left 1 of Theme is `/` 
+    if left 1 of Theme is `/`
     begin
         put from 1 of Theme into Theme
         put empty into Path
@@ -447,7 +574,7 @@ SetupTheme:
     or begin
     	put empty into storage as `theme`
     	rest get Theme from Stories cat  `theme.txt`
-        if left 1 of Theme is `/` 
+        if left 1 of Theme is `/`
         begin
             put from 1 of Theme into Theme
             put empty into Path
@@ -474,10 +601,15 @@ SetupTheme:
 	    set attribute `src` of BottomImage to Path cat `/themes/` cat Theme cat `/bottom.jpg`
     end
 	return
+!! @hash 7e71bdc4
+!!!
 
-!	Create the buttons at the top of the panel
+!! CreateButtons — wire each navigation button to its icon source and click handler; mobile/desktop differ only in the button-bar's padding/background.
+!!
+!! Back and Forward start hidden via Webson (`display:none`); Back appears once a record has been pushed onto the stack, Forward appears once Back has been used. Each handler rewrites SID/TID and jumps to ViewAnotherRecord, except Back/Forward themselves which call ViewRecord directly so they reuse the existing stack entry rather than pushing a new one.
+
+!	Configure the buttons in the button-bar
 CreateButtons:
-    set style `position` of ButtonBar to `relative`
     if Mobile
     begin
     	set style `padding` of ButtonBar to `0.25em`
@@ -487,7 +619,6 @@ CreateButtons:
     begin
     	set style `margin` of ButtonBar to `0 1em 0.5em 1em`
     end
-	create HomeButton in ButtonBar
     set attribute `src` of HomeButton to CDNPath cat `/icons/home.png`
     on click HomeButton
     begin
@@ -496,8 +627,6 @@ CreateButtons:
         go to ViewAnotherRecord
     end
 
-	create BackButton in ButtonBar
-    set style `display` of BackButton to `none`
     set attribute `src` of BackButton to CDNPath cat `/icons/arrow-back.png`
     on click BackButton
     begin
@@ -515,8 +644,6 @@ CreateButtons:
         go to ViewRecord
     end
 
-	create ForwardButton in ButtonBar
-    set style `display` of ForwardButton to `none`
     set attribute `src` of ForwardButton to CDNPath cat `/icons/arrow-forward.png`
     on click ForwardButton
     begin
@@ -535,7 +662,6 @@ CreateButtons:
         go to ViewRecord
     end
 
-	create InfoButton in ButtonBar
     set attribute `src` of InfoButton to CDNPath cat `/icons/info.png`
     on click InfoButton
     begin
@@ -544,6 +670,12 @@ CreateButtons:
         go to ViewAnotherRecord
     end
 	return
+!! @hash 29465003
+!!!
+
+!! ViewAnotherRecord — push a fresh location onto the stack before jumping to ViewRecord.
+!!
+!! Called from every link/select/non-back-forward button when the user navigates somewhere new. The early `stop` short-circuits redundant navigation to the same SID/TID. `VAR2` is the fall-through target after the same-page check; the slightly odd separate-label shape lets the same-page check exit cleanly via `stop`.
 
 !	View another record, given the Subject and Topic ids
 ViewAnotherRecord:
@@ -556,13 +688,19 @@ VAR2:
     set the elements of Stack to N
     index Stack to StackPointer
     set style `display` of ForwardButton to `none`
-    go to ViewRecord 
+    go to ViewRecord
+!! @hash e7066b1a
+!!!
+
+!! SetStyles — compute the responsive layout: container, background images, buttons, content area, and font size.
+!!
+!! All sizes derive from the window height and the theme's `aspect-w`/`aspect-h`, so the parchment frame stays in proportion as the viewport changes. Borders are read from the theme as percentages and subtracted from the inner content area. The button row sizes to 1/20 of the content width; the font scales as content-height ÷ theme font-scale, with mobile boosted 5/4 for legibility. Called once at startup and again on every window-resize event.
 
 !	Responsive design: Compute the size and position of all the screen elements
 SetStyles:
     put the width of window into WindowWidth
     put the height of window into WindowHeight
-    
+
 !	Choose an optimum width based on the window height
 	put WindowHeight into Height
 	multiply Height by AspectW giving Width
@@ -576,13 +714,13 @@ SetStyles:
     	put 0 into Margin
         put WindowWidth into Width
     end
-    
+
 !	Style the Container
     set style `left` of Container to Margin cat `px`
     set style `top` of Container to 0
 	set style `width` of Container to Width cat `px`
     set style `height` of Container to Height cat `px`
-    
+
 !	Style the background images
 	if not Mobile
 	begin
@@ -618,12 +756,9 @@ SetStyles:
     end
 
     divide Width by 20 giving ButtonSize
-    
+
 !	Style the buttons
     if Mobile multiply ButtonSize by 2
-    set style `position` of HomeButton to `absolute`
-    set style `left` of HomeButton to `0.25em`
-    set style `top` of HomeButton to `0.25em`
     set style `width` of HomeButton to ButtonSize cat `px`
     set style `height` of HomeButton to ButtonSize cat `px`
 
@@ -632,30 +767,23 @@ SetStyles:
 	multiply ButtonSize by 3 giving M
     divide M by 2
     put M into N
-    set style `position` of BackButton to `absolute`
     set style `left` of BackButton to `calc(` cat N cat `px + 0.25em)`
-    set style `top` of BackButton to `0.25em`
     set style `width` of BackButton to ButtonSize cat `px`
     set style `height` of BackButton to ButtonSize cat `px`
 
 	add M to N
-    set style `position` of ForwardButton to `absolute`
     set style `left` of ForwardButton to `calc(` cat N cat `px + 0.25em)`
-    set style `top` of ForwardButton to `0.25em`
     set style `width` of ForwardButton to ButtonSize cat `px`
     set style `height` of ForwardButton to ButtonSize cat `px`
 
-    set style `position` of InfoButton to `absolute`
-    set style `right` of InfoButton to `0.25em`
-    set style `top` of InfoButton to `0.25em`
     set style `width` of InfoButton to ButtonSize cat `px`
     set style `height` of InfoButton to ButtonSize cat `px`
 
 !	Style the content
     set style `left` of Content to BorderLeft cat `px`
     set style `top` of Content to BorderTop cat `px`
-    set style `width` of Content to Width cat `px'
-    set style `height` of Content to Height cat `px'
+    set style `width` of Content to Width cat `px`
+    set style `height` of Content to Height cat `px`
 
 !	Compute the font size
     divide Height by FontScale giving FontSize
@@ -667,6 +795,12 @@ SetStyles:
     end
     set style `font-size` of Container to FontSize cat `px`
     return
+!! @hash a86cb398
+!!!
+
+!! Decorate — Showdown extension callback that rewrites each `~...~` token into HTML by dispatching to a per-tag subroutine.
+!!
+!! The token's payload (text between the tildes) is split on its first `:` into a tag and data. Tags: `sid`, `tid`, `stid`, `img`, `select`, `space`, `comment`, `theme`, `pn`, plus the no-colon standalone `clear`. The rewritten HTML is written back into the callback's payload slot, where Showdown picks it up to splice into the final document.
 
 !------------------------------------------------------------------------------
 !	This manages the Showdown extension.
@@ -696,6 +830,10 @@ Decorate:
     end
     set the payload of DecoratorCallback to Payload
     stop
+!! @hash 8f770052
+!!!
+
+!! ProcessSID — emit a link that jumps to a new subject's `content` topic.
 
 !	Process a request for a new subject
 !   Syntax: ~sid:{sid}:{display text}~
@@ -712,6 +850,10 @@ ProcessSID:
     	cat ` data-id="S-` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
+!! @hash 232e83fa
+!!!
+
+!! ProcessTID — emit a link that jumps to another topic within the current subject.
 
 !	Process a request for a new topic
 !   Syntax: ~tid:{tid}:{display text}~
@@ -725,9 +867,13 @@ ProcessTID:
 	    put from N of Display into Display
     end
     put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat `" data-id="T-` cat Data cat `">` cat Display cat `</a>` into Payload
+    	cat ` data-id="T-` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
+!! @hash cd98c022
+!!!
+
+!! ProcessSTID — emit a link that jumps to a specific topic in a specific subject (the `<sid>/<tid>` form).
 
 !	Process a request for a new subject and topic
 !   Syntax: ~stid:{stid}:{display text}~
@@ -741,9 +887,15 @@ ProcessSTID:
 	    put from N of Display into Display
     end
     put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat `" data-id="ST-` cat Data cat `">` cat Display cat `</a>` into Payload
+    	cat ` data-id="ST-` cat Data cat `">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
+!! @hash c325a624
+!!!
+
+!! ProcessImage — embed an image with positioning classes, optional sizing, and a click-to-zoom anchor by default.
+!!
+!! Path resolution: `~img:<sid>/<file>:<styles>!<options>~` — if the path lacks a `/`, the current SID is used as the source. Style tokens recognised: `border`, `left`, `right`, `center`, `clear`, and `<n>%` (sets `width:<n>%` via inline style); anything else raises an alert. The optional `!<options>` segment can include `nolink` to suppress the zoom anchor.
 
 !	Process an image, including positioning and class information
 !   Syntax: ~img:{url}:{styles}!{options}~
@@ -759,14 +911,14 @@ ProcessImage:
     end
     put the position of `:` in Data into N
     put empty into Class
-    if N is not -1 
+    if N is not -1
     begin
         put Source cat `/images/` cat left N of Data into Source
         add 1 to N
         if Data is not empty
         begin
 ! Redundant code removed, 27/7/21
-!        	if Class is not empty put Class cat ` ` into Class 
+!        	if Class is not empty put Class cat ` ` into Class
 !        	put Class cat from N of Data into Class
         	put from N of Data into Class
         end
@@ -834,12 +986,20 @@ ProcessImage:
     end
     add 1 to ImageCount
     return
+!! @hash 4ec53225
+!!!
+
+!! ProcessClear — emit a `clear:both` divider so the next block sits below any floated images.
 
 !	Process a 'clear'
 !   Syntax: ~clear~
 ProcessClear:
     put `<div style="height:1px;clear:both"></div>` into Payload
     return
+!! @hash 96a028d9
+!!!
+
+!! ProcessSelect — emit a `<select>` placeholder; the selector-wiring loop above populates and binds it after rendering.
 
 !	Process a 'select'
 ProcessSelect:
@@ -848,6 +1008,10 @@ ProcessSelect:
     	cat `></select>` into Payload
     add 1 to SelectCount
     return
+!! @hash 1146f8cb
+!!!
+
+!! ProcessSpace — emit N non-breaking spaces on desktop, or a single `<br>` on mobile where horizontal padding is meaningless.
 
 !	Process a space (add a non-breaking space)
 !   Syntax: ~space~
@@ -865,12 +1029,20 @@ ProcessSpace:
 	    end
     end
     return
+!! @hash 8080da09
+!!!
+
+!! ProcessComment — drop the token from the rendered output, letting markdown carry in-source notes that never appear on screen.
 
 !	Process a 'comment' (TODO)
 !   Syntax: ~comment~
 ProcessComment:
     put empty into Payload
     return
+!! @hash d72b0739
+!!!
+
+!! ProcessTheme — emit a "change theme" link; clicking it triggers the prompt-based theme-picker handled in the link click handler above.
 
 !	Process a 'theme'
 !   Syntax: ~theme:{theme name}>~
@@ -884,9 +1056,15 @@ ProcessTheme:
 	    put from N of Display into Display
     end
     put `<a href="#" id="ec-link-` cat LinkCount cat `" class="button"`
-    	cat `" data-id="theme">` cat Display cat `</a>` into Payload
+    	cat ` data-id="theme">` cat Display cat `</a>` into Payload
     add 1 to LinkCount
     return
+!! @hash c7eadbae
+!!!
+
+!! ProcessPreviousNext — render the Previous/Next pair at the foot of a topic, floated left and right with arrow icons.
+!!
+!! Either side can be empty (single direction). Each link uses a half-button-sized arrow icon from the CDN; a trailing `clear:both` div ensures subsequent content sits below the floats.
 
 !	Process a Previous ... Next
 !   Syntax: ~pn:{previous stid}:{display text}:{next stid}:{display text}~
@@ -973,6 +1151,12 @@ ProcessPreviousNext:
     put Payload cat `<div style="clear:both;height:1"></div>` into Payload
 
     return
+!! @hash 2550406c
+!!!
+
+!! GetStyles — install global CSS rules into the document head, called once at startup before any topic renders.
+!!
+!! Rules cover selector font-size, the `.clear`/`.border`/`.left`/`.right`/`.center` utility classes used by ProcessImage's class tokens, so the markdown can place and frame images without inline style.
 
 !   Put some styles into the head
 GetStyles:
@@ -989,3 +1173,5 @@ GetStyles:
 !   Put the item in the centre of the page
     set style `.center` to `{margin:0 auto}`
     return
+!! @hash c335a299
+!!!

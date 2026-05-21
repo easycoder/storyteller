@@ -3,18 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <script type='text/javascript' src='https://easycoder.github.io/dist/easycoder.js?v=2.7.11'></script>
-    <script type='text/javascript' src='https://easycoder.github.io/dist/plugins/showdown.js?v=2.7.11'></script>
+    <script type='text/javascript' src='https://allspeak.ai/dist/allspeak.js?v=2.7.11'></script>
+    <script type='text/javascript' src='https://allspeak.ai/dist/plugins/showdown.js?v=2.7.11'></script>
   </head>
 
   <body>
 
     <pre id="storyteller-stories" style="display:none">storyteller</pre>
-    <pre id="easycoder-script" style="display:none">
+    <pre id="allspeak-script" style="display:none">
 
       script Boot
       variable Script
-      rest get Script from `storyteller.ecs?v=` cat now
+      rest get Script from `storyteller.as?v=` cat now
       run Script
 
     </pre>
