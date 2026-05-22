@@ -452,6 +452,9 @@ PollNext:
 !! (explain)
 !   -- File browser with directory navigation --
 ShowBrowser:
+    ! Opening a tab while Blocks mode is up leaves the panes out of sync with
+    ! the active tab's source; switch back to flat mode first.
+    if BlocksMode is 1 gosub to DoExitBlocks
     rest get FileList from `/list/` cat CurrentPath or go BrowserError
     put the json count of FileList into FileCount
     set the elements of FileRow to FileCount
@@ -550,7 +553,7 @@ SelectEntry:
 CloseBrowser:
     set style `display` of Overlay to `none`
     stop
-!! @hash 90558828
+!! @hash ac5d5c01
 !! @verified 90558828
 !!!
 !! This section is tab management; creating a new tab, opening a file, selecting a tab and closing a tab.
@@ -907,7 +910,7 @@ ScoreWithCode:
 !! Blocks view.
 !! ToggleBlocks switches between flat and Blocks panes.
 !! EnterBlocks parses the current source and shows block 0.
-!! ExitBlocks flushes pending edits and reveals the flat pane again.
+!! ExitBlocks flushes pending edits and reveals the flat pane again; the work is in DoExitBlocks so ShowBrowser can call it as a subroutine before opening a tab.
 !! RenderBlock paints the textareas and the toolbar badge for the current section.
 !! UpdateBadge derives badge text/colour from the section's hash and verify states.
 ToggleBlocks:
@@ -940,11 +943,16 @@ EnterBlocks:
 
 !   Exit Blocks mode
 ExitBlocks:
+    gosub to DoExitBlocks
+    stop
+
+!   Exit Blocks mode (callable as a subroutine -- e.g. from ShowBrowser)
+DoExitBlocks:
     gosub to FlushBlock
     put 0 into BlocksMode
     set style `display` of BlocksArea to `none`
     set style `display` of EditorArea to `block`
-    stop
+    return
 
 NextBlock:
     put SecCount into Tmp
@@ -1000,7 +1008,7 @@ UpdateBadge:
         set style `background` of BlocksBadge to `#666`
     end
     return
-!! @hash 47355e60
+!! @hash e2a65195
 !! @verified b94f2261
 !!!
 !! Blocks save.

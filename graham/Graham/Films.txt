@@ -1,0 +1,20 @@
+Links: ~select:-:Select a subject!selected disabled hidden|S-Graham:My story|S-Joan:Mum|S-Ronald:Dad|S-Olive and Arthur:Mum's parents|S-Kate and Sidney:Dad's parents|T-Music:My favourite music~~space:3~Next: ~tid:Music:My favourite music~
+
+# My favourite films
+
+As with ~tid:Music:music~ I find it hard to be completely definitive about my favourites in the way some people are about Gone With The Wind, It's a Beautiful Life or Trainspotting. Three films definitely find their way into my Top Ten, though; in chronological order:
+
+### On Her Majesty's Secret Service (1969)
+
+~img:OHMSS.jpg:center 50%~Said to be the favourite Bond film of connoisseurs of the genre, this one starred George Lazenby with Diana Rigg providing the love interest. But it wasn't a formulaic Bond film, full of the usual special effects and gadgetry. In this one the story takes first place, including a developing love affair between the two main characters. In the absence of Internet spoilers in 1969, the final scene where Bond's new wife is killed in a roadside shooting came as a complete shock to cinema audiences and I well remember the collective gasp from the audience when it was revealed she had been killed.
+
+### A Fistful of Dynamite (1971)
+
+~img:Fistful of Dynamite.jpg:center 50%~I don't like Westerns, OK. So why is a Spaghetti Western on my list? My answer that this film is unlike all the others. Instead of the usual procession of macho posturing and gunfights in dusty cattle towns, this film tells an intelligent and quite powerful story. Directed by Sergio Leone and led by James Coburn and Rod Steiger with a superb score by Ennio Morricone, the film is set in revolution-torn Mexico in the 1910s. Coburn plays an IRA bomber on the run from the British authorities, and Steiger a Mexican bandit and would-be bank robber. The unlikely pairing of these two results in plenty of action, with ample humour and some tragic scenes as they both end up inadvertent "heroes of the revolution".
+
+### Blade Runner (1982)
+
+~img:Blade Runner.jpg:center 50%~Based on a novel (Do Androids Dream Of Electric Sheep?, by Philip K Dick) this is a moody, atmospheric film directed by Ridley Scott and starring Harrison Ford as Deckard, a law officer hunting down rogue replicants (artificial humans). Rutger Hauer put in a superb performance as Deckard's main antagonist, though the story makes one feel sympathy with his character, caught in a biological trap he cannot escape, and his final speech, ending with the words - "Time to die" - is a moving moment.
+
+Links: ~select:-:Select a subject!selected disabled hidden|S-Graham:My story|S-Joan:Mum|S-Ronald:Dad|S-Olive and Arthur:Mum's parents|S-Kate and Sidney:Dad's parents|T-Music:My favourite music~~space:3~Next: ~tid:Music:My favourite music~
+
